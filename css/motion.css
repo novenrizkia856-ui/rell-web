@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Motion system
+   Keyframes, durations, easings and triggers are carried over one to one from
+   the reference frontend. Only what they move has changed.
+   ========================================================================== */
+
+/* Ticker strip: 72s linear loop over two identical halves */
+@keyframes ticker {
+  0% { transform: translate(0); }
+  to { transform: translate(-50%); }
+}
+
+/* Hero layer loops */
+@keyframes hero-drift {
+  0%, to { transform: scale(1.04) translate(0); }
+  50% { transform: scale(1.04) translate(-10px, 4px); }
+}
+
+@keyframes hero-flare {
+  0%, to { transform: scale(1) rotate(0); }
+  50% { transform: scale(1.03) rotate(1deg); }
+}
+
+@keyframes hero-flare-counter {
+  0%, to { transform: scale(1) rotate(0); }
+  50% { transform: scale(1.04) rotate(-1.2deg); }
+}
+
+@keyframes hero-bob {
+  0%, to { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-6px) rotate(-1.2deg); }
+}
+
+@keyframes hero-twinkle {
+  0%, to { opacity: 0.3; transform: scale(0.7) rotate(0); }
+  50% { opacity: 1; transform: scale(1.15) rotate(18deg); }
+}
+
+.hero-drift {
+  animation: 9s ease-in-out infinite hero-drift;
+}
+
+.hero-flare {
+  transform-origin: 60% 55%;
+  animation: 5.8s ease-in-out infinite hero-flare;
+}
+
+.hero-flare-counter {
+  transform-origin: 65% 60%;
+  animation: 5.1s ease-in-out infinite hero-flare-counter;
+}
+
+.hero-bob {
+  transform-origin: 55% 80%;
+  animation: 4.6s ease-in-out infinite hero-bob;
+}
+
+.hero-twinkle {
+  animation: 2.6s ease-in-out infinite hero-twinkle;
+}
+
+/* Loading and "on its way" sheen */
+@keyframes card-shimmer {
+  0% { transform: translate(-100%); }
+  to { transform: translate(100%); }
+}
+
+/* Verification card art, runs only while the card is hovered */
+@keyframes grail-tick {
+  0%, to { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+
+@keyframes grail-bob {
+  0%, to { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.015); }
+}
+
+@keyframes grail-burst {
+  0%, to { transform: translateY(0) scale(1); }
+  45% { transform: translateY(-7px) scale(1.05); }
+}
+
+@keyframes grail-sway {
+  0%, to { transform: rotate(-1.8deg); }
+  50% { transform: rotate(1.8deg); }
+}
+
+.grail-art-tick,
+.grail-art-bob,
+.grail-art-burst,
+.grail-art-sway {
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+}
+
+.grail-art-tick { transform-origin: 50% 55%; animation-name: grail-tick; animation-duration: 5.5s; }
+.grail-art-bob { transform-origin: 50% 90%; animation-name: grail-bob; animation-duration: 4.2s; }
+.grail-art-burst { transform-origin: 50% 85%; animation-name: grail-burst; animation-duration: 3.4s; }
+.grail-art-sway { transform-origin: 50% 8%; animation-name: grail-sway; animation-duration: 6.5s; }
+
+.group:hover .grail-art-tick,
+.group:hover .grail-art-bob,
+.group:hover .grail-art-burst,
+.group:hover .grail-art-sway,
+.group:focus-within .grail-art-tick,
+.group:focus-within .grail-art-bob,
+.group:focus-within .grail-art-burst,
+.group:focus-within .grail-art-sway {
+  animation-play-state: running;
+}
+
+/* Soft pulse for "Coming Soon" and live status dots */
+@keyframes status-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+@keyframes text-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes status-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Scroll reveal, the same values framer motion used in the reference.
+   js/reveal.js sets per element duration, distance and delay. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 15px));
+  transition:
+    opacity var(--reveal-duration, 0.5s) var(--ease-reveal) var(--reveal-delay, 0s),
+    transform var(--reveal-duration, 0.5s) var(--ease-reveal) var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Without JavaScript nothing should stay hidden */
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-bob,
+  .hero-drift,
+  .hero-flare,
+  .hero-flare-counter,
+  .hero-twinkle,
+  .ticker__track,
+  .ca-bar__shimmer,
+  .ca-bar__value-text,
+  .right-card__shine,
+  .status-dot::after {
+    animation: none !important;
+  }
+
+  .grail-art-tick,
+  .grail-art-bob,
+  .grail-art-burst,
+  .grail-art-sway,
+  .group:hover .grail-art-tick,
+  .group:hover .grail-art-bob,
+  .group:hover .grail-art-burst,
+  .group:hover .grail-art-sway {
+    animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .motion-safe-transition,
+  .tile-field,
+  .tile-pack,
+  .tile-slab,
+  .cta-slab,
+  .sticker-btn::before,
+  .sticker-btn > .sticker-btn-face {
+    transition: none !important;
+  }
+}

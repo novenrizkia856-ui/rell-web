@@ -1,0 +1,20 @@
+// GENERATED from config/contracts.json by tools/sync-config.mjs. Do not edit by hand.
+window.RELL_CONFIG = {
+  "network": {
+    "name": "Robinhood Chain",
+    "chainId": "4663",
+    "explorerUrl": "https://robinhoodchain.blockscout.com"
+  },
+  "token": {
+    "symbol": "RELL",
+    "address": "",
+    "launched": false
+  },
+  "contracts": {
+    "rightsRegistry": "0xDFfFe7974067D5Deb5020Da1c64A182E2a9aeD92",
+    "verificationOracle": "0xBC2236547FfFC98C30b575686bc3E3953D033838"
+  },
+  "walletConnect": {
+    "projectId": "ff24e7c4e7d10744e3ccd080e4307cad"
+  }
+};
