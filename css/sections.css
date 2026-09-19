@@ -16,7 +16,7 @@
      centring it, which is why ours sat about 150px too low. */
   justify-content: flex-start;
   min-height: calc(100vh - var(--ca-h));
-  padding-top: calc(var(--ca-h) + 3.625rem);
+  padding-top: calc(var(--ca-h) + 4.3125rem);
   padding-bottom: 7.5rem;
   overflow: hidden;
   background: linear-gradient(180deg, #dbe1e7 0%, #e7ebef 26%, #f4f6f8 62%, var(--white) 100%);
@@ -279,7 +279,7 @@
   font-size: 1.625rem;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: normal;
 }
 
 .h4 {
@@ -304,7 +304,7 @@
 
 .metric__number {
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 1.8rem + 3.2vw, 3.625rem);
+  font-size: clamp(2.75rem, 1.7rem + 3.6vw, 3.625rem);
   font-weight: 300;
   line-height: 1.1;
 }

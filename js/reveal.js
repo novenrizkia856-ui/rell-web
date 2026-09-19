@@ -46,5 +46,25 @@
         observer.observe(node);
       });
     });
+
+    /* Failsafe. Every node starts at opacity 0, so if the observer never runs
+       the page stays blank. That happens in a background tab, where the
+       document is hidden and intersections are not reported. Sweep anything
+       already on screen, once shortly after load and again whenever the page
+       becomes visible. */
+    function sweep() {
+      nodes.forEach(function (node) {
+        if (node.classList.contains("is-revealed")) return;
+        var r = node.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          node.classList.add("is-revealed");
+        }
+      });
+    }
+
+    window.setTimeout(sweep, 1200);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") sweep();
+    });
   };
 })(window.RELL = window.RELL || {});
