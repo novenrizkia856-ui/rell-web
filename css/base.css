@@ -137,7 +137,7 @@ ol {
 
 /* The light wash used to separate long stretches of white */
 .section--wash {
-  background-image: linear-gradient(180deg, var(--ink-100), var(--white) 62%);
+  background-image: linear-gradient(180deg, var(--ink-100), var(--white) 50%);
 }
 
 .section--wash-up {
@@ -157,9 +157,9 @@ ol {
   text-wrap: balance;
 }
 
-.display-1 { font-size: var(--h1); }
-.display-2 { font-size: var(--h2); }
-.display-3 { font-size: var(--h3); }
+.display-1 { font-size: var(--h1); letter-spacing: var(--track-h1); }
+.display-2 { font-size: var(--h2); letter-spacing: var(--track-h2); }
+.display-3 { font-size: var(--h3); letter-spacing: var(--track-h2); }
 
 .display-1 .quiet,
 .display-2 .quiet,
@@ -207,7 +207,7 @@ ol {
   flex-direction: column;
   gap: 1.25rem;
   max-width: 46rem;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .section-head--center {

@@ -148,7 +148,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0 0.6rem 0 0.2rem;
+  padding: 0 0.7rem 0 0;
   font-family: var(--font-display);
   font-size: 0.9375rem;
   font-weight: 600;
@@ -156,9 +156,13 @@
 }
 
 .nav__mark {
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
   flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--white);
 }
 
 .nav__links {
@@ -177,10 +181,10 @@
   align-items: center;
   gap: 0.35rem;
   height: 100%;
-  padding-inline: 0.75rem;
+  padding-inline: 0.8rem;
   font-size: var(--small);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.036em;
   text-transform: uppercase;
   color: var(--black);
   transition: color var(--fast) var(--ease-out);
@@ -188,7 +192,7 @@
 
 .nav__link:hover,
 .nav__link.is-active {
-  color: var(--accent);
+  color: var(--ink-400);
 }
 
 .nav__link svg {
@@ -536,13 +540,20 @@
 
 .faq-list {
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .faq-list {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
 }
 
 .faq-item {
   border: 1px solid var(--ink-100);
   border-radius: var(--r-card);
-  background: var(--white);
+  background: var(--ink-050);
   overflow: hidden;
   transition: border-color var(--fast) var(--ease-out), box-shadow var(--fast) var(--ease-out);
 }
@@ -567,7 +578,7 @@
 }
 
 @media (min-width: 640px) {
-  .faq-item__head { padding: 1.75rem 2rem; }
+  .faq-item__head { padding: 2rem; }
 }
 
 .faq-item__icon {
@@ -599,15 +610,16 @@
 .faq-item.is-open .faq-item__icon::after { background: var(--white); }
 .faq-item.is-open .faq-item__icon::after { transform: rotate(0deg); }
 
+/* Height is set in js/faq.js from the measured content, so the panel animates
+   in every browser rather than only where grid row transitions are supported. */
 .faq-item__body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--slow) var(--ease);
+  height: 0;
+  overflow: hidden;
+  transition: height var(--slow) var(--ease);
 }
 
-.faq-item.is-open .faq-item__body { grid-template-rows: 1fr; }
-
-.faq-item__body > div { overflow: hidden; min-height: 0; }
+/* Without JavaScript the answers stay readable rather than unreachable */
+.no-js .faq-item__body { height: auto; }
 
 .faq-item__body p {
   padding: 0 1.5rem 1.5rem;
@@ -616,15 +628,15 @@
 }
 
 @media (min-width: 640px) {
-  .faq-item__body p { padding: 0 2rem 1.75rem; max-width: 52rem; }
+  .faq-item__body p { padding: 0 2rem 2rem; max-width: 52rem; }
 }
 
 /* Footer ------------------------------------------------------------------- */
 
 .footer {
   position: relative;
-  padding-block: 3rem 2.5rem;
-  background-image: linear-gradient(180deg, var(--white), var(--ink-100));
+  padding-block: 6rem 4.5rem;
+  background-image: linear-gradient(180deg, rgba(141, 156, 169, 0) 12%, rgba(141, 156, 169, 0.8));
 }
 
 .footer__inner {
@@ -632,8 +644,10 @@
   gap: 2.5rem;
   padding: 2rem;
   border-radius: var(--r-card-lg);
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid var(--white);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
 @media (min-width: 860px) {
@@ -708,11 +722,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--ink-200);
+  margin-top: 1.5rem;
+  padding-inline: 0.5rem;
   font-size: var(--tiny);
-  color: var(--text-3);
+  color: var(--ink-600);
 }
 
 /* Toast -------------------------------------------------------------------- */

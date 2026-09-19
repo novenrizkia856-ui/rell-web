@@ -148,18 +148,14 @@
       <!-- Hero -------------------------------------------------------------- -->
       <section class="hero" aria-labelledby="hero-title">
         <div class="container hero__inner">
-          <p class="chip chip--outline" data-reveal data-reveal-y="10">
-            <span class="dot" style="color: var(--onchain)"></span>
-            Rights intelligence for tokenized assets
-          </p>
-          <h1 class="display-1 hero__title" id="hero-title" data-reveal data-reveal-delay="0.05">
+          <h1 class="display-1 hero__title" id="hero-title" data-reveal>
             <span class="quiet">A token can look like ownership.</span>
-            RELL shows what it really gives you.
+            RELL shows what it gives.
           </h1>
-          <p class="lede hero__lede" data-reveal data-reveal-delay="0.1">
+          <p class="lede hero__lede" data-reveal data-reveal-delay="0.06">
             RELL reads the rights behind tokenized stocks. Every claim arrives with the source it came from.
           </p>
-          <div class="hero__cta" data-reveal data-reveal-delay="0.15">
+          <div class="hero__cta" data-reveal data-reveal-delay="0.12">
             <p class="hero__cta-note">Covering Robinhood Chain stock tokens</p>
             <div class="hero__buttons">
               <a class="btn btn--primary" href="#map">Explore the map</a>
@@ -171,51 +167,48 @@
         <div class="hero__visual" aria-hidden="true">
           <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
             <defs>
-              <linearGradient id="chrome-body" x1="0.15" y1="0" x2="0.85" y2="1">
+              <linearGradient id="chrome-body" x1="0.12" y1="0" x2="0.9" y2="1">
                 <stop offset="0" stop-color="#ffffff"/>
-                <stop offset="0.18" stop-color="#eef1f4"/>
-                <stop offset="0.38" stop-color="#9aa4af"/>
-                <stop offset="0.52" stop-color="#f2f4f7"/>
-                <stop offset="0.68" stop-color="#6f7984"/>
-                <stop offset="0.84" stop-color="#cfd5db"/>
-                <stop offset="1" stop-color="#8b949e"/>
+                <stop offset="0.16" stop-color="#f4f6f8"/>
+                <stop offset="0.34" stop-color="#b9c1c9"/>
+                <stop offset="0.48" stop-color="#f7f9fa"/>
+                <stop offset="0.64" stop-color="#9aa4ae"/>
+                <stop offset="0.8" stop-color="#e6eaee"/>
+                <stop offset="1" stop-color="#b6bec6"/>
               </linearGradient>
-              <linearGradient id="chrome-body-2" x1="0.2" y1="0" x2="0.8" y2="1">
+              <linearGradient id="chrome-body-2" x1="0.2" y1="0" x2="0.82" y2="1">
                 <stop offset="0" stop-color="#ffffff"/>
-                <stop offset="0.3" stop-color="#dfe4e9"/>
-                <stop offset="0.55" stop-color="#8f99a4"/>
-                <stop offset="0.75" stop-color="#eef1f4"/>
-                <stop offset="1" stop-color="#a8b1ba"/>
+                <stop offset="0.32" stop-color="#eef1f4"/>
+                <stop offset="0.6" stop-color="#aab3bc"/>
+                <stop offset="0.82" stop-color="#f2f4f6"/>
+                <stop offset="1" stop-color="#c3cad1"/>
               </linearGradient>
-              <radialGradient id="tint" cx="0.5" cy="0.45" r="0.55">
-                <stop offset="0" stop-color="#7c5cff" stop-opacity="0.09"/>
-                <stop offset="1" stop-color="#7c5cff" stop-opacity="0"/>
-              </radialGradient>
               <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="24"/>
+                <feGaussianBlur stdDeviation="22"/>
               </filter>
               <filter id="soft-sm" x="-40%" y="-40%" width="180%" height="180%">
-                <feGaussianBlur stdDeviation="9"/>
+                <feGaussianBlur stdDeviation="11"/>
               </filter>
             </defs>
 
-            <circle cx="600" cy="300" r="620" fill="url(#tint)"/>
-            <ellipse cx="600" cy="486" rx="286" ry="30" fill="#8d9ca9" opacity="0.2" filter="url(#soft)"/>
+            <ellipse cx="620" cy="560" rx="420" ry="40" fill="#8d9ca9" opacity="0.18" filter="url(#soft)"/>
 
-            <!-- main liquid metal form -->
-            <path d="M600 92c88 0 132 52 168 108 34 53 62 92 62 152 0 84-84 156-230 156s-230-72-230-156c0-60 28-99 62-152 36-56 80-108 168-108Z"
-                  fill="url(#chrome-body)"/>
-            <path d="M470 236c24-62 72-104 130-110-74 34-104 84-118 140-10 40-4 78 16 112-28-34-42-88-28-142Z"
-                  fill="#ffffff" opacity="0.72" filter="url(#soft-sm)"/>
-            <ellipse cx="686" cy="404" rx="118" ry="34" fill="#ffffff" opacity="0.45" filter="url(#soft-sm)"/>
-            <ellipse cx="548" cy="196" rx="58" ry="26" fill="#ffffff" opacity="0.92" filter="url(#soft-sm)" transform="rotate(-26 548 196)"/>
+            <!-- main form, large enough to run past the frame -->
+            <path d="M600 30c150 0 226 86 288 182 58 90 106 156 106 258 0 142-176 264-394 264S206 612 206 470c0-102 48-168 106-258C374 116 450 30 600 30Z"
+                  fill="url(#chrome-body)" stroke="#8d9ca9" stroke-opacity="0.45" stroke-width="1.5"/>
+            <path d="M356 300c40-104 122-176 220-186-126 58-176 142-200 238-17 68-7 132 27 190-47-58-71-150-47-242Z"
+                  fill="#ffffff" opacity="0.7" filter="url(#soft-sm)"/>
+            <ellipse cx="740" cy="520" rx="190" ry="52" fill="#ffffff" opacity="0.4" filter="url(#soft-sm)"/>
+            <ellipse cx="516" cy="196" rx="86" ry="34" fill="#ffffff" opacity="0.92" filter="url(#soft-sm)" transform="rotate(-24 516 196)"/>
 
-            <!-- satellites -->
-            <path d="M268 322c44 0 74 26 82 62 8 34-6 72-52 86s-92-6-104-44c-12-40 18-104 74-104Z" fill="url(#chrome-body-2)"/>
-            <ellipse cx="250" cy="352" rx="26" ry="14" fill="#ffffff" opacity="0.85" filter="url(#soft-sm)" transform="rotate(-24 250 352)"/>
+            <!-- satellites, cut by the frame like the reference -->
+            <path d="M156 344c76 0 128 44 142 106 14 60-10 124-90 148s-158-10-178-76c-20-68 30-178 126-178Z"
+                  fill="url(#chrome-body-2)" stroke="#8d9ca9" stroke-opacity="0.4" stroke-width="1.5"/>
+            <ellipse cx="128" cy="396" rx="42" ry="20" fill="#ffffff" opacity="0.85" filter="url(#soft-sm)" transform="rotate(-24 128 396)"/>
 
-            <path d="M934 330c34 0 58 20 62 48 5 28-10 56-46 64s-70-10-74-42c-4-30 22-70 58-70Z" fill="url(#chrome-body-2)"/>
-            <ellipse cx="922" cy="354" rx="19" ry="10" fill="#ffffff" opacity="0.85" filter="url(#soft-sm)" transform="rotate(-24 922 354)"/>
+            <path d="M1058 322c58 0 98 34 106 82 8 48-18 96-78 110s-120-16-126-72c-6-52 38-120 98-120Z"
+                  fill="url(#chrome-body-2)" stroke="#8d9ca9" stroke-opacity="0.4" stroke-width="1.5"/>
+            <ellipse cx="1036" cy="364" rx="32" ry="16" fill="#ffffff" opacity="0.85" filter="url(#soft-sm)" transform="rotate(-24 1036 364)"/>
           </svg>
           <div class="hero__fade"></div>
         </div>
