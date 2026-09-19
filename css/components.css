@@ -222,6 +222,17 @@
   animation: menu-in var(--fast) var(--ease-out);
 }
 
+/* The menu sits 0.5rem below the trigger. Without this bridge the pointer
+   crosses a dead gap on the way down and the group fires mouseleave. */
+.nav__menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.5rem;
+  height: 0.5rem;
+}
+
 .nav__menu[hidden] { display: none; }
 
 @keyframes menu-in {
