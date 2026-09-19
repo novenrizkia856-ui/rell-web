@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RELL | Rights Intelligence for Tokenized Assets</title>
   <meta name="description" content="RELL shows what a tokenized stock really gives you. Rights mapped, sources shown.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#fbfbfa">
   <link rel="canonical" href="https://tryrell.xyz/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="RELL">
@@ -22,7 +22,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Rubik:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
@@ -35,1091 +35,461 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Shared SVG symbols -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient id="g-mark" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#b3aaff"/>
-        <stop offset="0.55" stop-color="#7b6cff"/>
-        <stop offset="1" stop-color="#35e1c1"/>
-      </linearGradient>
+      <symbol id="i-mark" viewBox="0 0 24 24">
+        <path d="M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="3.1" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 16 16"><path d="m3.5 8.5 3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-external" viewBox="0 0 16 16"><path d="M9 3h4v4M13 3 7.5 8.5M11 9.5V12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 20 20"><path d="M3 6h14M3 10h14M3 14h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-network" viewBox="0 0 20 20"><circle cx="10" cy="4.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="4.5" cy="15" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="15" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.6 6.5 6 12.9M11.4 6.5l2.6 6.4M6.7 15h6.6" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="3" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="11" width="6" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="11" width="6" height="6" rx="1.5" fill="currentColor"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 20 20"><path d="M10 2.6 16 4.8v4.7c0 3.6-2.4 6.4-6 7.6-3.6-1.2-6-4-6-7.6V4.8Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m7.4 9.9 1.9 1.9 3.4-3.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 20 20"><path d="M11.5 2.5H6a1.5 1.5 0 0 0-1.5 1.5v12A1.5 1.5 0 0 0 6 17.5h8a1.5 1.5 0 0 0 1.5-1.5V6.5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M11.5 2.5v4h4M7.5 10.5h5M7.5 13.5h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     </defs>
-    <symbol id="i-mark" viewBox="0 0 32 32">
-      <path d="M16 2.5 27.7 9.25v13.5L16 29.5 4.3 22.75V9.25Z" fill="none" stroke="url(#g-mark)" stroke-width="2"/>
-      <path d="M16 9.5 21.6 12.75v6.5L16 22.5l-5.6-3.25v-6.5Z" fill="url(#g-mark)" opacity=".9"/>
-      <path d="M16 2.5v7M27.7 22.75l-6.1-3.5M4.3 22.75l6.1-3.5" stroke="url(#g-mark)" stroke-width="2" opacity=".7"/>
-    </symbol>
-    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 5.5v-.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5.5-5.5L19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5m-5.5 5.5L12 5l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6.5 9.5 5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-    <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="5.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="18.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.8 7.7 6.7 15.3M13.2 7.7l4.1 7.6M8 17.5h8" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
-    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" fill="currentColor"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="m8.8 12 2.3 2.3 4.2-4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6-8.5 8.5M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
-  <div class="page" id="top">
-    <!-- ================================================================
-         HEADER: contract address bar, ticker strip, navigation
-         ================================================================ -->
-    <header class="site-header" data-header>
-
-      <!-- Contract address bar. State comes from config/contracts.json -->
-      <div class="ca-bar" id="ca-bar" data-ca-bar data-state="soon">
-        <div class="ca-bar__inner">
-          <span class="ca-bar__label">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="ca-bar__label-long">Contract Address</span>
-            <span class="ca-bar__label-short" aria-hidden="true">CA</span>
-          </span>
-
-          <span class="ca-bar__pill">
-            <span class="ca-bar__symbol mono" data-config-text="token.symbol">RELL</span>
-            <span class="ca-bar__divider" aria-hidden="true"></span>
-            <span class="ca-bar__value mono" data-ca-value aria-live="polite">
-              <span class="ca-bar__value-text" data-ca-text>Coming Soon</span>
-              <span class="ca-bar__shimmer" aria-hidden="true"></span>
-            </span>
-            <a class="ca-bar__explorer" data-ca-explorer href="#" target="_blank" rel="noopener noreferrer" hidden aria-label="View on explorer">
-              <svg width="14" height="14" aria-hidden="true"><use href="#i-external"/></svg>
-            </a>
-          </span>
-
-          <button class="ca-bar__copy" type="button" data-ca-copy data-copy-state="idle" aria-label="Copy contract address">
-            <span class="ca-bar__copy-icon" aria-hidden="true">
-              <svg class="icon-idle" width="14" height="14"><use href="#i-copy"/></svg>
-              <svg class="icon-done" width="14" height="14"><use href="#i-check"/></svg>
-              <svg class="icon-soon" width="14" height="14"><use href="#i-clock"/></svg>
-            </span>
-            <span class="ca-bar__copy-text" data-ca-copy-text>Copy</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Ticker strip -->
-      <div class="ticker" aria-hidden="true">
-        <div class="ticker__track">
-          <span class="ticker__half">
-            <span>know what you hold</span><span>read the rights</span><span>check the source</span><span>trust the map</span>
-            <span>know what you hold</span><span>read the rights</span><span>check the source</span><span>trust the map</span>
-          </span>
-          <span class="ticker__half">
-            <span>know what you hold</span><span>read the rights</span><span>check the source</span><span>trust the map</span>
-            <span>know what you hold</span><span>read the rights</span><span>check the source</span><span>trust the map</span>
-          </span>
-        </div>
-      </div>
-
-      <!-- Navigation -->
-      <div class="nav-shell">
-        <div class="nav">
-          <a class="brand" href="#top" aria-label="RELL home">
-            <svg class="brand__mark" width="30" height="30" aria-hidden="true"><use href="#i-mark"/></svg>
-            <span class="brand__word">RE<span>LL</span></span>
-          </a>
-
-          <nav class="nav__links" aria-label="Primary">
-            <a class="nav__link" href="#problem">Problem</a>
-            <a class="nav__link" href="#solution">Rights</a>
-            <a class="nav__link" href="#verification">Verification<span class="nav__tag" aria-hidden="true">Core</span></a>
-            <a class="nav__link" href="#example">Example</a>
-            <a class="nav__link" href="#scope">Scope</a>
-          </nav>
-
-          <div class="nav__spacer"></div>
-
-          <div class="nav__actions">
-            <div class="dropdown" data-dropdown>
-              <button class="icon-btn dropdown__trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="network-menu" aria-label="Network coverage">
-                <svg width="18" height="18" aria-hidden="true"><use href="#i-network"/></svg>
-              </button>
-              <div class="dropdown__menu" id="network-menu" role="menu" hidden>
-                <p class="eyebrow dropdown__title">Network</p>
-                <div class="dropdown__item" role="menuitem" tabindex="-1">
-                  <span class="dropdown__item-main">
-                    <svg width="16" height="16" aria-hidden="true"><use href="#i-network"/></svg>
-                    <span data-config-text="network.name">Robinhood Chain</span>
-                  </span>
-                  <svg class="dropdown__check" width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg>
-                </div>
-                <p class="dropdown__meta mono" data-chain-id hidden>Chain ID <span data-config-text="network.chainId"></span></p>
-                <p class="eyebrow dropdown__title">Assets</p>
-                <div class="dropdown__item" role="menuitem" tabindex="-1">
-                  <span class="dropdown__item-main">
-                    <svg width="16" height="16" aria-hidden="true"><use href="#i-grid"/></svg>
-                    <span>Stock Tokens</span>
-                  </span>
-                  <svg class="dropdown__check" width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg>
-                </div>
-              </div>
-            </div>
-
-            <a class="btn btn--ghost nav__contract" href="#ca-bar">Contract</a>
-            <a class="btn btn--primary nav__cta" href="#solution">Explore Rights</a>
-            <button class="btn btn--wallet" type="button" data-wallet-connect data-state="idle" aria-label="Connect Wallet">
-              <span class="btn__dot" aria-hidden="true"></span>
-              <span data-wallet-label>Connect Wallet</span>
-            </button>
-          </div>
-
-          <button class="icon-btn nav__menu-btn" type="button" data-sheet-open aria-controls="mobile-sheet" aria-expanded="false" aria-label="Open menu">
-            <svg width="20" height="20" aria-hidden="true"><use href="#i-menu"/></svg>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Mobile sheet -->
-    <div class="sheet" id="mobile-sheet" data-sheet hidden>
-      <div class="sheet__backdrop" data-sheet-close></div>
-      <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Menu">
-        <div class="sheet__head">
-          <a class="brand" href="#top" data-sheet-close aria-label="RELL home">
-            <svg class="brand__mark" width="28" height="28" aria-hidden="true"><use href="#i-mark"/></svg>
-            <span class="brand__word">RE<span>LL</span></span>
-          </a>
-          <button class="icon-btn" type="button" data-sheet-close aria-label="Close menu">
-            <svg width="20" height="20" aria-hidden="true"><use href="#i-close"/></svg>
-          </button>
-        </div>
-        <nav class="sheet__links" aria-label="Mobile">
-          <a href="#problem" data-sheet-close>Problem</a>
-          <a href="#solution" data-sheet-close>Rights</a>
-          <a href="#verification" data-sheet-close>Verification<span class="nav__tag">Core</span></a>
-          <a href="#example" data-sheet-close>Example</a>
-          <a href="#scope" data-sheet-close>Scope</a>
-        </nav>
-        <div class="sheet__foot">
-          <p class="eyebrow">Coverage</p>
-          <p class="sheet__coverage"><span data-config-text="network.name">Robinhood Chain</span> · Stock Tokens</p>
-          <a class="btn btn--primary btn--block" href="#solution" data-sheet-close>Explore Rights</a>
-          <button class="btn btn--wallet btn--block" type="button" data-wallet-connect data-state="idle" aria-label="Connect Wallet">
-            <span class="btn__dot" aria-hidden="true"></span>
-            <span data-wallet-label>Connect Wallet</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <main class="page__main" id="main">
-
-      <!-- ================================================================
-           HERO
-           ================================================================ -->
-      <section class="section hero" aria-labelledby="hero-title">
-        <div class="container">
-          <div class="hero__panel group">
-            <div class="hero__art" aria-hidden="true">
-
-              <!-- Layer 1: vector comic burst field -->
-              <div class="hero__layer1">
-                <div class="hero-drift hero__fill">
-                  <svg class="hero__svg" viewBox="0 0 1420 480" preserveAspectRatio="xMaxYMid slice">
-                    <defs>
-                      <pattern id="h1-tone-a" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <circle cx="10" cy="10" r="5.4" fill="#0b0e17"/>
-                      </pattern>
-                      <pattern id="h1-tone-b" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <circle cx="10" cy="10" r="3.6" fill="#0b0e17"/>
-                      </pattern>
-                      <pattern id="h1-tone-c" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <circle cx="10" cy="10" r="2" fill="#0b0e17"/>
-                      </pattern>
-                      <pattern id="h1-tone-hi" width="18" height="18" patternUnits="userSpaceOnUse">
-                        <circle cx="9" cy="9" r="2.6" fill="#ffffff"/>
-                      </pattern>
-                    </defs>
-
-                    <!-- Solid vibrant base, no gradient -->
-                    <rect width="1420" height="480" fill="#6d28d9"/>
-
-                    <!-- Wide sunburst wedges -->
-                    <g fill="#8b5cf6">
-                      <path d="M1010 232L1010 -1968L1536 -1904Z M1010 232L2032 -1716L2469 -1415Z M1010 232L2821 -1018L3067 -548Z M1010 232L3194 -33L3194 497Z M1010 232L3067 1012L2821 1482Z M1010 232L2469 1879L2032 2180Z M1010 232L1536 2368L1010 2432Z M1010 232L484 2368L-12 2180Z M1010 232L-449 1879L-801 1482Z M1010 232L-1047 1012L-1174 497Z M1010 232L-1174 -33L-1047 -548Z M1010 232L-801 -1018L-449 -1415Z M1010 232L-12 -1716L484 -1904Z"/>
-                    </g>
-
-                    <!-- Fine speed lines between the wedges -->
-                    <g fill="#ffe600" opacity=".26">
-                      <path d="M1010 232L1125 -1965L1354 -1941Z M1010 232L2009 -1728L2208 -1613Z M1010 232L2720 -1153L2855 -966Z M1010 232L3135 -337L3183 -112Z M1010 232L3183 576L3135 801Z M1010 232L2855 1430L2720 1617Z M1010 232L2208 2077L2009 2192Z M1010 232L1354 2405L1125 2429Z M1010 232L441 2357L222 2286Z M1010 232L-375 1942L-546 1788Z M1010 232L-1115 801L-1163 576Z M1010 232L-1163 -112L-1115 -337Z M1010 232L-546 -1324L-375 -1478Z M1010 232L222 -1822L441 -1893Z"/>
-                    </g>
-
-                    <!-- Impact rings around the slab -->
-                    <g fill="none" stroke="#ffffff" stroke-opacity=".3">
-                      <circle cx="1010" cy="232" r="206" stroke-width="4"/>
-                      <circle cx="1010" cy="232" r="268" stroke-width="3" stroke-dasharray="14 12"/>
-                      <circle cx="1010" cy="232" r="336" stroke-width="2.5"/>
-                    </g>
-                    <circle cx="1010" cy="232" r="186" fill="url(#h1-tone-hi)" opacity=".2"/>
-
-                    <!-- Halftone shading ramp, dot size steps down left to right -->
-                    <g>
-                      <rect x="0" y="0" width="392" height="480" fill="url(#h1-tone-a)" opacity=".5"/>
-                      <rect x="360" y="0" width="300" height="480" fill="url(#h1-tone-b)" opacity=".42"/>
-                      <rect x="628" y="0" width="292" height="480" fill="url(#h1-tone-c)" opacity=".32"/>
-                    </g>
-
-                    <!-- Hard ink base edge -->
-                    <rect x="0" y="466" width="1420" height="14" fill="#0b0e17" opacity=".35"/>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="hero__stage">
-                <!-- Layer 2: orbit rings -->
-                <div class="hero__layer2">
-                  <div class="hero-flare-counter hero__fill">
-                    <svg class="hero__svg" viewBox="0 0 953 741" preserveAspectRatio="none">
-                      <g fill="none" transform="translate(500 380)">
-                        <circle r="330" stroke="#ffe600" stroke-opacity=".55" stroke-width="3"/>
-                        <circle r="262" stroke="#ffffff" stroke-opacity=".35" stroke-dasharray="10 14" stroke-width="3"/>
-                        <circle r="196" stroke="#00ff85" stroke-opacity=".5" stroke-width="3"/>
-                        <g stroke="#ffffff" stroke-opacity=".4" stroke-width="4" stroke-linecap="round">
-                          <path d="M0 -352v26M0 326v26M-352 0h26M326 0h26"/>
-                        </g>
-                        <circle cx="-262" cy="0" r="9" fill="#00ff85" stroke="#0b0e17" stroke-width="4"/>
-                        <circle cx="140" cy="-286" r="9" fill="#ff007a" stroke="#0b0e17" stroke-width="4"/>
-                        <circle cx="160" cy="138" r="9" fill="#ffe600" stroke="#0b0e17" stroke-width="4"/>
-                      </g>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Layer 3: prism -->
-                <div class="hero__layer3">
-                  <div class="hero-flare hero__fill">
-                    <svg class="hero__svg" viewBox="0 0 919 608" preserveAspectRatio="none">
-                      <g transform="translate(596 214) scale(0.62)" stroke="#0b0e17" stroke-width="11" stroke-linejoin="round">
-                        <path d="M0 -250 L190 -40 L0 30 L-190 -40 Z" fill="#ff007a"/>
-                        <path d="M-190 -40 L0 30 L0 250 Z" fill="#c2006b"/>
-                        <path d="M190 -40 L0 30 L0 250 Z" fill="#ff4f9f"/>
-                        <path d="M0 -250 L190 -40 L0 30 Z" fill="#ff86bd"/>
-                      </g>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Layer 4: token coin -->
-                <div class="hero__layer4">
-                  <div class="hero-bob hero__fill">
-                    <svg class="hero__svg" viewBox="0 0 760 502" preserveAspectRatio="none">
-                      <g transform="translate(615 360) rotate(-14)">
-                        <circle cy="18" r="92" fill="#0b0e17"/>
-                        <circle r="92" fill="#ffe600" stroke="#0b0e17" stroke-width="7"/>
-                        <path d="M0 -92a92 92 0 0 1 92 92Z" fill="#fff59b"/>
-                        <circle r="70" fill="none" stroke="#0b0e17" stroke-width="4" stroke-dasharray="8 8"/>
-                        <g transform="scale(2.6) translate(-16 -16)">
-                          <use href="#i-mark"/>
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Layer 5: rights card slab -->
-                <div class="hero__layer5">
-                  <div class="hero-bob hero__fill">
-                    <svg class="hero__svg" viewBox="0 0 795 541" preserveAspectRatio="none">
-                      <defs>
-                        <clipPath id="h5-face"><rect x="14" y="14" width="332" height="208" rx="12"/></clipPath>
-                        <pattern id="h5-tone" width="12" height="12" patternUnits="userSpaceOnUse">
-                          <circle cx="6" cy="6" r="1.7" fill="#0b0e17"/>
-                        </pattern>
-                      </defs>
-                      <g transform="translate(248 150) rotate(-8)" font-family="Rubik, Inter, sans-serif">
-                        <!-- Hard 2D offset shadow, no blur -->
-                        <rect x="10" y="12" width="360" height="236" rx="18" fill="#0b0e17"/>
-                        <rect width="360" height="236" rx="18" fill="#f1f5f9" stroke="#0b0e17" stroke-width="5"/>
-                        <rect x="14" y="14" width="332" height="208" rx="12" fill="#e6ebf7" stroke="#0b0e17" stroke-width="3"/>
-
-                        <g clip-path="url(#h5-face)">
-                          <rect x="14" y="14" width="332" height="208" fill="url(#h5-tone)" opacity=".07"/>
-                          <!-- Glossy diagonal light reflections across the acrylic face -->
-                          <path d="M40 -30h86L6 250h-86Z" fill="#ffffff"/>
-                          <path d="M150 -30h34L64 250h-34Z" fill="#ffffff" opacity=".85"/>
-                          <path d="M206 -30h16L102 250h-16Z" fill="#ffffff" opacity=".6"/>
-                          <path d="M262 -30h120L262 250h-120Z" fill="#ffffff" opacity=".92"/>
-                        </g>
-
-                        <text x="30" y="48" fill="#475569" font-size="11" font-weight="800" letter-spacing="2" font-family="JetBrains Mono, monospace">RIGHTS MAP</text>
-                        <text x="30" y="78" fill="#0b0e17" font-size="23" font-weight="800">ACME Stock Token</text>
-                        <rect x="30" y="90" width="300" height="4" rx="2" fill="#0b0e17"/>
-                        <g font-size="14" font-weight="700">
-                          <rect x="28" y="106" width="14" height="14" rx="3" fill="#00ff85" stroke="#0b0e17" stroke-width="3"/>
-                          <text x="52" y="119" fill="#0b0e17">Price exposure</text>
-                          <rect x="240" y="104" width="94" height="26" rx="6" fill="#0b0e17"/>
-                          <rect x="238" y="102" width="94" height="26" rx="6" fill="#00ff85" stroke="#0b0e17" stroke-width="2"/>
-                          <text x="285" y="120" fill="#0b0e17" font-size="11" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, monospace">ONCHAIN</text>
-
-                          <rect x="28" y="148" width="14" height="14" rx="3" fill="#a855f7" stroke="#0b0e17" stroke-width="3"/>
-                          <text x="52" y="161" fill="#0b0e17">Dividends</text>
-                          <rect x="240" y="146" width="94" height="26" rx="6" fill="#0b0e17"/>
-                          <rect x="238" y="144" width="94" height="26" rx="6" fill="#a855f7" stroke="#0b0e17" stroke-width="2"/>
-                          <text x="285" y="162" fill="#ffffff" font-size="11" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, monospace">ISSUER</text>
-
-                          <rect x="28" y="190" width="14" height="14" rx="3" fill="#ffe600" stroke="#0b0e17" stroke-width="3"/>
-                          <text x="52" y="203" fill="#0b0e17">Voting</text>
-                          <rect x="240" y="188" width="94" height="26" rx="6" fill="#0b0e17"/>
-                          <rect x="238" y="186" width="94" height="26" rx="6" fill="#ffe600" stroke="#0b0e17" stroke-width="2"/>
-                          <text x="285" y="204" fill="#0b0e17" font-size="11" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, monospace">REPORTED</text>
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Glints -->
-                <div class="hero__glint hero__glint--1">
-                  <div class="hero-twinkle hero__fill" style="animation-duration: 2.8s;">
-                    <svg class="hero__svg" viewBox="0 0 40 40"><path d="M20 0 C21 15 25 19 40 20 C25 21 21 25 20 40 C19 25 15 21 0 20 C15 19 19 15 20 0Z" fill="#ffffff"/></svg>
-                  </div>
-                </div>
-                <div class="hero__glint hero__glint--2">
-                  <div class="hero-twinkle hero__fill" style="animation-duration: 2.4s; animation-delay: 0.8s;">
-                    <svg class="hero__svg" viewBox="0 0 40 40"><path d="M20 0 C21 15 25 19 40 20 C25 21 21 25 20 40 C19 25 15 21 0 20 C15 19 19 15 20 0Z" fill="#00ff85"/></svg>
-                  </div>
-                </div>
-                <div class="hero__glint hero__glint--3">
-                  <div class="hero-twinkle hero__fill" style="animation-duration: 3.2s; animation-delay: 1.4s;">
-                    <svg class="hero__svg" viewBox="0 0 40 40"><path d="M20 0 C21 15 25 19 40 20 C25 21 21 25 20 40 C19 25 15 21 0 20 C15 19 19 15 20 0Z" fill="#ffe600"/></svg>
-                  </div>
-                </div>
-                <div class="hero__glint hero__glint--4">
-                  <div class="hero-twinkle hero__fill" style="animation-duration: 2.1s; animation-delay: 0.4s;">
-                    <svg class="hero__svg" viewBox="0 0 40 40"><path d="M20 0 C21 15 25 19 40 20 C25 21 21 25 20 40 C19 25 15 21 0 20 C15 19 19 15 20 0Z" fill="#ffffff"/></svg>
-                  </div>
-                </div>
-              </div>
-              <div class="hero__scrim"></div>
-            </div>
-
-            <div class="hero__content">
-              <div class="hero__copy">
-                <p class="eyebrow hero__eyebrow">Rights intelligence</p>
-                <h1 class="display hero__title" id="hero-title">
-                  Know what your token <span class="hl">really</span> gives you.
-                </h1>
-                <p class="hero__support">RELL maps the rights behind every stock token.</p>
-                <ul class="hero__pills">
-                  <li class="pill-tag">
-                    <span class="pill-tag__icon"><svg width="16" height="16" aria-hidden="true"><use href="#i-grid"/></svg></span>
-                    <span class="pill-tag__label">Six rights categories</span>
-                  </li>
-                  <li class="pill-tag">
-                    <span class="pill-tag__icon"><svg width="16" height="16" aria-hidden="true"><use href="#i-shield"/></svg></span>
-                    <span class="pill-tag__label">Three proof levels</span>
-                  </li>
-                  <li class="pill-tag">
-                    <span class="pill-tag__icon"><svg width="16" height="16" aria-hidden="true"><use href="#i-network"/></svg></span>
-                    <span class="pill-tag__label">Built for Robinhood Chain</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           PROBLEM (reference: Open packs, 5 tiles)
-           ================================================================ -->
-      <section class="section problem" id="problem" aria-labelledby="problem-title">
-        <div class="container">
-          <div class="section-head">
-            <span class="section-badge"><span class="section-badge__index">01</span>The Problem</span>
-            <h2 class="display section-head__title" id="problem-title">It looks like ownership.<br>It may <span class="hl hl--amber">not</span> be.</h2>
-            <p class="lede section-head__lede">A token can mirror a stock without handing you its rights.</p>
-          </div>
-
-          <div class="tiles">
-            <!-- Tile 1 -->
-            <a class="tile group" href="#example">
-              <span class="tile-field" aria-hidden="true">
-                <svg viewBox="0 0 700 390" preserveAspectRatio="xMidYMid slice">
-                  <defs><pattern id="tf1-dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="13" cy="13" r="6" fill="#0b0e17"/></pattern></defs>
-                  <rect width="700" height="390" fill="#e0006b"/>
-                  <rect width="700" height="390" fill="url(#tf1-dots)" opacity=".24"/>
-                  <circle cx="470" cy="195" r="150" fill="#ffffff" opacity=".18"/>
-                  <g fill="none" stroke="#0b0e17" stroke-opacity=".3" stroke-width="5"><circle cx="470" cy="195" r="176"/><circle cx="470" cy="195" r="216" stroke-dasharray="16 14"/></g>
-                </svg>
-              </span>
-              <span class="tile-slab tile-slab--a" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span><span class="doc-card__line"></span></span></span>
-              <span class="tile-slab tile-slab--b" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span></span></span>
-              <span class="tile-pack" aria-hidden="true">
-                <span class="token-wrap">
-                  <span class="token-wrap__art">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                      <g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round">
-                        <rect x="14" y="26" width="52" height="64" rx="4" fill="#cbd5e1" transform="rotate(-15 40 58)"/>
-                        <rect x="22" y="20" width="54" height="66" rx="4" fill="#e2e8f0" transform="rotate(-7 49 53)"/>
-                        <rect x="26" y="14" width="56" height="70" rx="4" fill="#ffffff"/>
-                      </g>
-                      <g fill="#0b0e17">
-                        <rect x="33" y="22" width="30" height="6" rx="3"/>
-                        <rect x="33" y="34" width="42" height="4" rx="2" opacity=".28"/>
-                        <rect x="33" y="42" width="34" height="4" rx="2" opacity=".28"/>
-                        <rect x="58" y="60" width="18" height="4" rx="2" opacity=".28"/>
-                        <rect x="58" y="69" width="14" height="4" rx="2" opacity=".28"/>
-                      </g>
-                      <circle cx="44" cy="66" r="12" fill="#ffe600" stroke="#0b0e17" stroke-width="5"/>
-                      <path d="M39 66l4 4 7 -8" fill="none" stroke="#0b0e17" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M30 18h10L30 40Z" fill="#ffffff" opacity=".9"/>
-                    </svg>
-                  </span>
-                  <span class="token-wrap__sym mono">ACME</span>
-                  <span class="token-wrap__bar"></span>
-                </span>
-              </span>
-              <span class="tile__body">
-                <span class="tile__chip"><b>01</b> looks like</span>
-                <span class="tile__title display">Shares</span>
-                <span class="tile__truth">May be price exposure only</span>
-                <span class="sticker-btn"><span class="sticker-btn-face">Check the claim</span></span>
-              </span>
-            </a>
-
-            <!-- Tile 2 -->
-            <a class="tile group" href="#example">
-              <span class="tile-field" aria-hidden="true">
-                <svg viewBox="0 0 700 390" preserveAspectRatio="xMidYMid slice">
-                  <defs><pattern id="tf2-iso" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M24 0 48 24 24 48 0 24Z" fill="#0b0e17"/></pattern></defs>
-                  <rect width="700" height="390" fill="#ff7a1a"/>
-                  <rect width="700" height="390" fill="url(#tf2-iso)" opacity=".22"/>
-                  <path d="M470 45 620 195 470 345 320 195Z" fill="#ffe600" opacity=".35"/>
-                  <path d="M470 25 640 195 470 365 300 195Z" fill="none" stroke="#0b0e17" stroke-opacity=".32" stroke-width="5"/>
-                </svg>
-              </span>
-              <span class="tile-slab tile-slab--a" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span><span class="doc-card__line"></span></span></span>
-              <span class="tile-slab tile-slab--b" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span></span></span>
-              <span class="tile-pack" aria-hidden="true">
-                <span class="token-wrap">
-                  <span class="token-wrap__art">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                      <g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round">
-                        <rect x="16" y="16" width="68" height="20" rx="4" fill="#00c96a"/>
-                        <rect x="16" y="32" width="68" height="20" rx="4" fill="#00ff85"/>
-                        <rect x="16" y="48" width="68" height="20" rx="4" fill="#7dffc0"/>
-                      </g>
-                      <rect x="41" y="48" width="18" height="20" fill="#0b0e17" opacity=".14"/>
-                      <circle cx="50" cy="58" r="7" fill="none" stroke="#0b0e17" stroke-width="4"/>
-                      <g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round">
-                        <ellipse cx="32" cy="84" rx="18" ry="8" fill="#a38f00"/>
-                        <ellipse cx="32" cy="78" rx="18" ry="8" fill="#ffe600"/>
-                        <ellipse cx="70" cy="88" rx="15" ry="7" fill="#a38f00"/>
-                        <ellipse cx="70" cy="83" rx="15" ry="7" fill="#ffe600"/>
-                      </g>
-                      <path d="M20 76a16 6 0 0 1 12 -5" fill="none" stroke="#ffffff" stroke-opacity=".8" stroke-width="4" stroke-linecap="round"/>
-                    </svg>
-                  </span>
-                  <span class="token-wrap__sym mono">ACME</span>
-                  <span class="token-wrap__bar"></span>
-                </span>
-              </span>
-              <span class="tile__body">
-                <span class="tile__chip"><b>02</b> looks like</span>
-                <span class="tile__title display">Dividends</span>
-                <span class="tile__truth">May be paid at the issuer&#39;s choice</span>
-                <span class="sticker-btn"><span class="sticker-btn-face">Check the claim</span></span>
-              </span>
-            </a>
-
-            <!-- Tile 3 -->
-            <a class="tile group" href="#example">
-              <span class="tile-field" aria-hidden="true">
-                <svg viewBox="0 0 700 390" preserveAspectRatio="xMidYMid slice">
-                  <defs><pattern id="tf3-dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="4.4" fill="#0b0e17"/></pattern></defs>
-                  <rect width="700" height="390" fill="#7c3aed"/>
-                  <path d="M470 195L470 -705L703 -674Z M470 195L920 -584L1106 -441Z M470 195L1249 -255L1339 -38Z M470 195L1370 195L1339 428Z M470 195L1249 645L1106 831Z M470 195L920 974L703 1064Z M470 195L470 1095L237 1064Z M470 195L20 974L-166 831Z M470 195L-309 645L-399 428Z M470 195L-430 195L-399 -38Z M470 195L-309 -255L-166 -441Z M470 195L20 -584L237 -674Z" fill="#ffffff" opacity=".2"/>
-                  <rect width="700" height="390" fill="url(#tf3-dots)" opacity=".2"/>
-                  <circle cx="470" cy="195" r="140" fill="none" stroke="#ffe600" stroke-opacity=".5" stroke-width="5"/>
-                </svg>
-              </span>
-              <span class="tile-slab tile-slab--a" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span><span class="doc-card__line"></span></span></span>
-              <span class="tile-slab tile-slab--b" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span></span></span>
-              <span class="tile-pack" aria-hidden="true">
-                <span class="token-wrap">
-                  <span class="token-wrap__art">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                      <g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round">
-                        <path d="M34 60h12v32l-6 -7 -6 7Z" fill="#ff007a"/>
-                        <path d="M54 60h12v32l-6 -7 -6 7Z" fill="#ff007a"/>
-                        <rect x="18" y="14" width="64" height="46" rx="5" fill="#ffffff"/>
-                      </g>
-                      <g fill="#0b0e17">
-                        <rect x="26" y="22" width="30" height="5" rx="2.5"/>
-                        <rect x="26" y="32" width="22" height="4" rx="2" opacity=".3"/>
-                        <rect x="26" y="42" width="26" height="4" rx="2" opacity=".3"/>
-                      </g>
-                      <circle cx="64" cy="42" r="14" fill="#ffe600" stroke="#0b0e17" stroke-width="5"/>
-                      <path d="M64 33l3 6.2 6.8 1 -4.9 4.8 1.2 6.8 -6.1 -3.2 -6.1 3.2 1.2 -6.8 -4.9 -4.8 6.8 -1Z" fill="#0b0e17"/>
-                      <path d="M22 18h9L22 32Z" fill="#ffffff" opacity=".9"/>
-                    </svg>
-                  </span>
-                  <span class="token-wrap__sym mono">ACME</span>
-                  <span class="token-wrap__bar"></span>
-                </span>
-              </span>
-              <span class="tile__body">
-                <span class="tile__chip"><b>03</b> looks like</span>
-                <span class="tile__title display">A Vote</span>
-                <span class="tile__truth">May carry no voting power</span>
-                <span class="sticker-btn"><span class="sticker-btn-face">Check the claim</span></span>
-              </span>
-            </a>
-
-            <!-- Tile 4 -->
-            <a class="tile group" href="#example">
-              <span class="tile-field" aria-hidden="true">
-                <svg viewBox="0 0 700 390" preserveAspectRatio="xMidYMid slice">
-                  <defs><pattern id="tf4-speed" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><rect width="11" height="34" fill="#0b0e17"/></pattern></defs>
-                  <rect width="700" height="390" fill="#22d3ee"/>
-                  <rect width="700" height="390" fill="url(#tf4-speed)" opacity=".2"/>
-                  <path d="M470 30 590 195 470 360 350 195Z" fill="#ffffff" opacity=".3"/>
-                  <path d="M470 10 610 195 470 380 330 195Z" fill="none" stroke="#0b0e17" stroke-opacity=".3" stroke-width="5"/>
-                </svg>
-              </span>
-              <span class="tile-slab tile-slab--a" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span><span class="doc-card__line"></span></span></span>
-              <span class="tile-slab tile-slab--b" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span></span></span>
-              <span class="tile-pack" aria-hidden="true">
-                <span class="token-wrap">
-                  <span class="token-wrap__art">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                      <path d="M54 36v-10a14 14 0 0 1 28 0v6" fill="none" stroke="#0b0e17" stroke-width="11" stroke-linecap="round"/>
-                      <path d="M54 36v-10a14 14 0 0 1 28 0v6" fill="none" stroke="#ffe600" stroke-width="5" stroke-linecap="round"/>
-                      <g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round">
-                        <rect x="12" y="36" width="74" height="50" rx="7" fill="#e2e8f0"/>
-                        <path d="M19 36h60a7 7 0 0 1 7 7v5H12v-5a7 7 0 0 1 7 -7Z" fill="#ffffff"/>
-                        <rect x="21" y="58" width="24" height="19" rx="4" fill="#00ff85"/>
-                      </g>
-                      <g fill="#0b0e17">
-                        <rect x="27" y="58" width="4" height="19"/>
-                        <rect x="35" y="58" width="4" height="19"/>
-                        <rect x="53" y="60" width="26" height="5" rx="2.5" opacity=".3"/>
-                        <rect x="53" y="70" width="18" height="5" rx="2.5" opacity=".3"/>
-                      </g>
-                      <path d="M16 52h10L16 66Z" fill="#ffffff" opacity=".9"/>
-                    </svg>
-                  </span>
-                  <span class="token-wrap__sym mono">ACME</span>
-                  <span class="token-wrap__bar"></span>
-                </span>
-              </span>
-              <span class="tile__body">
-                <span class="tile__chip"><b>04</b> looks like</span>
-                <span class="tile__title display">Free Transfer</span>
-                <span class="tile__truth">May be locked to approved wallets</span>
-                <span class="sticker-btn"><span class="sticker-btn-face">Check the claim</span></span>
-              </span>
-            </a>
-
-            <!-- Tile 5 -->
-            <a class="tile group" href="#example">
-              <span class="tile-field" aria-hidden="true">
-                <svg viewBox="0 0 700 390" preserveAspectRatio="xMidYMid slice">
-                  <defs><pattern id="tf5-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 2 38 20 20 38 2 20Z" fill="none" stroke="#0b0e17" stroke-width="5"/></pattern></defs>
-                  <rect width="700" height="390" fill="#ffe600"/>
-                  <rect width="700" height="390" fill="url(#tf5-grid)" opacity=".2"/>
-                  <circle cx="470" cy="195" r="160" fill="#ff007a" opacity=".28"/>
-                  <circle cx="470" cy="195" r="190" fill="none" stroke="#0b0e17" stroke-opacity=".3" stroke-width="5" stroke-dasharray="18 16"/>
-                </svg>
-              </span>
-              <span class="tile-slab tile-slab--a" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span><span class="doc-card__line"></span></span></span>
-              <span class="tile-slab tile-slab--b" aria-hidden="true"><span class="doc-card"><span class="doc-card__seal"></span><span class="doc-card__line"></span><span class="doc-card__line"></span><span class="doc-card__line doc-card__line--short"></span></span></span>
-              <span class="tile-pack" aria-hidden="true">
-                <span class="token-wrap">
-                  <span class="token-wrap__art">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                      <g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round">
-                        <path d="M18 26h40a7 7 0 0 0 14 0h12a6 6 0 0 1 6 6v36a6 6 0 0 1 -6 6H72a7 7 0 0 0 -14 0H18a6 6 0 0 1 -6 -6V32a6 6 0 0 1 6 -6Z" fill="#ffffff"/>
-                      </g>
-                      <path d="M65 34v32" stroke="#0b0e17" stroke-width="4" stroke-dasharray="5 5" stroke-linecap="round"/>
-                      <g fill="#0b0e17">
-                        <rect x="20" y="34" width="26" height="5" rx="2.5"/>
-                        <rect x="20" y="44" width="18" height="4" rx="2" opacity=".3"/>
-                        <rect x="72" y="42" width="10" height="4" rx="2" opacity=".3"/>
-                        <rect x="72" y="52" width="8" height="4" rx="2" opacity=".3"/>
-                      </g>
-                      <circle cx="34" cy="62" r="13" fill="#ff007a" stroke="#0b0e17" stroke-width="5"/>
-                      <path d="M34 54l2.7 5.6 6.2 .9 -4.5 4.3 1.1 6.1 -5.5 -2.9 -5.5 2.9 1.1 -6.1 -4.5 -4.3 6.2 -.9Z" fill="#ffffff"/>
-                      <path d="M18 30h9L18 44Z" fill="#ffffff" opacity=".9"/>
-                    </svg>
-                  </span>
-                  <span class="token-wrap__sym mono">ACME</span>
-                  <span class="token-wrap__bar"></span>
-                </span>
-              </span>
-              <span class="tile__body">
-                <span class="tile__chip"><b>05</b> looks like</span>
-                <span class="tile__title display">Redemption</span>
-                <span class="tile__truth">May have no path to the real share</span>
-                <span class="sticker-btn"><span class="sticker-btn-face">Check the claim</span></span>
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           SOLUTION (reference: Recent pulls, auto scrolling track + dialog)
-           ================================================================ -->
-      <section class="section solution" id="solution" aria-labelledby="solution-title">
-        <div class="container">
-          <div class="section-head section-head--split" data-reveal data-reveal-y="15" data-reveal-duration="0.5" data-reveal-margin="-60px">
-            <div>
-              <span class="section-badge"><span class="section-badge__index">02</span>The Solution</span>
-              <h2 class="display section-head__title" id="solution-title">Six categories.<br><span class="hl">Every right</span>, accounted for.</h2>
-            </div>
-            <p class="lede section-head__aside">Tap a card to see what we check.</p>
-          </div>
-        </div>
-
-        <div class="rail">
-          <div class="rail__fade rail__fade--left" aria-hidden="true"></div>
-          <div class="rail__fade rail__fade--right" aria-hidden="true"></div>
-          <div class="rail__scroller" data-marquee data-marquee-speed="36" data-marquee-min="16">
-            <div class="rail__inner">
-              <ul class="rail__track" data-marquee-track>
-                <li>
-                  <button class="right-card group" type="button" data-right="ownership">
-                    <span class="right-card__art">
-                      <span class="right-card__slab">
-                        <svg viewBox="0 0 120 208" aria-hidden="true"><rect x="1" y="1" width="118" height="206" rx="10" fill="#ffffff" stroke="#0b0e17" stroke-width="3"/><rect x="25" y="54" width="76" height="80" rx="16" fill="#0b0e17"/><rect x="22" y="50" width="76" height="80" rx="16" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><path d="M28 56h64" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/><g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round"><path d="M60 62 86 76v28L60 118 34 104V76Z" fill="#00ff85"/><path d="M60 90 86 76v28L60 118Z" fill="#00a855"/><path d="M60 90 34 76v28l26 14Z" fill="#00c96a"/></g><path d="M60 62 86 76 60 90 34 76Z" fill="#7dffc0" stroke="#0b0e17" stroke-width="5" stroke-linejoin="round"/><rect x="25" y="150" width="76" height="34" rx="6" fill="#0b0e17"/><rect x="22" y="146" width="76" height="34" rx="6" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><circle cx="36" cy="163" r="6" fill="#ff007a" stroke="#0b0e17" stroke-width="3"/><rect x="48" y="156" width="42" height="5" rx="2.5" fill="#0b0e17"/><rect x="48" y="167" width="28" height="4" rx="2" fill="#0b0e17" opacity=".4"/></svg>
-                        <span class="right-card__shine" aria-hidden="true"></span>
-                      </span>
-                      <span class="right-card__tag mono">01</span>
-                    </span>
-                    <span class="right-card__body">
-                      <span class="right-card__q">Do you hold the asset, or a claim on it?</span>
-                      <span class="right-card__meta"><span class="right-card__label">Right</span><span class="right-card__name display">Ownership</span></span>
-                    </span>
-                  </button>
-                </li>
-                <li>
-                  <button class="right-card group" type="button" data-right="economic">
-                    <span class="right-card__art">
-                      <span class="right-card__slab">
-                        <svg viewBox="0 0 120 208" aria-hidden="true"><rect x="1" y="1" width="118" height="206" rx="10" fill="#ffffff" stroke="#0b0e17" stroke-width="3"/><rect x="25" y="54" width="76" height="80" rx="16" fill="#0b0e17"/><rect x="22" y="50" width="76" height="80" rx="16" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><path d="M28 56h64" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/><g stroke="#0b0e17" stroke-width="4.5" stroke-linejoin="round"><rect x="34" y="96" width="14" height="22" rx="3" fill="#ffe600"/><rect x="53" y="84" width="14" height="34" rx="3" fill="#ffe600"/><rect x="72" y="70" width="14" height="48" rx="3" fill="#ffe600"/></g><path d="M36 82 56 66l12 10 20 -20" fill="none" stroke="#0b0e17" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 82 56 66l12 10 20 -20" fill="none" stroke="#ff007a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M74 56h16v16" fill="none" stroke="#0b0e17" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M74 56h16v16" fill="none" stroke="#ff007a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="25" y="150" width="76" height="34" rx="6" fill="#0b0e17"/><rect x="22" y="146" width="76" height="34" rx="6" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><circle cx="36" cy="163" r="6" fill="#ff007a" stroke="#0b0e17" stroke-width="3"/><rect x="48" y="156" width="42" height="5" rx="2.5" fill="#0b0e17"/><rect x="48" y="167" width="28" height="4" rx="2" fill="#0b0e17" opacity=".4"/></svg>
-                        <span class="right-card__shine" aria-hidden="true"></span>
-                      </span>
-                      <span class="right-card__tag mono">02</span>
-                    </span>
-                    <span class="right-card__body">
-                      <span class="right-card__q">Do you get price exposure and dividends?</span>
-                      <span class="right-card__meta"><span class="right-card__label">Right</span><span class="right-card__name display">Economic Claims</span></span>
-                    </span>
-                  </button>
-                </li>
-                <li>
-                  <button class="right-card group" type="button" data-right="control">
-                    <span class="right-card__art">
-                      <span class="right-card__slab">
-                        <svg viewBox="0 0 120 208" aria-hidden="true"><rect x="1" y="1" width="118" height="206" rx="10" fill="#ffffff" stroke="#0b0e17" stroke-width="3"/><rect x="25" y="54" width="76" height="80" rx="16" fill="#0b0e17"/><rect x="22" y="50" width="76" height="80" rx="16" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><path d="M28 56h64" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/><path d="M46 76v-8a14 14 0 0 1 28 0v8" fill="none" stroke="#0b0e17" stroke-width="10" stroke-linecap="round"/><path d="M46 76v-8a14 14 0 0 1 28 0v8" fill="none" stroke="#ffe600" stroke-width="5" stroke-linecap="round"/><rect x="36" y="76" width="48" height="42" rx="8" fill="#ff007a" stroke="#0b0e17" stroke-width="5"/><path d="M52 96l6 7 12 -13" fill="none" stroke="#0b0e17" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="42" y="82" width="8" height="14" rx="4" fill="#fff" opacity=".45"/><rect x="25" y="150" width="76" height="34" rx="6" fill="#0b0e17"/><rect x="22" y="146" width="76" height="34" rx="6" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><circle cx="36" cy="163" r="6" fill="#ff007a" stroke="#0b0e17" stroke-width="3"/><rect x="48" y="156" width="42" height="5" rx="2.5" fill="#0b0e17"/><rect x="48" y="167" width="28" height="4" rx="2" fill="#0b0e17" opacity=".4"/></svg>
-                        <span class="right-card__shine" aria-hidden="true"></span>
-                      </span>
-                      <span class="right-card__tag mono">03</span>
-                    </span>
-                    <span class="right-card__body">
-                      <span class="right-card__q">Can you vote or shape decisions?</span>
-                      <span class="right-card__meta"><span class="right-card__label">Right</span><span class="right-card__name display">Control Rights</span></span>
-                    </span>
-                  </button>
-                </li>
-                <li>
-                  <button class="right-card group" type="button" data-right="transfer">
-                    <span class="right-card__art">
-                      <span class="right-card__slab">
-                        <svg viewBox="0 0 120 208" aria-hidden="true"><rect x="1" y="1" width="118" height="206" rx="10" fill="#ffffff" stroke="#0b0e17" stroke-width="3"/><rect x="25" y="54" width="76" height="80" rx="16" fill="#0b0e17"/><rect x="22" y="50" width="76" height="80" rx="16" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><path d="M28 56h64" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/><circle cx="38" cy="90" r="13" fill="#00ff85" stroke="#0b0e17" stroke-width="5"/><circle cx="82" cy="90" r="13" fill="#00ff85" stroke="#0b0e17" stroke-width="5"/><path d="M52 84h16m-4 -5 6 5 -6 5" fill="none" stroke="#0b0e17" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M52 84h16m-4 -5 6 5 -6 5" fill="none" stroke="#ffe600" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 98H52m4 5 -6 -5 6 -5" fill="none" stroke="#0b0e17" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 98H52m4 5 -6 -5 6 -5" fill="none" stroke="#ff007a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="25" y="150" width="76" height="34" rx="6" fill="#0b0e17"/><rect x="22" y="146" width="76" height="34" rx="6" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><circle cx="36" cy="163" r="6" fill="#ff007a" stroke="#0b0e17" stroke-width="3"/><rect x="48" y="156" width="42" height="5" rx="2.5" fill="#0b0e17"/><rect x="48" y="167" width="28" height="4" rx="2" fill="#0b0e17" opacity=".4"/></svg>
-                        <span class="right-card__shine" aria-hidden="true"></span>
-                      </span>
-                      <span class="right-card__tag mono">04</span>
-                    </span>
-                    <span class="right-card__body">
-                      <span class="right-card__q">Where, and to whom, can it move?</span>
-                      <span class="right-card__meta"><span class="right-card__label">Right</span><span class="right-card__name display">Transfer Rights</span></span>
-                    </span>
-                  </button>
-                </li>
-                <li>
-                  <button class="right-card group" type="button" data-right="defi">
-                    <span class="right-card__art">
-                      <span class="right-card__slab">
-                        <svg viewBox="0 0 120 208" aria-hidden="true"><rect x="1" y="1" width="118" height="206" rx="10" fill="#ffffff" stroke="#0b0e17" stroke-width="3"/><rect x="25" y="54" width="76" height="80" rx="16" fill="#0b0e17"/><rect x="22" y="50" width="76" height="80" rx="16" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><path d="M28 56h64" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/><g stroke="#0b0e17" stroke-width="5" stroke-linejoin="round"><rect x="34" y="64" width="24" height="24" rx="6" fill="#00ff85"/><rect x="62" y="64" width="24" height="24" rx="6" fill="#ffe600"/><rect x="34" y="92" width="24" height="24" rx="6" fill="#a855f7"/><rect x="62" y="92" width="24" height="24" rx="6" fill="#ff007a"/></g><rect x="39" y="69" width="8" height="6" rx="3" fill="#fff" opacity=".5"/><rect x="25" y="150" width="76" height="34" rx="6" fill="#0b0e17"/><rect x="22" y="146" width="76" height="34" rx="6" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><circle cx="36" cy="163" r="6" fill="#ff007a" stroke="#0b0e17" stroke-width="3"/><rect x="48" y="156" width="42" height="5" rx="2.5" fill="#0b0e17"/><rect x="48" y="167" width="28" height="4" rx="2" fill="#0b0e17" opacity=".4"/></svg>
-                        <span class="right-card__shine" aria-hidden="true"></span>
-                      </span>
-                      <span class="right-card__tag mono">05</span>
-                    </span>
-                    <span class="right-card__body">
-                      <span class="right-card__q">Will onchain protocols accept it?</span>
-                      <span class="right-card__meta"><span class="right-card__label">Right</span><span class="right-card__name display">DeFi Compatibility</span></span>
-                    </span>
-                  </button>
-                </li>
-                <li>
-                  <button class="right-card group" type="button" data-right="status">
-                    <span class="right-card__art">
-                      <span class="right-card__slab">
-                        <svg viewBox="0 0 120 208" aria-hidden="true"><rect x="1" y="1" width="118" height="206" rx="10" fill="#ffffff" stroke="#0b0e17" stroke-width="3"/><rect x="25" y="54" width="76" height="80" rx="16" fill="#0b0e17"/><rect x="22" y="50" width="76" height="80" rx="16" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><path d="M28 56h64" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/><circle cx="60" cy="90" r="28" fill="#ffe600" stroke="#0b0e17" stroke-width="5"/><path d="M60 90V72" stroke="#0b0e17" stroke-width="6" stroke-linecap="round"/><path d="M60 90l14 9" stroke="#ff007a" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="90" r="4" fill="#0b0e17"/><path d="M44 74a22 22 0 0 1 14 -8" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="4" stroke-linecap="round"/><rect x="25" y="150" width="76" height="34" rx="6" fill="#0b0e17"/><rect x="22" y="146" width="76" height="34" rx="6" fill="#f1f5f9" stroke="#0b0e17" stroke-width="3"/><circle cx="36" cy="163" r="6" fill="#ff007a" stroke="#0b0e17" stroke-width="3"/><rect x="48" y="156" width="42" height="5" rx="2.5" fill="#0b0e17"/><rect x="48" y="167" width="28" height="4" rx="2" fill="#0b0e17" opacity=".4"/></svg>
-                        <span class="right-card__shine" aria-hidden="true"></span>
-                      </span>
-                      <span class="right-card__tag mono">06</span>
-                    </span>
-                    <span class="right-card__body">
-                      <span class="right-card__q">Is it active, paused, or winding down?</span>
-                      <span class="right-card__meta"><span class="right-card__label">Right</span><span class="right-card__name display">Asset Status</span></span>
-                    </span>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Rights detail dialog (reference: card detail dialog) -->
-      <dialog class="right-dialog" data-right-dialog aria-labelledby="right-dialog-title">
-        <div class="right-dialog__panel">
-          <button class="icon-btn right-dialog__close" type="button" data-dialog-close aria-label="Close">
-            <svg width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg>
-          </button>
-          <p class="eyebrow" data-dialog-index>Right 01</p>
-          <h3 class="display right-dialog__title" id="right-dialog-title" data-dialog-title>Ownership</h3>
-          <p class="right-dialog__q" data-dialog-question></p>
-          <div class="right-dialog__table">
-            <div class="right-dialog__head"><span>What we check</span><span>Usual source</span></div>
-            <ul data-dialog-checks></ul>
-          </div>
-          <a class="sticker-btn right-dialog__cta" href="#example" data-dialog-close><span class="sticker-btn-face">See it in the matrix</span></a>
-        </div>
-      </dialog>
-
-      <!-- ================================================================
-           VERIFICATION (reference: Put it back to work, 4 cards + CTA)
-           ================================================================ -->
-      <section class="section verification" id="verification" aria-labelledby="verification-title">
-        <div class="container">
-          <div class="section-head section-head--center">
-            <span class="section-badge"><span class="section-badge__index">03</span>Verification</span>
-            <h2 class="display section-head__title" id="verification-title">Every claim shows its <span class="hl hl--cyan">proof</span>.</h2>
-            <p class="lede section-head__lede">Three states. One glance tells you how a right was checked.</p>
-          </div>
-
-          <div class="proof-grid">
-            <article class="proof-card group" data-state="onchain">
-              <h3 class="proof-card__head"><span class="state-badge state-badge--onchain"><span class="state-badge__dot"></span>Verified Onchain</span></h3>
-              <div class="proof-card__art">
-                <svg class="grail-art-tick" viewBox="0 0 200 200" aria-hidden="true"><defs><radialGradient id="pa-c" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#00ff85" stop-opacity=".35"/><stop offset="1" stop-color="#00ff85" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="100" r="78" fill="none" stroke="#0b0e17" stroke-opacity=".25" stroke-dasharray="3 7" stroke-width="3"/><path d="M100 44 150 73v58L100 160 50 131V73Z" fill="#0b0e17" stroke="#0b0e17" stroke-width="7" stroke-linejoin="round"/><path d="M100 38 150 67v58L100 154 50 125V67Z" fill="#ffffff" stroke="#0b0e17" stroke-width="7" stroke-linejoin="round"/><path d="m78 100 14 14 30 -32" fill="none" stroke="#0b0e17" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M70 72c6 -10 18 -17 30 -18" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="6" stroke-linecap="round"/></svg>
-              </div>
-              <p class="proof-card__caption"><span class="text-cyan">Read directly</span> from contract state onchain.</p>
-            </article>
-
-            <article class="proof-card group" data-state="issuer">
-              <h3 class="proof-card__head"><span class="state-badge state-badge--issuer"><span class="state-badge__dot"></span>Verified From Issuer</span></h3>
-              <div class="proof-card__art">
-                <svg class="grail-art-bob" viewBox="0 0 200 200" aria-hidden="true"><defs><radialGradient id="pa-v" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#a855f7" stop-opacity=".38"/><stop offset="1" stop-color="#a855f7" stop-opacity="0"/></radialGradient></defs><rect x="54" y="40" width="92" height="118" rx="12" fill="#0b0e17" stroke="#0b0e17" stroke-width="7"/><rect x="50" y="34" width="92" height="118" rx="12" fill="#ffffff" stroke="#0b0e17" stroke-width="7"/><g fill="#0b0e17"><rect x="66" y="54" width="60" height="7" rx="3.5"/><rect x="66" y="70" width="44" height="7" rx="3.5" opacity=".65"/><rect x="66" y="86" width="52" height="7" rx="3.5" opacity=".65"/></g><circle cx="128" cy="138" r="26" fill="#ffe600" stroke="#0b0e17" stroke-width="7"/><path d="m118 138 7 7 13 -14" fill="none" stroke="#0b0e17" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 48c3 -5 8 -7 14 -8" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="6" stroke-linecap="round"/></svg>
-              </div>
-              <p class="proof-card__caption"><span class="text-violet">Confirmed</span> through issuer filings and terms.</p>
-            </article>
-
-            <article class="proof-card group" data-state="reported">
-              <h3 class="proof-card__head"><span class="state-badge state-badge--reported"><span class="state-badge__dot"></span>Reported · Inferred</span></h3>
-              <div class="proof-card__art">
-                <svg class="grail-art-burst" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 150V78" stroke="#0b0e17" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="66" r="14" fill="#ff007a" stroke="#0b0e17" stroke-width="8"/><g fill="none" stroke="#0b0e17" stroke-width="9" stroke-linecap="round"><path d="M126 62a34 34 0 0 1 0 34"/><path d="M146 50a58 58 0 0 1 0 58"/><path d="M74 62a34 34 0 0 0 0 34"/><path d="M54 50a58 58 0 0 0 0 58"/></g><path d="M64 156h72l10 14H54Z" fill="#ffffff" stroke="#0b0e17" stroke-width="8" stroke-linejoin="round"/></svg>
-              </div>
-              <p class="proof-card__caption"><span class="text-amber">Sourced</span> from public reports or careful inference.</p>
-            </article>
-
-            <article class="proof-card group" data-state="unmapped">
-              <h3 class="proof-card__head"><span class="state-badge state-badge--unmapped"><span class="state-badge__dot"></span>Not Yet Mapped</span></h3>
-              <div class="proof-card__art">
-                <svg class="grail-art-sway" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 38 150 67v58L100 154 50 125V67Z" fill="#f8fafc" stroke="#0b0e17" stroke-width="7" stroke-linejoin="round"/><path d="M100 38 150 67v58L100 154 50 125V67Z" fill="none" stroke="#0b0e17" stroke-width="5" stroke-dasharray="10 9" stroke-linejoin="round"/><circle cx="100" cy="100" r="8" fill="#ffe600"/><path d="M100 100V70" stroke="#ffe600" stroke-width="5" stroke-linecap="round" stroke-opacity=".5"/></svg>
-              </div>
-              <p class="proof-card__caption"><span class="text-muted">Flagged openly.</span> Gaps are never filled with guesses.</p>
-            </article>
-          </div>
-
-          <div class="section-cta">
-            <a class="sticker-btn sticker-btn--lift" href="#example"><span class="sticker-btn-face sticker-btn-face--lg">See the Matrix</span></a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           EXAMPLE (reference: The receipts, staggered table)
-           ================================================================ -->
-      <section class="section example" id="example" aria-labelledby="example-title">
-        <div class="container">
-          <div class="matrix-head" data-reveal data-reveal-y="20" data-reveal-duration="0.6" data-reveal-margin="-80px">
-            <div class="matrix-head__copy">
-              <span class="section-badge"><span class="section-badge__index">04</span>Example</span>
-              <h2 class="display section-head__title" id="example-title">One token. Every right, <span class="hl">mapped</span>.</h2>
-              <p class="lede">A sample stock token, read claim by claim.</p>
-            </div>
-            <p class="snapshot-pill mono"><span class="status-dot status-dot--static" aria-hidden="true"></span>Illustrative · ACME Stock Token</p>
-          </div>
-
-          <div class="matrix" role="table" aria-label="Rights matrix for a sample stock token">
-            <div class="matrix__cols" role="rowgroup">
-              <div class="matrix__row matrix__row--head" role="row">
-                <span role="columnheader">Right</span>
-                <span role="columnheader">Claim</span>
-                <span role="columnheader">Status</span>
-                <span role="columnheader">Source</span>
-              </div>
-            </div>
-            <ul class="matrix__body" role="rowgroup">
-              <li class="matrix__row" role="row" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0" data-reveal-margin="-40px">
-                <span class="matrix__right matrix__right--issuer" role="cell"><span class="matrix__dot matrix__dot--issuer" aria-hidden="true"></span>Ownership</span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Claim</span><span class="matrix__claim">Holds legal title to the share</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Status</span><span class="matrix__status display">No</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Source</span><span class="state-badge state-badge--issuer state-badge--sm"><span class="state-badge__dot"></span>Issuer</span></span>
-              </li>
-              <li class="matrix__row" role="row" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.04" data-reveal-margin="-40px">
-                <span class="matrix__right matrix__right--issuer" role="cell"><span class="matrix__dot matrix__dot--issuer" aria-hidden="true"></span>Economic Claims</span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Claim</span><span class="matrix__claim">Tracks price and passes dividends</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Status</span><span class="matrix__status display">Yes</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Source</span><span class="state-badge state-badge--issuer state-badge--sm"><span class="state-badge__dot"></span>Issuer</span></span>
-              </li>
-              <li class="matrix__row" role="row" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.08" data-reveal-margin="-40px">
-                <span class="matrix__right matrix__right--reported" role="cell"><span class="matrix__dot matrix__dot--reported" aria-hidden="true"></span>Control Rights</span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Claim</span><span class="matrix__claim">Votes at shareholder meetings</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Status</span><span class="matrix__status display">No</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Source</span><span class="state-badge state-badge--reported state-badge--sm"><span class="state-badge__dot"></span>Reported</span></span>
-              </li>
-              <li class="matrix__row" role="row" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.12" data-reveal-margin="-40px">
-                <span class="matrix__right matrix__right--onchain" role="cell"><span class="matrix__dot matrix__dot--onchain" aria-hidden="true"></span>Transfer Rights</span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Claim</span><span class="matrix__claim">Moves freely between any wallets</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Status</span><span class="matrix__status display">Restricted</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Source</span><span class="state-badge state-badge--onchain state-badge--sm"><span class="state-badge__dot"></span>Onchain</span></span>
-              </li>
-              <li class="matrix__row" role="row" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.16" data-reveal-margin="-40px">
-                <span class="matrix__right matrix__right--onchain" role="cell"><span class="matrix__dot matrix__dot--onchain" aria-hidden="true"></span>DeFi Compatibility</span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Claim</span><span class="matrix__claim">Works in open onchain protocols</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Status</span><span class="matrix__status display">Limited</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Source</span><span class="state-badge state-badge--onchain state-badge--sm"><span class="state-badge__dot"></span>Onchain</span></span>
-              </li>
-              <li class="matrix__row" role="row" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.2" data-reveal-margin="-40px">
-                <span class="matrix__right matrix__right--onchain" role="cell"><span class="matrix__dot matrix__dot--onchain" aria-hidden="true"></span>Asset Status</span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Claim</span><span class="matrix__claim">Contract live and not paused</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Status</span><span class="matrix__status display">Active</span></span>
-                <span class="matrix__cell" role="cell"><span class="matrix__label">Source</span><span class="state-badge state-badge--onchain state-badge--sm"><span class="state-badge__dot"></span>Onchain</span></span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="matrix-legend">
-            <span class="state-badge state-badge--onchain state-badge--sm"><span class="state-badge__dot"></span>Verified Onchain</span>
-            <span class="state-badge state-badge--issuer state-badge--sm"><span class="state-badge__dot"></span>Verified From Issuer</span>
-            <span class="state-badge state-badge--reported state-badge--sm"><span class="state-badge__dot"></span>Reported · Inferred</span>
-            <span class="matrix-legend__note">Sample data. Not a live assessment.</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           SCOPE (brief item 8)
-           ================================================================ -->
-      <section class="section scope" id="scope" aria-labelledby="scope-title">
-        <div class="container">
-          <div class="section-head" data-reveal data-reveal-y="20" data-reveal-duration="0.6" data-reveal-margin="-80px">
-            <span class="section-badge"><span class="section-badge__index">05</span>Scope</span>
-            <h2 class="display section-head__title" id="scope-title">
-              RELL covers <span class="hl" data-config-text="network.name">Robinhood Chain</span> and Stock Tokens.
-            </h2>
-            <p class="lede section-head__lede">One network. One asset class. Mapped in depth.</p>
-          </div>
-
-          <div class="scope-grid">
-            <div class="scope-card scope-card--on" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0" data-reveal-margin="-40px">
-              <span class="scope-card__icon"><svg width="22" height="22" aria-hidden="true"><use href="#i-network"/></svg></span>
-              <p class="eyebrow">Network</p>
-              <p class="scope-card__value display" data-config-text="network.name">Robinhood Chain</p>
-              <p class="scope-card__state"><svg width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg>Covered</p>
-            </div>
-            <div class="scope-card scope-card--on" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.04" data-reveal-margin="-40px">
-              <span class="scope-card__icon"><svg width="22" height="22" aria-hidden="true"><use href="#i-grid"/></svg></span>
-              <p class="eyebrow">Asset class</p>
-              <p class="scope-card__value display">Stock Tokens</p>
-              <p class="scope-card__state"><svg width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg>Covered</p>
-            </div>
-            <div class="scope-card scope-card--off" data-reveal data-reveal-y="14" data-reveal-duration="0.35" data-reveal-delay="0.08" data-reveal-margin="-40px">
-              <span class="scope-card__icon"><svg width="22" height="22" aria-hidden="true"><use href="#i-close"/></svg></span>
-              <p class="eyebrow">Everything else</p>
-              <p class="scope-card__value display">Other chains and assets</p>
-              <p class="scope-card__state">Not covered today</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           POSITIONING (reference: CTA banner with six slabs)
-           ================================================================ -->
-      <section class="section statement" aria-labelledby="statement-title">
-        <div class="container">
-          <div class="cta-panel">
-            <div class="cta-panel__bg" aria-hidden="true">
-              <svg viewBox="0 0 1420 380" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <pattern id="cta-halftone" width="24" height="24" patternUnits="userSpaceOnUse">
-                    <circle cx="12" cy="12" r="5" fill="#0b0e17"/>
-                  </pattern>
-                  <pattern id="cta-halftone-hi" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <circle cx="10" cy="10" r="3" fill="#ffffff"/>
-                  </pattern>
-                </defs>
-
-                <!-- Solid Electric Pink base, no gradient -->
-                <rect width="1420" height="380" fill="#ff007a"/>
-
-                <!-- Sunburst wedges bursting from the centre -->
-                <g fill="#ffffff" opacity=".2"><path d="M710 190L2104 62L2104 318Z M710 190L2075 499L1996 743Z M710 190L1913 906L1763 1113Z M710 190L1633 1243L1426 1393Z M710 190L1263 1476L1019 1555Z M710 190L838 1584L582 1584Z M710 190L401 1555L157 1476Z M710 190L-6 1393L-213 1243Z M710 190L-343 1113L-493 906Z M710 190L-576 743L-655 499Z M710 190L-684 318L-684 62Z M710 190L-655 -119L-576 -363Z M710 190L-493 -526L-343 -733Z M710 190L-213 -863L-6 -1013Z M710 190L157 -1096L401 -1175Z M710 190L582 -1204L838 -1204Z M710 190L1019 -1175L1263 -1096Z M710 190L1426 -1013L1633 -863Z M710 190L1763 -733L1913 -526Z M710 190L1996 -363L2075 -119Z"/></g>
-
-                <!-- Pop art action lines -->
-                <g fill="none" stroke="#0b0e17" stroke-opacity=".28" stroke-width="7" stroke-linecap="round">
-                  <path d="M957 229L1342 290M933 303L1280 481M887 367L1163 643M823 413L1001 760M749 437L810 822M671 437L610 822M597 413L419 760M533 367L257 643M487 303L140 481M463 229L78 290M463 151L78 90M487 77L140 -101M533 13L257 -263M597 -33L419 -380M671 -57L610 -442M749 -57L810 -442M823 -33L1001 -380M887 13L1163 -263M933 77L1280 -101M957 151L1342 90"/>
-                </g>
-
-                <!-- Crisp halftone shading, edges intact -->
-                <rect width="1420" height="380" fill="url(#cta-halftone)" opacity=".16"/>
-                <circle cx="710" cy="190" r="240" fill="url(#cta-halftone-hi)" opacity=".22"/>
-              </svg>
-            </div>
-
-            <!-- Six fanned slabs, isometric tilt, poses copied from the reference -->
-            <div class="cta-slab" aria-hidden="true" style="left: 2.13%; top: 53.13%; height: 93.55%; --slab-rot: 11.18deg; --slab-rot-hover: 9.18deg; --slab-dx: 10px; --slab-dy: -4px;">
-              <span class="slab-card slab-card--onchain">
-                <span class="slab-card__head"><span class="slab-card__bar"></span><span class="slab-card__pip"></span></span>
-                <span class="slab-card__mark"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__row slab-card__row--short"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__chip"></span>
-              </span>
-            </div>
-            <div class="cta-slab" aria-hidden="true" style="left: 5.89%; top: 80.77%; height: 94.25%; --slab-rot: 32.81deg; --slab-rot-hover: 34.81deg; --slab-dx: 8px; --slab-dy: -5px;">
-              <span class="slab-card slab-card--issuer slab-card--dark">
-                <span class="slab-card__head"><span class="slab-card__bar"></span><span class="slab-card__pip"></span></span>
-                <span class="slab-card__mark"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__row slab-card__row--short"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__chip"></span>
-              </span>
-            </div>
-            <div class="cta-slab" aria-hidden="true" style="left: 14.08%; top: 89.77%; height: 95.44%; --slab-rot: 49.83deg; --slab-rot-hover: 52.83deg; --slab-dx: 6px; --slab-dy: -6px;">
-              <span class="slab-card slab-card--reported">
-                <span class="slab-card__head"><span class="slab-card__bar"></span><span class="slab-card__pip"></span></span>
-                <span class="slab-card__mark"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__row slab-card__row--short"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__chip"></span>
-              </span>
-            </div>
-            <div class="cta-slab" aria-hidden="true" style="left: 97.99%; top: 53.13%; height: 90.16%; --slab-rot: -15deg; --slab-rot-hover: -13deg; --slab-dx: -10px; --slab-dy: -4px;">
-              <span class="slab-card slab-card--issuer">
-                <span class="slab-card__head"><span class="slab-card__bar"></span><span class="slab-card__pip"></span></span>
-                <span class="slab-card__mark"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__row slab-card__row--short"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__chip"></span>
-              </span>
-            </div>
-            <div class="cta-slab" aria-hidden="true" style="left: 94.23%; top: 80.77%; height: 91.19%; --slab-rot: -30deg; --slab-rot-hover: -32deg; --slab-dx: -8px; --slab-dy: -5px;">
-              <span class="slab-card slab-card--onchain slab-card--dark">
-                <span class="slab-card__head"><span class="slab-card__bar"></span><span class="slab-card__pip"></span></span>
-                <span class="slab-card__mark"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__row slab-card__row--short"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__chip"></span>
-              </span>
-            </div>
-            <div class="cta-slab" aria-hidden="true" style="left: 86.04%; top: 89.77%; height: 89.86%; --slab-rot: -60deg; --slab-rot-hover: -63deg; --slab-dx: -6px; --slab-dy: -6px;">
-              <span class="slab-card slab-card--reported">
-                <span class="slab-card__head"><span class="slab-card__bar"></span><span class="slab-card__pip"></span></span>
-                <span class="slab-card__mark"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__row slab-card__row--short"></span>
-                <span class="slab-card__row"></span>
-                <span class="slab-card__chip"></span>
-              </span>
-            </div>
-
-            <div class="cta-panel__content">
-              <p class="eyebrow cta-panel__eyebrow">RELL</p>
-              <h2 class="display cta-panel__title" id="statement-title">
-                Rights intelligence <span class="cta-panel__title-soft">for tokenized assets</span>
-              </h2>
-              <a class="sticker-btn sticker-btn--lift cta-panel__btn" href="#solution"><span class="sticker-btn-face sticker-btn-face--lg">Explore the Rights</span></a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ================================================================
-         FOOTER
-         ================================================================ -->
-    <footer class="site-footer" id="footer">
-      <div class="container site-footer__inner">
-        <div class="site-footer__brand">
-          <a class="brand brand--lg" href="#top" aria-label="RELL home">
-            <svg class="brand__mark" width="40" height="40" aria-hidden="true"><use href="#i-mark"/></svg>
-            <span class="brand__word">RE<span>LL</span></span>
-          </a>
-          <p class="site-footer__line">Know exactly what you hold.</p>
-          <p class="site-footer__legal">© <span data-year>2026</span> RELL. All rights reserved.</p>
-        </div>
-
-        <div class="site-footer__cols">
-          <div>
-            <h3 class="site-footer__heading">RELL</h3>
-            <ul class="site-footer__list">
-              <li><a href="#problem">Problem</a></li>
-              <li><a href="#solution">Rights</a></li>
-              <li><a href="#verification">Verification</a></li>
-              <li><a href="#example">Example</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="site-footer__heading">Resources</h3>
-            <ul class="site-footer__list">
-              <li><a href="#ca-bar">Contract Address</a></li>
-              <li><a href="#scope">Scope</a></li>
-              <li><span class="site-footer__soon" aria-disabled="true">Docs <em>Soon</em></span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Floating orb (reference: floating music button) -->
-    <div class="orb" data-orb>
-      <button class="orb__close" type="button" data-orb-close aria-label="Hide button">
-        <svg width="10" height="10" aria-hidden="true"><use href="#i-close"/></svg>
-      </button>
-      <a class="orb__btn" href="#top" aria-label="Back to top">
-        <svg class="orb__mark" width="26" height="26" aria-hidden="true"><use href="#i-mark"/></svg>
-        <svg class="orb__arrow" width="18" height="18" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+  <!-- ==================================================================
+       HEADER
+       ================================================================== -->
+  <header class="site-header" data-header>
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="RELL home">
+        <svg class="brand__mark" aria-hidden="true"><use href="#i-mark"/></svg>
+        RELL
       </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__link" href="#problem">Problem</a>
+        <a class="nav__link" href="#verification">Verification</a>
+        <a class="nav__link" href="#map">The map</a>
+        <a class="nav__link" href="#example">Example</a>
+        <a class="nav__link" href="#onchain">Onchain</a>
+      </nav>
+
+      <div class="nav__spacer"></div>
+
+      <div class="nav__actions">
+        <a class="btn btn--quiet nav__docs" href="#map">
+          Explore rights
+          <svg class="btn__arrow" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <button class="btn btn--primary btn--wallet" type="button" data-wallet-connect data-state="idle" aria-label="Connect Wallet">
+          <span class="btn__dot" aria-hidden="true"></span>
+          <span data-wallet-label>Connect Wallet</span>
+        </button>
+        <button class="icon-btn nav__menu-btn" type="button" data-sheet-open aria-controls="sheet" aria-expanded="false" aria-label="Open menu">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile sheet -->
+  <div class="sheet" id="sheet" data-sheet hidden>
+    <div class="sheet__backdrop" data-sheet-close></div>
+    <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="sheet__head">
+        <a class="brand" href="#top" data-sheet-close aria-label="RELL home">
+          <svg class="brand__mark" aria-hidden="true"><use href="#i-mark"/></svg>
+          RELL
+        </a>
+        <button class="icon-btn" type="button" data-sheet-close aria-label="Close menu">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+      <nav class="sheet__links" aria-label="Mobile">
+        <a href="#problem" data-sheet-close>Problem</a>
+        <a href="#verification" data-sheet-close>Verification</a>
+        <a href="#map" data-sheet-close>The map</a>
+        <a href="#example" data-sheet-close>Example</a>
+        <a href="#onchain" data-sheet-close>Onchain</a>
+      </nav>
+      <div class="sheet__foot">
+        <p class="label">Coverage</p>
+        <p class="body-sm"><span data-config-text="network.name">Robinhood Chain</span> and stock tokens</p>
+        <a class="btn btn--primary btn--block" href="#map" data-sheet-close>Explore the rights</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ================================================================
+         HERO
+         ================================================================ -->
+    <section class="hero" id="top">
+      <div class="hero__wash" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="shell">
+        <div class="hero__inner">
+          <p class="label head__label" data-reveal>Rights intelligence</p>
+          <h1 class="display hero__title" data-reveal style="--reveal-delay: 60ms">
+            Know what your token really gives you.
+          </h1>
+          <p class="lede hero__lede" data-reveal style="--reveal-delay: 120ms">
+            RELL maps the rights behind every tokenized stock. Six categories,
+            three levels of proof, sources always shown.
+          </p>
+          <div class="hero__actions" data-reveal style="--reveal-delay: 180ms">
+            <a class="btn btn--primary btn--lg" href="#map">Explore the rights</a>
+            <a class="btn btn--secondary btn--lg" href="#onchain">
+              Read the registry
+              <svg class="btn__arrow" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__preview" data-reveal style="--reveal-delay: 240ms; --reveal-y: 20px">
+          <div class="preview">
+            <div class="preview__bar">
+              <span class="preview__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span class="preview__path">rell / rights profile</span>
+            </div>
+            <div class="preview__body">
+              <div class="preview__asset">
+                <span class="h3">ACME Stock Token</span>
+                <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Illustrative sample</span>
+              </div>
+              <div class="rights">
+                <div class="rights__row">
+                  <span class="rights__name">Ownership</span>
+                  <span class="rights__claim">Holds legal title to the share</span>
+                  <span class="rights__verdict" data-verdict="no">No</span>
+                  <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Issuer</span>
+                </div>
+                <div class="rights__row">
+                  <span class="rights__name">Economic Claims</span>
+                  <span class="rights__claim">Tracks price and passes dividends</span>
+                  <span class="rights__verdict" data-verdict="yes">Yes</span>
+                  <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Issuer</span>
+                </div>
+                <div class="rights__row">
+                  <span class="rights__name">Transfer Rights</span>
+                  <span class="rights__claim">Moves freely between any wallets</span>
+                  <span class="rights__verdict" data-verdict="partial">Restricted</span>
+                  <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coverage strip -->
+    <div class="strip" aria-label="What RELL covers">
+      <div class="strip__track" data-strip>
+        <span class="strip__item"><svg aria-hidden="true"><use href="#i-network"/></svg><span data-config-text="network.name">Robinhood Chain</span></span>
+        <span class="strip__item"><svg aria-hidden="true"><use href="#i-grid"/></svg>Stock tokens</span>
+        <span class="strip__item"><svg aria-hidden="true"><use href="#i-shield"/></svg>Six rights categories</span>
+        <span class="strip__item"><svg aria-hidden="true"><use href="#i-check"/></svg>Three proof levels</span>
+        <span class="strip__item"><svg aria-hidden="true"><use href="#i-doc"/></svg>Sources on every claim</span>
+        <span class="strip__item"><svg aria-hidden="true"><use href="#i-network"/></svg>Onchain registry</span>
+      
+        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-network"/></svg><span data-config-text="network.name">Robinhood Chain</span></span>
+        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-grid"/></svg>Stock tokens</span>
+        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-shield"/></svg>Six rights categories</span>
+        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-check"/></svg>Three proof levels</span>
+        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-doc"/></svg>Sources on every claim</span>
+        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-network"/></svg>Onchain registry</span>
+      </div>
     </div>
 
-    <!-- Announcement region (reference: toast region) -->
-    <div class="toast-region" data-toast-region aria-live="polite" aria-atomic="true"></div>
-  </div>
+    <!-- ================================================================
+         PROBLEM
+         ================================================================ -->
+    <section class="section" id="problem">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <p class="label head__label">The problem</p>
+          <h2 class="h1">A token can look like ownership.</h2>
+          <p class="lede">
+            It can mirror a price without handing you a shareholder's rights.
+            That gap is rarely written down anywhere.
+          </p>
+        </div>
+
+        <div class="proof" data-reveal style="--reveal-delay: 80ms">
+          <article class="card card--interactive">
+            <p class="card__index">01</p>
+            <h3 class="h3">Claims are scattered</h3>
+            <p class="body-sm">Terms live in filings, product docs and contract code.</p>
+          </article>
+          <article class="card card--interactive">
+            <p class="card__index">02</p>
+            <h3 class="h3">Wording hides limits</h3>
+            <p class="body-sm">A right can exist on paper and fail in practice.</p>
+          </article>
+          <article class="card card--interactive">
+            <p class="card__index">03</p>
+            <h3 class="h3">Nobody shows sources</h3>
+            <p class="body-sm">Most summaries give a verdict without saying where it came from.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         STATS
+         ================================================================ -->
+    <section class="section section--tight">
+      <div class="shell">
+        <div class="stats" data-reveal>
+          <div class="stat">
+            <span class="stat__value tabular">6</span>
+            <span class="stat__label">Rights categories checked</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value tabular">3</span>
+            <span class="stat__label">Levels of verification</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value tabular">1</span>
+            <span class="stat__label">Network covered today</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value tabular">2</span>
+            <span class="stat__label">Contracts live onchain</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         VERIFICATION
+         ================================================================ -->
+    <section class="section" id="verification">
+      <div class="shell">
+        <div class="head head--center" data-reveal>
+          <p class="label head__label">Verification</p>
+          <h2 class="h1">Every claim shows its proof.</h2>
+          <p class="lede">One glance tells you how a right was checked.</p>
+        </div>
+
+        <div class="proof" data-reveal style="--reveal-delay: 80ms">
+          <article class="proof__card proof__card--onchain">
+            <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Verified Onchain</span>
+            <h3 class="h3 proof__title">Read from contract state</h3>
+            <p class="proof__body">
+              The strongest level. Anyone can repeat the read and get the same answer.
+            </p>
+          </article>
+          <article class="proof__card proof__card--issuer">
+            <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Verified From Issuer</span>
+            <h3 class="h3 proof__title">Confirmed in published terms</h3>
+            <p class="proof__body">
+              Taken from filings and issuer documents. Only as current as the document.
+            </p>
+          </article>
+          <article class="proof__card proof__card--reported">
+            <span class="state state--reported"><span class="state__dot" aria-hidden="true"></span>Reported Inferred</span>
+            <h3 class="h3 proof__title">Sourced or carefully inferred</h3>
+            <p class="proof__body">
+              Drawn from public reporting. Labelled openly, never presented as settled fact.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statement break -->
+    <section class="section section--tight section--sunken">
+      <div class="shell shell--narrow">
+        <p class="h2" style="text-align:center" data-reveal>
+          Where a right cannot be checked, RELL says so. Gaps are never filled with guesses.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         THE MAP, six categories
+         ================================================================ -->
+    <section class="section" id="map">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <p class="label head__label">The map</p>
+          <h2 class="h1">Six categories. Every right accounted for.</h2>
+          <p class="lede">Pick a category to see exactly what RELL checks.</p>
+        </div>
+
+        <div class="explorer" data-reveal style="--reveal-delay: 80ms">
+          <div class="explorer__list" role="tablist" aria-label="Rights categories" data-explorer-list></div>
+          <div data-explorer-panels></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         EXAMPLE
+         ================================================================ -->
+    <section class="section section--sunken" id="example">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <p class="label head__label">Example</p>
+          <h2 class="h1">One token, read claim by claim.</h2>
+          <p class="lede">A sample stock token mapped across all six categories.</p>
+        </div>
+
+        <div class="preview" data-reveal style="margin-top:2.5rem; --reveal-delay: 80ms">
+          <div class="preview__bar">
+            <span class="preview__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="preview__path">rell / acme stock token</span>
+          </div>
+          <div class="preview__body">
+            <div class="rights">
+              <div class="rights__row">
+                <span class="rights__name">Ownership</span>
+                <span class="rights__claim">Holds legal title to the share</span>
+                <span class="rights__verdict" data-verdict="no">No</span>
+                <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Issuer</span>
+              </div>
+              <div class="rights__row">
+                <span class="rights__name">Economic Claims</span>
+                <span class="rights__claim">Tracks price and passes dividends</span>
+                <span class="rights__verdict" data-verdict="yes">Yes</span>
+                <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Issuer</span>
+              </div>
+              <div class="rights__row">
+                <span class="rights__name">Control Rights</span>
+                <span class="rights__claim">Votes at shareholder meetings</span>
+                <span class="rights__verdict" data-verdict="no">No</span>
+                <span class="state state--reported"><span class="state__dot" aria-hidden="true"></span>Reported</span>
+              </div>
+              <div class="rights__row">
+                <span class="rights__name">Transfer Rights</span>
+                <span class="rights__claim">Moves freely between any wallets</span>
+                <span class="rights__verdict" data-verdict="partial">Restricted</span>
+                <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
+              </div>
+              <div class="rights__row">
+                <span class="rights__name">DeFi Compatibility</span>
+                <span class="rights__claim">Works in open onchain protocols</span>
+                <span class="rights__verdict" data-verdict="partial">Limited</span>
+                <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
+              </div>
+              <div class="rights__row">
+                <span class="rights__name">Asset Status</span>
+                <span class="rights__claim">Contract live and not paused</span>
+                <span class="rights__verdict" data-verdict="yes">Active</span>
+                <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
+              </div>
+            </div>
+            <p class="rights__note">Sample data. Not a live assessment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ONCHAIN
+         ================================================================ -->
+    <section class="section section--ink" id="onchain">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <p class="label head__label">Onchain</p>
+          <h2 class="h1">The registry is live.</h2>
+          <p class="lede">
+            Two contracts on <span data-config-text="network.name">Robinhood Chain</span> anchor every rights profile.
+            Reads are open to anyone.
+          </p>
+        </div>
+
+        <div class="contracts" data-reveal style="--reveal-delay: 80ms">
+          <div class="contract">
+            <p class="label">Rights Registry</p>
+            <p class="body-sm" style="color:var(--text-on-dark-2)">One record per asset, with the profile hash, its pointer and status.</p>
+            <p class="contract__addr">
+              <a data-contract-link="contracts.rightsRegistry" href="#onchain" target="_blank" rel="noopener noreferrer"><span data-config-text="contracts.rightsRegistry">Not yet deployed</span></a>
+              <svg width="14" height="14" aria-hidden="true"><use href="#i-external"/></svg>
+            </p>
+          </div>
+          <div class="contract">
+            <p class="label">Verification Oracle</p>
+            <p class="body-sm" style="color:var(--text-on-dark-2)">Holds the roles. It answers who may publish rights data.</p>
+            <p class="contract__addr">
+              <a data-contract-link="contracts.verificationOracle" href="#onchain" target="_blank" rel="noopener noreferrer"><span data-config-text="contracts.verificationOracle">Not yet deployed</span></a>
+              <svg width="14" height="14" aria-hidden="true"><use href="#i-external"/></svg>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CLOSING
+         ================================================================ -->
+    <section class="section">
+      <div class="shell">
+        <div class="cta" data-reveal>
+          <p class="label">RELL</p>
+          <h2 class="h1" style="max-width:20ch">Know exactly what you hold.</h2>
+          <p class="lede" style="max-width:34rem">
+            Start with the six categories. Then read the proof behind every claim.
+          </p>
+          <div class="cta__actions">
+            <a class="btn btn--primary btn--lg" href="#map">Explore the rights</a>
+            <a class="btn btn--secondary btn--lg" href="#example">See the example</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================================================================
+       FOOTER
+       ================================================================== -->
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="#top" aria-label="RELL home">
+            <svg class="brand__mark" aria-hidden="true"><use href="#i-mark"/></svg>
+            RELL
+          </a>
+          <p class="site-footer__blurb">
+            The rights intelligence layer for tokenized assets. Currently covering
+            <span data-config-text="network.name">Robinhood Chain</span> and stock tokens.
+          </p>
+        </div>
+
+        <div class="site-footer__col">
+          <h3 class="label">Product</h3>
+          <ul class="site-footer__list">
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#verification">Verification</a></li>
+            <li><a href="#map">The map</a></li>
+            <li><a href="#example">Example</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h3 class="label">Resources</h3>
+          <ul class="site-footer__list">
+            <li><a href="#onchain">Contracts</a></li>
+            <li><span class="site-footer__soon">Docs <em>Soon</em></span></li>
+            <li><span class="site-footer__soon">API <em>Soon</em></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__base">
+        <p>© <span data-year>2026</span> RELL. All rights reserved.</p>
+        <p class="mono">Chain ID <span data-config-text="network.chainId">4663</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-region" data-toast-region aria-live="polite" aria-atomic="true"></div>
 
   <script src="config/contracts.js"></script>
   <script src="js/config.js"></script>
-  <script src="js/contract-bar.js"></script>
   <script src="js/header.js"></script>
-  <script src="js/marquee.js"></script>
-  <script src="js/rights-dialog.js"></script>
+  <script src="js/explorer.js"></script>
   <script src="js/reveal.js"></script>
   <script src="js/main.js"></script>
   <script type="module" src="js/wallet.js"></script>

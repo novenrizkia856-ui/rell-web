@@ -1,206 +1,106 @@
 /* ==========================================================================
-   RELL design tokens, white canvas pop art theme
-   Pure white base, layered panels, comic outlines and hard 2D offset shadows.
+   RELL design tokens
+
+   A calm infrastructure theme: soft paper canvas, generous space, large quiet
+   type, thin hairline borders. Colour is used sparingly and only where it
+   carries meaning.
+
    The three accents stay semantic, never decorative:
-     mint   = verified onchain
-     purple = verified from issuer
-     yellow = reported or inferred
-   Hot pink is reserved for primary actions and focal highlights.
+     green  = verified onchain
+     violet = verified from issuer
+     amber  = reported or inferred
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* Canvas and panels */
-  --bg: #ffffff;
-  --bg-rgb: 255, 255, 255;
-
-  --surface: #f8fafc;          /* crisp off white card */
-  --surface-rgb: 248, 250, 252;
-  --surface-2: #f1f5f9;        /* light slate card */
-  --surface-3: #e2e8f0;        /* pressed or inset light */
-
-  --panel-dark: #12151f;       /* deep charcoal focus panel */
-  --panel-dark-2: #1b2130;
-  --panel-dark-rgb: 18, 21, 31;
-
-  /* Comic outline. Every panel, badge and button carries it. */
-  --ink: #0b0e17;
-  --ink-rgb: 11, 14, 23;
-  --stroke-w: 2px;
-  --stroke-w-thick: 3px;
-  --line: var(--ink);
-  --line-strong: var(--ink);
-  --card-stroke: var(--stroke-w) solid var(--ink);
-
-  /* Hard 2D offset shadows, no blur */
-  --shadow-2d: 6px 6px 0 0 var(--ink);
-  --shadow-2d-sm: 4px 4px 0 0 var(--ink);
-  --shadow-2d-xs: 2px 2px 0 0 var(--ink);
-  --shadow-card: var(--shadow-2d);
-  --shadow-tag: var(--shadow-2d-xs);
-  --shadow-panel: var(--shadow-2d);
-
-  /* Top edge light reflection inside light and dark panels */
-  --bevel: inset 0 2px 0 0 rgba(255, 255, 255, 0.75);
-  --bevel-dark: inset 0 2px 0 0 rgba(255, 255, 255, 0.14);
+  /* Canvas and surfaces */
+  --paper: #fbfbfa;          /* page canvas, a warm off white */
+  --surface: #ffffff;        /* raised card */
+  --surface-sunken: #f4f4f2; /* inset panel, quiet band */
+  --ink-panel: #12100f;      /* dark focus panel */
+  --ink-panel-2: #1c1a18;
 
   /* Text */
-  --text-1: #0b0e17;
-  --text-2: #475569;
-  --text-3: #64748b;
-  --text-on-dark: #f8fafc;
-  --text-on-dark-2: #94a3b8;
+  --text-1: #12100f;
+  --text-2: #5c5854;
+  --text-3: #8a8580;
+  --text-on-dark: #fbfbfa;
+  --text-on-dark-2: #a8a29c;
 
-  /* Slate scale used by pill badges */
-  --slate-900: #0f172a;
-  --slate-800: #1e293b;
-  --slate-700: #334155;
-  --slate-200: #e2e8f0;
-  --slate-100: #f1f5f9;
-  --purple-300: #d8b4fe;
-  --purple-500: #a855f7;
+  /* Hairlines. Thin and low contrast, never a heavy outline. */
+  --line: rgba(18, 16, 15, 0.1);
+  --line-strong: rgba(18, 16, 15, 0.18);
+  --line-on-dark: rgba(251, 251, 250, 0.14);
 
-  /* Pop accents */
-  --pink: #ff007a;
-  --pink-rgb: 255, 0, 122;
-  --pink-hover: #e0006b;
-  --pink-edge: #990049;
-
-  --yellow: #ffe600;
-  --yellow-rgb: 255, 230, 0;
-  --yellow-edge: #a38f00;
-
-  --mint: #00ff85;
-  --mint-rgb: 0, 255, 133;
-  --mint-edge: #00a855;
-
-  --orange: #ff7a1a;
-  --orange-rgb: 255, 122, 26;
-  --orange-edge: #b34d00;
-
-  --cyan: #22d3ee;
-  --cyan-rgb: 34, 211, 238;
-  --cyan-edge: #0e7490;
-
-  --accent-violet: #a855f7;
-  --accent-violet-rgb: 168, 85, 247;
-  --accent-violet-deep: #8b3ddb;
-  --accent-violet-dark: #6b21a8;
-  --accent-violet-soft: #d8b4fe;
-
-  /* Aliases kept so older rules stay valid */
-  --accent-cyan: var(--mint);
-  --accent-cyan-rgb: var(--mint-rgb);
-  --accent-cyan-deep: #00cc6a;
-  --accent-cyan-dark: var(--mint-edge);
-  --accent-amber: var(--yellow);
-  --accent-amber-rgb: var(--yellow-rgb);
-  --accent-amber-deep: #d4c000;
-  --accent-amber-dark: var(--yellow-edge);
-
-  /* Verification states */
-  --state-onchain: var(--mint);
-  --state-onchain-rgb: var(--mint-rgb);
-  --state-issuer: var(--accent-violet);
-  --state-issuer-rgb: var(--accent-violet-rgb);
-  --state-reported: var(--yellow);
-  --state-reported-rgb: var(--yellow-rgb);
-  --state-unmapped: var(--slate-200);
-  --state-unmapped-rgb: 226, 232, 240;
+  /* Semantic accents, muted so they read as labels rather than decoration */
+  --onchain: #1f7a4d;
+  --onchain-soft: #e7f2ec;
+  --issuer: #5b4bc4;
+  --issuer-soft: #ecebf9;
+  --reported: #9a6b12;
+  --reported-soft: #f7efdf;
+  --unmapped: #8a8580;
+  --unmapped-soft: #f0efed;
 
   /* Primary action */
-  --primary: var(--pink);
-  --primary-rgb: var(--pink-rgb);
+  --primary: #12100f;
+  --primary-hover: #2c2926;
+
+  /* Soft depth. Small and diffuse, never a hard offset. */
+  --shadow-sm: 0 1px 2px rgba(18, 16, 15, 0.04), 0 1px 1px rgba(18, 16, 15, 0.03);
+  --shadow-md: 0 4px 16px rgba(18, 16, 15, 0.06), 0 1px 3px rgba(18, 16, 15, 0.04);
+  --shadow-lg: 0 18px 50px rgba(18, 16, 15, 0.09), 0 2px 8px rgba(18, 16, 15, 0.04);
 
   /* Type */
-  --font-display: "Rubik", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
+  /* A single fluid scale carries every heading on the page */
+  --step-hero: clamp(2.75rem, 1.6rem + 5.2vw, 6rem);
+  --step-1: clamp(2rem, 1.35rem + 2.9vw, 3.75rem);
+  --step-2: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
+  --step-3: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+  --step-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --step-body: 1rem;
+  --step-sm: 0.875rem;
+  --step-xs: 0.8125rem;
+  --step-label: 0.6875rem;
 
-  --leading-tight: 1;
-  --leading-snug: 1.3;
-  --leading-body: 1.65;
-  --tracking-label: 0.14em;
-  --tracking-tight: -0.03em;
+  --tracking-hero: -0.038em;
+  --tracking-tight: -0.022em;
+  --tracking-label: 0.1em;
+
+  --leading-hero: 0.98;
+  --leading-tight: 1.1;
+  --leading-body: 1.6;
 
   /* Layout */
-  --container: 80rem;
-  --container-wide: 90rem;
-  --gutter: 1rem;
-  --section-y: 1.5rem;
+  --container: 77.5rem;
+  --container-narrow: 46rem;
+  --gutter: 1.25rem;
+  --section-y: clamp(3.25rem, 2.25rem + 4vw, 6.5rem);
 
-  /* Radii */
+  /* Radii, generous and soft */
   --r-sm: 0.5rem;
-  --r-md: 0.75rem;
-  --r-lg: 1rem;
-  --r-xl: 1.5rem;
+  --r-md: 0.875rem;
+  --r-lg: 1.25rem;
+  --r-xl: 1.75rem;
+  --r-2xl: 2.25rem;
   --r-pill: 999px;
-  --r-tag: 0.375rem;
 
-  /* Physical controls */
-  --lift: 4px;
-  --lift-sm: 3px;
-  --press: 3px;
-  --blur-glass: 18px;
-
-  /* Legacy names from the earlier dark theme */
-  --edge: var(--ink);
-  --edge-w: var(--stroke-w);
-  --shadow-hard: var(--shadow-2d-xs);
-
-  /* Vector pattern overlays. Every one is a crisp repeating shape, never a blur.
-     Sized in px so the artwork stays razor sharp at any zoom. */
-  --pat-halftone: radial-gradient(circle at center, var(--pat-ink, rgba(11, 14, 23, 0.9)) 2.4px, transparent 2.6px);
-  --pat-halftone-size: 14px 14px;
-
-  --pat-halftone-lg: radial-gradient(circle at center, var(--pat-ink, rgba(11, 14, 23, 0.9)) 3.6px, transparent 3.8px);
-  --pat-halftone-lg-size: 22px 22px;
-
-  --pat-checker:
-    linear-gradient(135deg, var(--pat-ink, rgba(11, 14, 23, 0.9)) 25%, transparent 25%),
-    linear-gradient(225deg, var(--pat-ink, rgba(11, 14, 23, 0.9)) 25%, transparent 25%),
-    linear-gradient(45deg, var(--pat-ink, rgba(11, 14, 23, 0.9)) 25%, transparent 25%),
-    linear-gradient(315deg, var(--pat-ink, rgba(11, 14, 23, 0.9)) 25%, transparent 25%);
-  --pat-checker-size: 22px 22px;
-
-  --pat-diagonal: repeating-linear-gradient(
-    45deg,
-    var(--pat-ink, rgba(11, 14, 23, 0.9)) 0 3px,
-    transparent 3px 11px
-  );
-  --pat-diagonal-size: auto;
-
-  --pat-grid: repeating-linear-gradient(0deg, var(--pat-ink, rgba(11, 14, 23, 0.9)) 0 2px, transparent 2px 20px),
-    repeating-linear-gradient(90deg, var(--pat-ink, rgba(11, 14, 23, 0.9)) 0 2px, transparent 2px 20px);
-  --pat-grid-size: auto;
-
-  /* Motion curves, copied from the reference */
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-reveal: cubic-bezier(0.25, 0.1, 0.35, 1);
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 720ms;
 }
 
-@media (min-width: 640px) {
-  :root {
-    --gutter: 1.25rem;
-    --section-y: 2rem;
-  }
+@media (min-width: 40em) {
+  :root { --gutter: 2rem; }
 }
 
-@media (min-width: 1280px) {
-  :root {
-    --gutter: 2rem;
-  }
+@media (min-width: 80em) {
+  :root { --gutter: 3rem; }
 }

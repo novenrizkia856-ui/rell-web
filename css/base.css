@@ -11,24 +11,26 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 9rem;
+  scroll-padding-top: 6rem;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background: var(--paper);
   color: var(--text-1);
-  font-family: var(--font-body);
-  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  font-size: var(--step-body);
   line-height: var(--leading-body);
+  font-feature-settings: "cv05" 1, "ss03" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 img,
-svg {
+svg,
+video {
   display: block;
   max-width: 100%;
 }
@@ -47,31 +49,24 @@ button {
   cursor: pointer;
 }
 
-h1,
-h2,
-h3,
-h4,
-p,
-ul,
-ol {
+h1, h2, h3, h4, p, ul, ol, figure, dl, dd {
   margin: 0;
 }
 
-ul,
-ol {
+ul, ol {
   padding: 0;
   list-style: none;
 }
 
 :focus-visible {
-  outline: 3px solid var(--pink);
+  outline: 2px solid var(--text-1);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 ::selection {
-  background: var(--yellow);
-  color: var(--ink);
+  background: var(--text-1);
+  color: var(--paper);
 }
 
 .sr-only {
@@ -90,61 +85,33 @@ ol {
   position: fixed;
   top: 0.75rem;
   left: 0.75rem;
-  z-index: 100;
-  padding: 0.6rem 1rem;
-  border: var(--card-stroke);
-  border-radius: var(--r-sm);
-  background: var(--yellow);
-  color: var(--ink);
-  box-shadow: var(--shadow-2d-sm);
-  font-weight: 800;
-  transform: translateY(-200%);
-  transition: transform 200ms var(--ease-out);
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--r-pill);
+  background: var(--text-1);
+  color: var(--paper);
+  font-size: var(--step-sm);
+  font-weight: 500;
+  transform: translateY(-250%);
+  transition: transform var(--dur) var(--ease-out);
 }
 
 .skip-link:focus {
   transform: none;
 }
 
-/* Page shell */
-.page {
-  position: relative;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-.page__main {
-  flex: 1;
-  position: relative;
-  isolation: isolate;
-}
-
-/* Ambient backdrop: one crisp halftone dot matrix on the pure white canvas.
-   No washes, no blur. Every dot keeps its edge at any zoom level. */
-.page__main::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  --pat-ink: rgba(11, 14, 23, 0.13);
-  background-image: radial-gradient(circle at center, var(--pat-ink) 1.5px, transparent 1.7px);
-  background-size: 26px 26px;
-}
-
-.container {
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+.shell {
   width: 100%;
-  min-width: 0;
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
-@media (min-width: 1536px) {
-  .container {
-    max-width: var(--container-wide);
-  }
+.shell--narrow {
+  max-width: var(--container-narrow);
 }
 
 .section {
@@ -152,86 +119,136 @@ ol {
   padding-block: var(--section-y);
 }
 
-/* Typography helpers */
-.display {
-  font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: -0.035em;
-  line-height: var(--leading-tight);
-  color: var(--text-1);
+.section--tight {
+  padding-block: clamp(2.5rem, 2rem + 2.5vw, 4rem);
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--text-2);
+.section--sunken {
+  background: var(--surface-sunken);
+}
+
+.section--ink {
+  background: var(--ink-panel);
+  color: var(--text-on-dark);
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--line);
+}
+
+/* --------------------------------------------------------------------------
+   Typography helpers
+   -------------------------------------------------------------------------- */
+.display {
+  font-size: var(--step-hero);
+  font-weight: 500;
+  letter-spacing: var(--tracking-hero);
+  line-height: var(--leading-hero);
+  text-wrap: balance;
+}
+
+.h1 {
+  font-size: var(--step-1);
+  font-weight: 500;
+  letter-spacing: var(--tracking-hero);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.h2 {
+  font-size: var(--step-2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.h3 {
+  font-size: var(--step-3);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.25;
 }
 
 .lede {
+  font-size: var(--step-body-lg);
+  line-height: 1.55;
   color: var(--text-2);
-  font-size: var(--text-base);
-  font-weight: 500;
-  line-height: var(--leading-body);
+  text-wrap: pretty;
 }
 
-@media (min-width: 640px) {
-  .lede {
-    font-size: 1.0625rem;
-  }
+.body-sm {
+  font-size: var(--step-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--step-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-3);
 }
 
 .mono {
   font-family: var(--font-mono);
+  font-variant-ligatures: none;
 }
 
 .tabular {
   font-variant-numeric: tabular-nums;
 }
 
-/* Key word inside a heading: a solid pop coloured badge box */
-.hl {
-  display: inline-block;
-  padding: 0 0.32em 0.06em;
-  border: var(--stroke-w) solid var(--ink);
-  border-radius: var(--r-md);
-  background: var(--yellow);
-  color: var(--ink);
-  box-shadow: var(--shadow-2d-sm);
+.muted {
+  color: var(--text-2);
 }
 
-.hl--cyan {
-  background: var(--mint);
-  color: var(--ink);
-  box-shadow: var(--shadow-2d-sm);
-}
-
-.hl--amber,
-.hl--pink {
-  background: var(--pink);
-  color: #fff;
-  box-shadow: var(--shadow-2d-sm);
-}
-
-/* Accent text. On light panels the accents need their darker edge tone. */
-.text-violet { color: var(--accent-violet-dark); }
-.text-cyan { color: var(--accent-cyan-dark); }
-.text-amber { color: var(--accent-amber-dark); }
-.text-muted { color: var(--text-2); }
-
-/* Panel helpers for the alternating section rhythm */
-.panel-dark {
-  background: var(--panel-dark);
-  color: var(--text-on-dark);
-}
-
-.panel-dark .lede,
-.panel-dark .text-muted {
+.section--ink .lede,
+.section--ink .muted {
   color: var(--text-on-dark-2);
 }
 
-.on-dark-title {
-  color: var(--text-on-dark);
+.section--ink .label {
+  color: var(--text-on-dark-2);
+}
+
+/* A section heading block, used by nearly every section */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 44rem;
+}
+
+.head--center {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.head__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.head__label::before {
+  content: "";
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.head--center .head__label::after {
+  content: "";
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
 }

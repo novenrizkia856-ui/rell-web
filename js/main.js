@@ -13,11 +13,8 @@
     toast.textContent = message;
     toastRegion.appendChild(toast);
     window.setTimeout(function () {
-      toast.classList.add("is-leaving");
-      window.setTimeout(function () {
-        if (toast.parentNode) toast.parentNode.removeChild(toast);
-      }, 220);
-    }, 2200);
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 2600);
   };
 
   function bindConfigText(config) {
@@ -27,11 +24,25 @@
         el.textContent = String(value);
       }
     });
+  }
 
-    var chainRow = document.querySelector("[data-chain-id]");
-    if (chainRow) {
-      chainRow.hidden = !(config.network && String(config.network.chainId || "").trim());
-    }
+  /* Contract addresses link out to the explorer once both the address and the
+     explorer URL are configured. Until then the row stays plain text. */
+  function bindContractLinks(config) {
+    var base = String((config.network && config.network.explorerUrl) || "").replace(/\/+$/, "");
+    document.querySelectorAll("[data-contract-link]").forEach(function (link) {
+      var address = RELL.getPath(config, link.getAttribute("data-contract-link"));
+      var icon = link.parentNode ? link.parentNode.querySelector("svg") : null;
+      if (!base || !address) {
+        link.removeAttribute("href");
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+        if (icon) icon.style.display = "none";
+        return;
+      }
+      link.href = base + "/address/" + address;
+      link.setAttribute("aria-label", "View this contract on the explorer");
+    });
   }
 
   function start() {
@@ -39,14 +50,13 @@
     if (year) year.textContent = String(new Date().getFullYear());
 
     RELL.initHeader();
-    RELL.initMarquee();
-    RELL.initRightsDialog();
+    RELL.initExplorer();
     RELL.initReveal();
 
     RELL.loadConfig().then(function (config) {
       RELL.config = config;
       bindConfigText(config);
-      RELL.initContractBar(config);
+      bindContractLinks(config);
     });
   }
 
