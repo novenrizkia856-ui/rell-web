@@ -81,18 +81,98 @@
 }
 
 @media (min-width: 640px) {
-  .hero__visual { height: 34rem; margin-top: 1rem; }
+  .hero__visual { height: 30rem; margin-top: 0.5rem; }
 }
 
 @media (min-width: 1024px) {
-  .hero__visual { height: 44rem; margin-top: -1rem; }
+  .hero__visual { height: 38rem; margin-top: -2rem; }
 }
 
-.hero__visual svg {
+/* Floating chrome objects, rendered by tools/make-chrome.py */
+.chrome {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  filter: drop-shadow(0 34px 34px rgba(71, 78, 85, 0.16));
+}
+
+.chrome--hero-main {
+  left: 50%;
+  top: -2%;
+  width: min(88vw, 58rem);
+  transform: translateX(-50%);
+  animation: float-a 14s ease-in-out infinite;
+}
+
+.chrome--hero-left {
+  left: -10%;
+  top: 40%;
+  width: min(44vw, 26rem);
+  animation: float-b 17s ease-in-out infinite;
+}
+
+.chrome--hero-right {
+  right: -12%;
+  top: 24%;
+  width: min(48vw, 28rem);
+  animation: float-c 19s ease-in-out infinite;
+}
+
+@media (min-width: 1024px) {
+  .chrome--hero-left { left: -4%; top: 44%; }
+  .chrome--hero-right { right: -5%; top: 28%; }
+}
+
+/* The quieter ones that drift between sections */
+.floaters {
+  position: relative;
+  z-index: 0;
+  height: 0;
+}
+
+.chrome--mid-right,
+.chrome--mid-left {
+  opacity: 1;
+}
+
+.chrome--mid-right {
+  right: -5%;
+  top: -13rem;
+  width: min(34vw, 26rem);
+  animation: float-b 21s ease-in-out infinite;
+}
+
+.chrome--mid-left {
+  left: -6%;
+  top: -17rem;
+  width: min(36vw, 28rem);
+  animation: float-c 24s ease-in-out infinite;
+}
+
+@media (max-width: 899px) {
+  .chrome--mid-right,
+  .chrome--mid-left { display: none; }
+}
+
+@keyframes float-a {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -18px); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-2deg); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(16px) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chrome { animation: none !important; }
 }
 
 .hero__fade {
@@ -107,7 +187,7 @@
 .coverage {
   position: relative;
   z-index: 3;
-  margin-top: -2rem;
+  margin-top: -5rem;
   padding-bottom: 0;
 }
 

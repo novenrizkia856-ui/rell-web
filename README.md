@@ -28,8 +28,10 @@ Nothing was taken from the reference itself. No markup, styling, copy, imagery o
 That page is another company's production build. What carried over are measurements and layout
 conventions, rebuilt here.
 
-The chrome forms under the hero are inline SVG, not photography, so they cost nothing to load and
-stay sharp at any width. The three verification accents stay semantic:
+The floating chrome objects are our own renders, not photography and nothing borrowed: the shapes
+are signed distance fields, ray marched against a procedural studio environment in
+`tools/make-chrome.py`. That is where chrome gets its look, from a bright sky, a dark horizon band,
+a soft floor and two softboxes. Each object ships as a WebP of roughly 15KB. The three verification accents stay semantic:
 
 | Accent | Meaning |
 | --- | --- |
@@ -57,11 +59,12 @@ js/faq.js               the accordion, one answer open at a time
 js/reveal.js            scroll reveal
 js/main.js              entry point, config binding, contract links, toast
 js/wallet.js            wallet connect, an ES module loaded separately
+assets/art/             the floating chrome objects, see tools/make-chrome.py
 assets/brand/           favicon, apple touch icon, share image
 robots.txt              crawl policy, points at the sitemap
 sitemap.xml             the one page
 vercel.json             caching and security headers
-tools/                  sync-config.mjs, check-copy.mjs, make-og-image.py
+tools/                  sync-config.mjs, check-copy.mjs, make-chrome.py, make-og-image.py
 ```
 
 ## Sections
@@ -135,7 +138,9 @@ node tools/check-copy.mjs          no dashes, no sentence over 15 words, in any 
 node tools/sync-config.mjs --check config mirror is up to date
 ```
 
-`tools/make-og-image.py` rebuilds the share card in the same language as the hero. It needs Pillow,
+`tools/make-chrome.py` re-renders the floating objects, and needs numpy as well. It takes a couple
+of minutes per object at the shipped sizes. `tools/make-og-image.py` rebuilds the share card in the
+same language as the hero. It needs Pillow,
 and picks up the Geist variable font from `%TEMP%/geist.ttf` when it is there, falling back to Segoe
 UI otherwise.
 
