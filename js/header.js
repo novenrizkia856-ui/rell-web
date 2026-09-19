@@ -1,47 +1,90 @@
-/* Header: a hairline appears once the page scrolls, the mobile sheet opens and
-   closes, and the nav link for the section in view is marked. */
+/* Navigation: scroll state for the floating pill, the product dropdown,
+   the mobile sheet and the active section link. */
 (function (RELL) {
   "use strict";
 
-  function initSticky() {
+  function initScrollState() {
     var header = document.querySelector("[data-header]");
     if (!header) return;
     var update = function () {
-      header.classList.toggle("is-stuck", window.scrollY > 8);
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
+  }
+
+  function initDropdown() {
+    document.querySelectorAll("[data-dropdown]").forEach(function (group) {
+      var trigger = group.querySelector("button");
+      var menu = group.querySelector(".nav__menu");
+      if (!trigger || !menu) return;
+
+      function close() {
+        menu.hidden = true;
+        trigger.setAttribute("aria-expanded", "false");
+      }
+
+      function open() {
+        menu.hidden = false;
+        trigger.setAttribute("aria-expanded", "true");
+      }
+
+      trigger.addEventListener("click", function () {
+        if (menu.hidden) {
+          open();
+        } else {
+          close();
+        }
+      });
+
+      group.addEventListener("mouseenter", open);
+      group.addEventListener("mouseleave", close);
+
+      menu.addEventListener("click", function (event) {
+        if (event.target.closest("a")) close();
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!menu.hidden && !group.contains(event.target)) close();
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !menu.hidden) {
+          close();
+          trigger.focus();
+        }
+      });
+    });
   }
 
   function initSheet() {
     var sheet = document.querySelector("[data-sheet]");
     var opener = document.querySelector("[data-sheet-open]");
     if (!sheet || !opener) return;
-
-    var lastFocused = null;
+    var hideTimer = null;
 
     function open() {
-      lastFocused = document.activeElement;
+      window.clearTimeout(hideTimer);
       sheet.hidden = false;
-      // Force a reflow so the transition has a start value to animate from.
-      // requestAnimationFrame is paused while a tab is not painting, which
-      // left the panel stuck at opacity zero.
-      void sheet.offsetHeight;
-      sheet.classList.add("is-open");
       opener.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
-      var first = sheet.querySelector("a, button");
-      if (first) first.focus();
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          sheet.classList.add("is-open");
+          var first = sheet.querySelector("a, button");
+          if (first) first.focus({ preventScroll: true });
+        });
+      });
     }
 
     function close() {
+      if (sheet.hidden) return;
       sheet.classList.remove("is-open");
       opener.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
-      window.setTimeout(function () {
+      hideTimer = window.setTimeout(function () {
         sheet.hidden = true;
-      }, 320);
-      if (lastFocused && lastFocused.focus) lastFocused.focus();
+      }, 380);
     }
 
     opener.addEventListener("click", open);
@@ -49,22 +92,26 @@
       el.addEventListener("click", close);
     });
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !sheet.hidden) close();
+      if (event.key === "Escape" && !sheet.hidden) {
+        close();
+        opener.focus({ preventScroll: true });
+      }
     });
+    var desktop = window.matchMedia("(min-width: 900px)");
+    if (desktop.addEventListener) {
+      desktop.addEventListener("change", function (mq) {
+        if (mq.matches) close();
+      });
+    }
   }
 
-  function initActiveLink() {
-    var links = Array.prototype.slice.call(document.querySelectorAll(".nav__link"));
-    if (!links.length || !("IntersectionObserver" in window)) return;
+  function initActiveLinks() {
+    var links = Array.prototype.slice.call(document.querySelectorAll(".nav__link[href^='#']"));
+    if (!("IntersectionObserver" in window) || !links.length) return;
 
     var byId = {};
-    var sections = [];
     links.forEach(function (link) {
-      var id = link.getAttribute("href").slice(1);
-      var section = document.getElementById(id);
-      if (!section) return;
-      byId[id] = link;
-      sections.push(section);
+      byId[link.getAttribute("href").slice(1)] = link;
     });
 
     var observer = new IntersectionObserver(
@@ -74,20 +121,23 @@
           links.forEach(function (l) {
             l.classList.remove("is-active");
           });
-          var link = byId[entry.target.id];
-          if (link) link.classList.add("is-active");
+          var active = byId[entry.target.id];
+          if (active) active.classList.add("is-active");
         });
       },
       { rootMargin: "-45% 0px -50% 0px" }
     );
-    sections.forEach(function (section) {
-      observer.observe(section);
+
+    Object.keys(byId).forEach(function (id) {
+      var section = document.getElementById(id);
+      if (section) observer.observe(section);
     });
   }
 
   RELL.initHeader = function () {
-    initSticky();
+    initScrollState();
+    initDropdown();
     initSheet();
-    initActiveLink();
+    initActiveLinks();
   };
 })(window.RELL = window.RELL || {});

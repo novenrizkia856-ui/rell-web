@@ -1,8 +1,9 @@
-/* Entry point. Loads the config, binds config driven text, starts components. */
+/* Entry point. Starts the components, then binds everything the config drives. */
 (function (RELL) {
   "use strict";
 
   var toastRegion = null;
+  var toastTimer = null;
 
   RELL.toast = function (message) {
     toastRegion = toastRegion || document.querySelector("[data-toast-region]");
@@ -12,7 +13,8 @@
     toast.className = "toast";
     toast.textContent = message;
     toastRegion.appendChild(toast);
-    window.setTimeout(function () {
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () {
       if (toast.parentNode) toast.parentNode.removeChild(toast);
     }, 2600);
   };
@@ -51,12 +53,14 @@
 
     RELL.initHeader();
     RELL.initExplorer();
+    RELL.initFaq();
     RELL.initReveal();
 
     RELL.loadConfig().then(function (config) {
       RELL.config = config;
       bindConfigText(config);
       bindContractLinks(config);
+      RELL.initContractBar(config);
     });
   }
 

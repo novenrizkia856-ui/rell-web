@@ -4,30 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RELL | Rights Intelligence for Tokenized Assets</title>
-  <meta name="description" content="RELL shows what a tokenized stock really gives you. Rights mapped, sources shown.">
-  <meta name="theme-color" content="#fafaf9">
+  <meta name="description" content="RELL maps what a tokenized stock really gives you. Every right, with its source.">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://tryrell.xyz/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="RELL">
   <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://tryrell.xyz/">
   <meta property="og:title" content="RELL | Rights Intelligence for Tokenized Assets">
-  <meta property="og:description" content="Know what your token really gives you. Rights mapped, sources shown.">
+  <meta property="og:description" content="RELL maps what a tokenized stock really gives you. Every right, with its source.">
   <meta property="og:image" content="https://tryrell.xyz/assets/brand/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="RELL. Know what your token really gives you.">
+  <meta property="og:image:alt" content="RELL. Rights intelligence for tokenized assets.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap">
-  <link rel="preload" as="image" href="assets/bg/hero.jpg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/motion.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
 
@@ -38,419 +37,633 @@
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <symbol id="i-mark" viewBox="0 0 24 24">
-        <path d="M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-        <circle cx="12" cy="12" r="3" fill="currentColor"/>
-      </symbol>
-      <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-      <symbol id="i-check" viewBox="0 0 20 20"><path d="m4 10.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-      <symbol id="i-external" viewBox="0 0 16 16"><path d="M9 3h4v4M13 3 7.5 8.5M11 9.5V12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-      <symbol id="i-menu" viewBox="0 0 20 20"><path d="M3 6.5h14M3 13.5h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-      <symbol id="i-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-      <symbol id="i-network" viewBox="0 0 20 20"><circle cx="10" cy="4.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="4.5" cy="15" r="2.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="15.5" cy="15" r="2.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8.6 6.5 6 12.9M11.4 6.5l2.6 6.4M6.7 15h6.6" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
-      <symbol id="i-grid" viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="11" y="3" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="3" y="11" width="6" height="6" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="11" y="11" width="6" height="6" rx="1.2" fill="currentColor"/></symbol>
-      <symbol id="i-shield" viewBox="0 0 20 20"><path d="M10 2.6 16 4.8v4.7c0 3.6-2.4 6.4-6 7.6-3.6-1.2-6-4-6-7.6V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="m7.4 9.9 1.9 1.9 3.4-3.8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-      <symbol id="i-doc" viewBox="0 0 20 20"><path d="M11.5 2.5H6a1.5 1.5 0 0 0-1.5 1.5v12A1.5 1.5 0 0 0 6 17.5h8a1.5 1.5 0 0 0 1.5-1.5V6.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M11.5 2.5v4h4M7.5 10.5h5M7.5 13.5h3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <linearGradient id="mark-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#16181a"/>
+        <stop offset="1" stop-color="#7c5cff"/>
+      </linearGradient>
     </defs>
+    <symbol id="i-mark" viewBox="0 0 32 32">
+      <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" fill="none" stroke="url(#mark-grad)" stroke-width="2"/>
+      <path d="M16 10.5 21.5 13.7v6.6L16 23.5l-5.5-3.2v-6.6Z" fill="url(#mark-grad)"/>
+    </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 5.5v-.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5.5-5.5L19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6.5 9.5 5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6-8.5 8.5M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="5.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="18.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.8 7.7 6.7 15.3M13.2 7.7l4.1 7.6M8 17.5h8" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-chain" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.66 0l2.5-2.5a4 4 0 0 0-5.66-5.66L11.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 10a4 4 0 0 0-5.66 0l-2.5 2.5a4 4 0 1 0 5.66 5.66L12.5 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 24"><path d="M5 17a10 10 0 0 1 14 0M8.5 13.5a5.5 5.5 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18.5" r="1.8" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.3 2.3 4.2-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
-  <header class="site-header" data-header>
-    <div class="shell nav">
-      <a class="brand" href="#top" aria-label="RELL home">
-        <svg class="brand__mark" aria-hidden="true"><use href="#i-mark"/></svg>
-        RELL
-      </a>
+  <div class="page" id="top">
 
-      <nav class="nav__links" aria-label="Primary">
-        <a class="nav__link" href="#problem">Problem</a>
-        <a class="nav__link" href="#verification">Verification</a>
-        <a class="nav__link" href="#map">The map</a>
-        <a class="nav__link" href="#example">Example</a>
-        <a class="nav__link" href="#onchain">Onchain</a>
-      </nav>
-
-      <div class="nav__spacer"></div>
-
-      <div class="nav__actions">
-        <button class="btn btn--dark btn--wallet" type="button" data-wallet-connect data-state="idle" aria-label="Connect Wallet">
-          <span class="btn__dot" aria-hidden="true"></span>
-          <span data-wallet-label>Connect Wallet</span>
-        </button>
-        <button class="icon-btn nav__menu-btn" type="button" data-sheet-open aria-controls="sheet" aria-expanded="false" aria-label="Open menu">
-          <svg width="20" height="20" aria-hidden="true"><use href="#i-menu"/></svg>
+    <!-- Contract address bar ------------------------------------------------ -->
+    <div class="ca-bar" id="contract" data-ca-bar data-state="soon">
+      <div class="ca-bar__inner">
+        <span class="ca-bar__label">Contract address</span>
+        <span class="ca-bar__value">
+          <span class="ca-bar__symbol" data-config-text="token.symbol">RELL</span>
+          <span class="ca-bar__text" data-ca-text aria-live="polite">Coming soon</span>
+          <a class="ca-bar__explorer" data-ca-explorer href="#" target="_blank" rel="noopener noreferrer" hidden aria-label="View the token on the explorer">
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-external"/></svg>
+          </a>
+        </span>
+        <button class="ca-bar__copy" type="button" data-ca-copy data-copy-state="idle" aria-label="Copy the contract address">
+          <svg aria-hidden="true"><use href="#i-copy"/></svg>
+          <span data-ca-copy-text>Copy</span>
         </button>
       </div>
     </div>
-  </header>
 
-  <div class="sheet" id="sheet" data-sheet hidden>
-    <div class="sheet__backdrop" data-sheet-close></div>
-    <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Menu">
-      <div class="sheet__head">
-        <a class="brand" href="#top" data-sheet-close aria-label="RELL home">
-          <svg class="brand__mark" aria-hidden="true"><use href="#i-mark"/></svg>
+    <!-- Navigation ---------------------------------------------------------- -->
+    <div class="nav-wrap" data-header>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__brand" href="#top">
+          <svg class="nav__mark" aria-hidden="true"><use href="#i-mark"/></svg>
           RELL
         </a>
-        <button class="icon-btn" type="button" data-sheet-close aria-label="Close menu">
-          <svg width="20" height="20" aria-hidden="true"><use href="#i-close"/></svg>
-        </button>
-      </div>
-      <nav class="sheet__links" aria-label="Mobile">
-        <a href="#problem" data-sheet-close>Problem</a>
-        <a href="#verification" data-sheet-close>Verification</a>
-        <a href="#map" data-sheet-close>The map</a>
-        <a href="#example" data-sheet-close>Example</a>
-        <a href="#onchain" data-sheet-close>Onchain</a>
+
+        <div class="nav__links">
+          <div class="nav__group" data-dropdown>
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="menu-product">
+              Product
+              <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+            </button>
+            <div class="nav__menu" id="menu-product" hidden>
+              <a href="#map">Rights map<span>Six categories, one view</span></a>
+              <a href="#verification">Verification<span>How each claim is proven</span></a>
+              <a href="#example">Example<span>A sample token, read in full</span></a>
+            </div>
+          </div>
+          <a class="nav__link" href="#scope">Scope</a>
+          <a class="nav__link" href="#roadmap">Roadmap</a>
+          <a class="nav__link" href="#faq">FAQ</a>
+        </div>
+
+        <div class="nav__actions">
+          <button class="nav__action" type="button" data-wallet-connect>
+            <span data-wallet-label>Connect</span>
+          </button>
+          <a class="nav__action nav__action--solid" href="#map">Explore</a>
+          <button class="nav__burger" type="button" data-sheet-open aria-expanded="false" aria-controls="mobile-sheet" aria-label="Open menu">
+            <svg width="18" height="18" aria-hidden="true"><use href="#i-menu"/></svg>
+          </button>
+        </div>
       </nav>
-      <div class="sheet__foot">
-        <p class="label">Coverage</p>
-        <p class="body-m"><span data-config-text="network.name">Robinhood Chain</span> and stock tokens</p>
-        <a class="btn btn--dark btn--block" href="#map" data-sheet-close>Explore the rights</a>
-      </div>
-    </div>
-  </div>
-
-  <main id="main">
-    <!-- ================================================================
-         HERO
-         ================================================================ -->
-    <section class="hero" id="top">
-      <div class="shell">
-        <div class="panel panel--tall" style="background-image: url('assets/bg/hero.jpg')">
-          <span class="frame" aria-hidden="true"></span>
-          <div class="panel__body on-dark">
-            <p class="label" data-reveal>Rights intelligence</p>
-            <h1 class="t-xxl hero__title" data-reveal style="--reveal-delay: 70ms">
-              Know what your token<br><span class="t-dim">really gives you.</span>
-            </h1>
-            <p class="hero__lede" data-reveal style="--reveal-delay: 130ms">
-              RELL maps the rights behind every tokenized stock. Six categories,
-              three levels of proof, sources always shown.
-            </p>
-            <div class="hero__actions" data-reveal style="--reveal-delay: 190ms">
-              <a class="btn btn--light btn--lg" href="#map">Explore the rights</a>
-              <a class="btn btn--outline btn--lg" href="#onchain">
-                Read the registry
-                <svg class="btn__arrow" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>
-              </a>
-            </div>
-            <div class="hero__meta" data-reveal style="--reveal-delay: 240ms">
-              <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Verified Onchain</span>
-              <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Verified From Issuer</span>
-              <span class="state state--reported"><span class="state__dot" aria-hidden="true"></span>Reported Inferred</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="shell"><div class="thread" aria-hidden="true"></div></div>
-
-    <!-- Coverage strip -->
-    <div class="strip" aria-label="What RELL covers">
-      <div class="strip__track" data-strip>
-        <span class="strip__item"><svg aria-hidden="true"><use href="#i-network"/></svg><span data-config-text="network.name">Robinhood Chain</span></span>
-        <span class="strip__item"><svg aria-hidden="true"><use href="#i-grid"/></svg>Stock tokens</span>
-        <span class="strip__item"><svg aria-hidden="true"><use href="#i-shield"/></svg>Six rights categories</span>
-        <span class="strip__item"><svg aria-hidden="true"><use href="#i-check"/></svg>Three proof levels</span>
-        <span class="strip__item"><svg aria-hidden="true"><use href="#i-doc"/></svg>Sources on every claim</span>
-        <span class="strip__item"><svg aria-hidden="true"><use href="#i-network"/></svg>Onchain registry</span>
-        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-network"/></svg><span data-config-text="network.name">Robinhood Chain</span></span>
-        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-grid"/></svg>Stock tokens</span>
-        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-shield"/></svg>Six rights categories</span>
-        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-check"/></svg>Three proof levels</span>
-        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-doc"/></svg>Sources on every claim</span>
-        <span class="strip__item" aria-hidden="true"><svg aria-hidden="true"><use href="#i-network"/></svg>Onchain registry</span>
-      </div>
     </div>
 
-    <!-- ================================================================
-         PROBLEM
-         ================================================================ -->
-    <section class="section" id="problem">
-      <div class="shell">
-        <div class="head head--wide" data-reveal>
-          <p class="label">The problem</p>
-          <h2 class="t-xl">A token can look<br><span class="t-dim">like ownership.</span></h2>
-          <p class="head__lede">
-            It can mirror a price without handing you a shareholder's rights.
-            That gap is rarely written down anywhere.
-          </p>
-        </div>
-
-        <div class="proof" data-reveal style="--reveal-delay: 70ms">
-          <article class="card">
-            <p class="card__index">01</p>
-            <h3 class="t-s">Claims are scattered</h3>
-            <p class="body-m">Terms live in filings, product docs and contract code.</p>
-          </article>
-          <article class="card">
-            <p class="card__index">02</p>
-            <h3 class="t-s">Wording hides limits</h3>
-            <p class="body-m">A right can exist on paper and fail in practice.</p>
-          </article>
-          <article class="card">
-            <p class="card__index">03</p>
-            <h3 class="t-s">Nobody shows sources</h3>
-            <p class="body-m">Most summaries give a verdict without saying where it came from.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         STATS
-         ================================================================ -->
-    <section class="section section--tight">
-      <div class="shell">
-        <div class="stats" data-reveal>
-          <div class="stat">
-            <span class="stat__value">6</span>
-            <span class="stat__label">Rights categories checked</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">3</span>
-            <span class="stat__label">Levels of verification</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">1</span>
-            <span class="stat__label">Network covered today</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">2</span>
-            <span class="stat__label">Contracts live onchain</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         VERIFICATION
-         ================================================================ -->
-    <section class="section" id="verification">
-      <div class="shell">
-        <div class="panel" style="background-image: url('assets/bg/proof.jpg')" data-reveal>
-          <span class="frame" aria-hidden="true"></span>
-          <div class="panel__body on-dark">
-            <p class="label">Verification</p>
-            <h2 class="t-xl">Every claim<br><span class="t-dim">shows its proof.</span></h2>
-            <p class="head__lede">One glance tells you how a right was checked.</p>
-
-            <div class="proof">
-              <article class="proof__card">
-                <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Verified Onchain</span>
-                <h3 class="t-s proof__title">Read from contract state</h3>
-                <p class="proof__body">The strongest level. Anyone can repeat the read and get the same answer.</p>
-              </article>
-              <article class="proof__card">
-                <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Verified From Issuer</span>
-                <h3 class="t-s proof__title">Confirmed in published terms</h3>
-                <p class="proof__body">Taken from filings and issuer documents. Only as current as the document.</p>
-              </article>
-              <article class="proof__card">
-                <span class="state state--reported"><span class="state__dot" aria-hidden="true"></span>Reported Inferred</span>
-                <h3 class="t-s proof__title">Sourced or carefully inferred</h3>
-                <p class="proof__body">Drawn from public reporting. Labelled openly, never presented as settled fact.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Statement -->
-    <section class="section section--tight">
-      <div class="shell">
-        <p class="t-l" style="max-width:26ch" data-reveal>
-          Where a right cannot be checked, RELL says so.
-          <span class="t-dim">Gaps are never filled with guesses.</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         THE MAP
-         ================================================================ -->
-    <section class="section section--sunken" id="map">
-      <div class="shell">
-        <div class="head head--wide" data-reveal>
-          <p class="label">The map</p>
-          <h2 class="t-xl">Six categories.<br><span class="t-dim">Every right accounted for.</span></h2>
-          <p class="head__lede">Pick a category to see exactly what RELL checks.</p>
-        </div>
-
-        <div class="explorer" data-reveal style="--reveal-delay: 70ms">
-          <div class="explorer__list" role="tablist" aria-label="Rights categories" data-explorer-list></div>
-          <div data-explorer-panels></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         EXAMPLE
-         ================================================================ -->
-    <section class="section" id="example">
-      <div class="shell">
-        <div class="head head--wide" data-reveal>
-          <p class="label">Example</p>
-          <h2 class="t-xl">One token,<br><span class="t-dim">read claim by claim.</span></h2>
-          <p class="head__lede">A sample stock token mapped across all six categories.</p>
-        </div>
-
-        <div class="rights" style="margin-top: var(--space-48)" data-reveal>
-          <div class="rights__row">
-            <span class="rights__name">Ownership</span>
-            <span class="rights__claim">Holds legal title to the share</span>
-            <span class="rights__verdict" data-verdict="no">No</span>
-            <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Issuer</span>
-          </div>
-          <div class="rights__row">
-            <span class="rights__name">Economic Claims</span>
-            <span class="rights__claim">Tracks price and passes dividends</span>
-            <span class="rights__verdict" data-verdict="yes">Yes</span>
-            <span class="state state--issuer"><span class="state__dot" aria-hidden="true"></span>Issuer</span>
-          </div>
-          <div class="rights__row">
-            <span class="rights__name">Control Rights</span>
-            <span class="rights__claim">Votes at shareholder meetings</span>
-            <span class="rights__verdict" data-verdict="no">No</span>
-            <span class="state state--reported"><span class="state__dot" aria-hidden="true"></span>Reported</span>
-          </div>
-          <div class="rights__row">
-            <span class="rights__name">Transfer Rights</span>
-            <span class="rights__claim">Moves freely between any wallets</span>
-            <span class="rights__verdict" data-verdict="partial">Restricted</span>
-            <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
-          </div>
-          <div class="rights__row">
-            <span class="rights__name">DeFi Compatibility</span>
-            <span class="rights__claim">Works in open onchain protocols</span>
-            <span class="rights__verdict" data-verdict="partial">Limited</span>
-            <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
-          </div>
-          <div class="rights__row">
-            <span class="rights__name">Asset Status</span>
-            <span class="rights__claim">Contract live and not paused</span>
-            <span class="rights__verdict" data-verdict="yes">Active</span>
-            <span class="state state--onchain"><span class="state__dot" aria-hidden="true"></span>Onchain</span>
-          </div>
-        </div>
-        <p class="rights__note">Sample data. Not a live assessment.</p>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         ONCHAIN
-         ================================================================ -->
-    <section class="section" id="onchain">
-      <div class="shell">
-        <div class="panel" style="background-image: url('assets/bg/onchain.jpg')" data-reveal>
-          <span class="frame" aria-hidden="true"></span>
-          <div class="panel__body on-dark">
-            <p class="label">Onchain</p>
-            <h2 class="t-xl">The registry<br><span class="t-dim">is live.</span></h2>
-            <p class="head__lede">
-              Two contracts on <span data-config-text="network.name">Robinhood Chain</span> anchor every rights profile.
-              Reads are open to anyone.
-            </p>
-
-            <div class="contracts">
-              <div class="contract">
-                <p class="label">Rights Registry</p>
-                <p class="body-m" style="color:var(--on-dark-2)">One record per asset, with the profile hash, its pointer and status.</p>
-                <p class="contract__addr">
-                  <a data-contract-link="contracts.rightsRegistry" target="_blank" rel="noopener noreferrer"><span data-config-text="contracts.rightsRegistry">Not yet deployed</span></a>
-                  <svg width="14" height="14" aria-hidden="true"><use href="#i-external"/></svg>
-                </p>
-              </div>
-              <div class="contract">
-                <p class="label">Verification Oracle</p>
-                <p class="body-m" style="color:var(--on-dark-2)">Holds the roles. It answers who may publish rights data.</p>
-                <p class="contract__addr">
-                  <a data-contract-link="contracts.verificationOracle" target="_blank" rel="noopener noreferrer"><span data-config-text="contracts.verificationOracle">Not yet deployed</span></a>
-                  <svg width="14" height="14" aria-hidden="true"><use href="#i-external"/></svg>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="shell"><div class="thread thread--up" aria-hidden="true"></div></div>
-
-    <!-- ================================================================
-         CLOSING
-         ================================================================ -->
-    <section class="section" style="padding-top: var(--space-32)">
-      <div class="shell">
-        <div class="panel" style="background-image: url('assets/bg/cta.jpg')" data-reveal>
-          <span class="frame" aria-hidden="true"></span>
-          <div class="panel__body cta__body on-dark">
-            <p class="label">RELL</p>
-            <h2 class="t-xl cta__title">Know exactly<br><span class="t-dim">what you hold.</span></h2>
-            <p class="head__lede cta__lede">
-              Start with the six categories. Then read the proof behind every claim.
-            </p>
-            <div class="cta__actions">
-              <a class="btn btn--light btn--lg" href="#map">Explore the rights</a>
-              <a class="btn btn--outline btn--lg" href="#example">See the example</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="shell">
-      <div class="site-footer__grid">
-        <div>
-          <a class="brand" href="#top" aria-label="RELL home">
-            <svg class="brand__mark" aria-hidden="true"><use href="#i-mark"/></svg>
+    <!-- Mobile sheet -------------------------------------------------------- -->
+    <div class="sheet" id="mobile-sheet" data-sheet hidden>
+      <div class="sheet__scrim" data-sheet-close></div>
+      <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="sheet__head">
+          <a class="nav__brand" href="#top" data-sheet-close>
+            <svg class="nav__mark" aria-hidden="true"><use href="#i-mark"/></svg>
             RELL
           </a>
-          <p class="site-footer__blurb">
-            The rights intelligence layer for tokenized assets. Currently covering
-            <span data-config-text="network.name">Robinhood Chain</span> and stock tokens.
-          </p>
+          <button class="sheet__close" type="button" data-sheet-close aria-label="Close menu">
+            <svg width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg>
+          </button>
         </div>
-
-        <div class="site-footer__col">
-          <h3 class="label">Product</h3>
-          <ul class="site-footer__list">
-            <li><a href="#problem">Problem</a></li>
-            <li><a href="#verification">Verification</a></li>
-            <li><a href="#map">The map</a></li>
-            <li><a href="#example">Example</a></li>
-          </ul>
+        <div class="sheet__links">
+          <a href="#map" data-sheet-close>Rights map</a>
+          <a href="#verification" data-sheet-close>Verification</a>
+          <a href="#example" data-sheet-close>Example</a>
+          <a href="#scope" data-sheet-close>Scope</a>
+          <a href="#roadmap" data-sheet-close>Roadmap</a>
+          <a href="#faq" data-sheet-close>FAQ</a>
         </div>
-
-        <div class="site-footer__col">
-          <h3 class="label">Resources</h3>
-          <ul class="site-footer__list">
-            <li><a href="#onchain">Contracts</a></li>
-            <li><span class="site-footer__soon">Docs <em>Soon</em></span></li>
-            <li><span class="site-footer__soon">API <em>Soon</em></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="site-footer__base">
-        <p>© <span data-year>2026</span> RELL. All rights reserved.</p>
-        <p class="mono">Chain ID <span data-config-text="network.chainId">4663</span></p>
+        <a class="btn btn--primary" href="#map" data-sheet-close>Explore the map</a>
       </div>
     </div>
-  </footer>
 
-  <div class="toast-region" data-toast-region aria-live="polite" aria-atomic="true"></div>
+    <main class="page__main" id="main">
+
+      <!-- Hero -------------------------------------------------------------- -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__inner">
+          <p class="chip chip--outline" data-reveal data-reveal-y="10">
+            <span class="dot" style="color: var(--onchain)"></span>
+            Rights intelligence for tokenized assets
+          </p>
+          <h1 class="display-1 hero__title" id="hero-title" data-reveal data-reveal-delay="0.05">
+            <span class="quiet">A token can look like ownership.</span>
+            RELL shows what it really gives you.
+          </h1>
+          <p class="lede hero__lede" data-reveal data-reveal-delay="0.1">
+            RELL reads the rights behind tokenized stocks. Every claim arrives with the source it came from.
+          </p>
+          <div class="hero__cta" data-reveal data-reveal-delay="0.15">
+            <p class="hero__cta-note">Covering Robinhood Chain stock tokens</p>
+            <div class="hero__buttons">
+              <a class="btn btn--primary" href="#map">Explore the map</a>
+              <a class="btn btn--ghost" href="#example">See an example</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="chrome-body" x1="0.15" y1="0" x2="0.85" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="0.18" stop-color="#eef1f4"/>
+                <stop offset="0.38" stop-color="#9aa4af"/>
+                <stop offset="0.52" stop-color="#f2f4f7"/>
+                <stop offset="0.68" stop-color="#6f7984"/>
+                <stop offset="0.84" stop-color="#cfd5db"/>
+                <stop offset="1" stop-color="#8b949e"/>
+              </linearGradient>
+              <linearGradient id="chrome-body-2" x1="0.2" y1="0" x2="0.8" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="0.3" stop-color="#dfe4e9"/>
+                <stop offset="0.55" stop-color="#8f99a4"/>
+                <stop offset="0.75" stop-color="#eef1f4"/>
+                <stop offset="1" stop-color="#a8b1ba"/>
+              </linearGradient>
+              <radialGradient id="tint" cx="0.5" cy="0.45" r="0.55">
+                <stop offset="0" stop-color="#7c5cff" stop-opacity="0.09"/>
+                <stop offset="1" stop-color="#7c5cff" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="24"/>
+              </filter>
+              <filter id="soft-sm" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="9"/>
+              </filter>
+            </defs>
+
+            <circle cx="600" cy="300" r="620" fill="url(#tint)"/>
+            <ellipse cx="600" cy="486" rx="286" ry="30" fill="#8d9ca9" opacity="0.2" filter="url(#soft)"/>
+
+            <!-- main liquid metal form -->
+            <path d="M600 92c88 0 132 52 168 108 34 53 62 92 62 152 0 84-84 156-230 156s-230-72-230-156c0-60 28-99 62-152 36-56 80-108 168-108Z"
+                  fill="url(#chrome-body)"/>
+            <path d="M470 236c24-62 72-104 130-110-74 34-104 84-118 140-10 40-4 78 16 112-28-34-42-88-28-142Z"
+                  fill="#ffffff" opacity="0.72" filter="url(#soft-sm)"/>
+            <ellipse cx="686" cy="404" rx="118" ry="34" fill="#ffffff" opacity="0.45" filter="url(#soft-sm)"/>
+            <ellipse cx="548" cy="196" rx="58" ry="26" fill="#ffffff" opacity="0.92" filter="url(#soft-sm)" transform="rotate(-26 548 196)"/>
+
+            <!-- satellites -->
+            <path d="M268 322c44 0 74 26 82 62 8 34-6 72-52 86s-92-6-104-44c-12-40 18-104 74-104Z" fill="url(#chrome-body-2)"/>
+            <ellipse cx="250" cy="352" rx="26" ry="14" fill="#ffffff" opacity="0.85" filter="url(#soft-sm)" transform="rotate(-24 250 352)"/>
+
+            <path d="M934 330c34 0 58 20 62 48 5 28-10 56-46 64s-70-10-74-42c-4-30 22-70 58-70Z" fill="url(#chrome-body-2)"/>
+            <ellipse cx="922" cy="354" rx="19" ry="10" fill="#ffffff" opacity="0.85" filter="url(#soft-sm)" transform="rotate(-24 922 354)"/>
+          </svg>
+          <div class="hero__fade"></div>
+        </div>
+      </section>
+
+      <!-- Coverage ----------------------------------------------------------- -->
+      <div class="coverage">
+        <div class="container">
+          <div class="coverage__pill" data-reveal>
+            <span class="coverage__label">Coverage<br>today</span>
+            <span class="coverage__item">
+              <svg aria-hidden="true"><use href="#i-network"/></svg>
+              <span data-config-text="network.name">Robinhood Chain</span>
+            </span>
+            <span class="coverage__item">
+              <svg aria-hidden="true"><use href="#i-grid"/></svg>
+              Stock Tokens
+            </span>
+            <span class="coverage__item">
+              <svg aria-hidden="true"><use href="#i-shield"/></svg>
+              Six rights categories
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -------------------------------------------------------------- -->
+      <section class="section" aria-label="RELL in numbers">
+        <div class="container stats">
+          <div class="stat" data-reveal>
+            <p class="stat__value">6</p>
+            <p class="stat__label">Rights categories</p>
+            <p class="stat__note">Ownership, economics, control, transfer, DeFi and status.</p>
+          </div>
+          <div class="stat" data-reveal data-reveal-delay="0.06">
+            <p class="stat__value">3</p>
+            <p class="stat__label">Verification states</p>
+            <p class="stat__note">Every claim is read onchain, taken from the issuer, or reported.</p>
+          </div>
+          <div class="stat" data-reveal data-reveal-delay="0.12">
+            <p class="stat__value">1</p>
+            <p class="stat__label">Network covered</p>
+            <p class="stat__note">One network, one asset class, mapped in depth first.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem ------------------------------------------------------------ -->
+      <section class="section section--wash" id="problem" aria-labelledby="problem-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">The problem</p>
+            <h2 class="display-2" id="problem-title">
+              <span class="quiet">Ownership is assumed.</span>
+              It should be proven.
+            </h2>
+            <p class="lede">
+              A stock token can carry the ticker, track the price and sit in your wallet. None of that proves what you hold.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature" data-reveal>
+              <div class="feature__rule"></div>
+              <h3 class="feature__title">Rights are buried</h3>
+              <p class="feature__text">Terms, filings and contract code each hold a piece. Few holders read all three.</p>
+            </div>
+            <div class="feature" data-reveal data-reveal-delay="0.06">
+              <div class="feature__rule"></div>
+              <h3 class="feature__title">Claims travel without proof</h3>
+              <p class="feature__text">Marketing says ownership. The contract may only promise price exposure.</p>
+            </div>
+            <div class="feature" data-reveal data-reveal-delay="0.12">
+              <div class="feature__rule"></div>
+              <h3 class="feature__title">Gaps stay invisible</h3>
+              <p class="feature__text">When nothing is documented, silence reads as a yes. RELL flags it instead.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What RELL does ------------------------------------------------------ -->
+      <section class="section" aria-labelledby="layer-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">The layer</p>
+            <h2 class="display-2" id="layer-title">
+              <span class="quiet">The rights intelligence layer</span>
+              for tokenized assets.
+            </h2>
+            <p class="lede">
+              RELL sits beside the token, not inside it. It reads contract state, issuer terms and public reporting. Each right keeps the source behind it.
+            </p>
+          </div>
+
+          <div class="action-grid">
+            <a class="action-card" href="#map" data-reveal>
+              <p class="action-card__num">01</p>
+              <h3 class="card__title">Read the rights map</h3>
+              <p class="card__text">Six categories cover every question a holder should ask before buying.</p>
+              <p class="card__foot"><span class="link-arrow">Open the map <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></p>
+            </a>
+            <a class="action-card" href="#verification" data-reveal data-reveal-delay="0.06">
+              <p class="action-card__num">02</p>
+              <h3 class="card__title">Check the source</h3>
+              <p class="card__text">Each claim shows whether it was read onchain, given by the issuer, or reported.</p>
+              <p class="card__foot"><span class="link-arrow">See the states <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></p>
+            </a>
+            <a class="action-card" href="#example" data-reveal data-reveal-delay="0.12">
+              <p class="action-card__num">03</p>
+              <h3 class="card__title">Compare before you buy</h3>
+              <p class="card__text">One view holds the full picture, so two tokens can be read side by side.</p>
+              <p class="card__foot"><span class="link-arrow">Read an example <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rights map --------------------------------------------------------- -->
+      <section class="section section--wash" id="map" aria-labelledby="map-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">The map</p>
+            <h2 class="display-2" id="map-title">
+              <span class="quiet">Six categories.</span>
+              Every right accounted for.
+            </h2>
+            <p class="lede">Pick a category to see the questions RELL asks and where each answer comes from.</p>
+          </div>
+
+          <div class="explorer" data-reveal>
+            <div class="explorer__list" role="tablist" aria-label="Rights categories" data-explorer-list></div>
+            <div data-explorer-panels></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Verification -------------------------------------------------------- -->
+      <section class="section" id="verification" aria-labelledby="verification-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">Verification</p>
+            <h2 class="display-2" id="verification-title">
+              <span class="quiet">Three states.</span>
+              One glance tells you how a right was proven.
+            </h2>
+          </div>
+
+          <div class="states-grid">
+            <article class="state-card state-card--onchain" data-reveal>
+              <span class="state-card__mark"><svg aria-hidden="true"><use href="#i-chain"/></svg></span>
+              <h3 class="card__title">Verified onchain</h3>
+              <p class="card__text">Read straight from contract state on the network. The strongest proof RELL can show.</p>
+              <p class="card__foot"><span class="state state--onchain"><span class="state__dot"></span>Onchain</span></p>
+            </article>
+            <article class="state-card state-card--issuer" data-reveal data-reveal-delay="0.06">
+              <span class="state-card__mark"><svg aria-hidden="true"><use href="#i-doc"/></svg></span>
+              <h3 class="card__title">Verified from issuer</h3>
+              <p class="card__text">Confirmed in published terms, filings or disclosures from the issuer.</p>
+              <p class="card__foot"><span class="state state--issuer"><span class="state__dot"></span>Issuer</span></p>
+            </article>
+            <article class="state-card state-card--reported" data-reveal data-reveal-delay="0.12">
+              <span class="state-card__mark"><svg aria-hidden="true"><use href="#i-signal"/></svg></span>
+              <h3 class="card__title">Reported or inferred</h3>
+              <p class="card__text">Drawn from public reporting or careful inference. Useful, and clearly labelled.</p>
+              <p class="card__foot"><span class="state state--reported"><span class="state__dot"></span>Reported</span></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example ------------------------------------------------------------- -->
+      <section class="section section--wash" id="example" aria-labelledby="example-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">Example</p>
+            <h2 class="display-2" id="example-title">
+              <span class="quiet">One token.</span>
+              Every right, mapped.
+            </h2>
+            <p class="lede">A sample stock token, read claim by claim. Illustrative only, not a live assessment.</p>
+          </div>
+
+          <div class="matrix" data-reveal>
+            <div class="matrix__head">
+              <span class="label">Right</span>
+              <span class="label">Claim</span>
+              <span class="label">Status</span>
+              <span class="label matrix__source">Source</span>
+            </div>
+
+            <div class="matrix__row">
+              <p class="matrix__right"><span class="dot" style="color: var(--issuer)"></span>Ownership</p>
+              <p class="matrix__claim"><span class="matrix__cell-label">Claim</span>Holds legal title to the share</p>
+              <p class="matrix__status"><span class="matrix__cell-label">Status</span>No</p>
+              <p class="matrix__source"><span class="state state--issuer"><span class="state__dot"></span>Issuer</span></p>
+            </div>
+            <div class="matrix__row">
+              <p class="matrix__right"><span class="dot" style="color: var(--issuer)"></span>Economic claims</p>
+              <p class="matrix__claim"><span class="matrix__cell-label">Claim</span>Tracks price and passes dividends</p>
+              <p class="matrix__status"><span class="matrix__cell-label">Status</span>Yes</p>
+              <p class="matrix__source"><span class="state state--issuer"><span class="state__dot"></span>Issuer</span></p>
+            </div>
+            <div class="matrix__row">
+              <p class="matrix__right"><span class="dot" style="color: var(--reported)"></span>Control rights</p>
+              <p class="matrix__claim"><span class="matrix__cell-label">Claim</span>Votes at shareholder meetings</p>
+              <p class="matrix__status"><span class="matrix__cell-label">Status</span>No</p>
+              <p class="matrix__source"><span class="state state--reported"><span class="state__dot"></span>Reported</span></p>
+            </div>
+            <div class="matrix__row">
+              <p class="matrix__right"><span class="dot" style="color: var(--onchain)"></span>Transfer rights</p>
+              <p class="matrix__claim"><span class="matrix__cell-label">Claim</span>Moves freely between any wallets</p>
+              <p class="matrix__status"><span class="matrix__cell-label">Status</span>Restricted</p>
+              <p class="matrix__source"><span class="state state--onchain"><span class="state__dot"></span>Onchain</span></p>
+            </div>
+            <div class="matrix__row">
+              <p class="matrix__right"><span class="dot" style="color: var(--onchain)"></span>DeFi compatibility</p>
+              <p class="matrix__claim"><span class="matrix__cell-label">Claim</span>Works in open onchain protocols</p>
+              <p class="matrix__status"><span class="matrix__cell-label">Status</span>Limited</p>
+              <p class="matrix__source"><span class="state state--onchain"><span class="state__dot"></span>Onchain</span></p>
+            </div>
+            <div class="matrix__row">
+              <p class="matrix__right"><span class="dot" style="color: var(--onchain)"></span>Asset status</p>
+              <p class="matrix__claim"><span class="matrix__cell-label">Claim</span>Contract live and not paused</p>
+              <p class="matrix__status"><span class="matrix__cell-label">Status</span>Active</p>
+              <p class="matrix__source"><span class="state state--onchain"><span class="state__dot"></span>Onchain</span></p>
+            </div>
+          </div>
+
+          <div class="matrix__note">
+            <span class="matrix__legend">
+              <span class="state state--onchain"><span class="state__dot"></span>Onchain</span>
+              <span class="state state--issuer"><span class="state__dot"></span>Issuer</span>
+              <span class="state state--reported"><span class="state__dot"></span>Reported</span>
+            </span>
+            <span>Sample data for a token called ACME. Not investment advice.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scope ---------------------------------------------------------------- -->
+      <section class="section" id="scope" aria-labelledby="scope-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">Scope</p>
+            <h2 class="display-2" id="scope-title">
+              <span class="quiet">One network.</span>
+              One asset class. Mapped in depth.
+            </h2>
+            <p class="lede">RELL covers <span data-config-text="network.name">Robinhood Chain</span> and its stock tokens. Coverage grows from there.</p>
+          </div>
+
+          <div class="scope-grid">
+            <div class="scope-card" data-reveal>
+              <p class="label">Network</p>
+              <p class="scope-card__value" data-config-text="network.name">Robinhood Chain</p>
+              <p class="scope-card__state"><svg width="15" height="15" style="color: var(--onchain)" aria-hidden="true"><use href="#i-check"/></svg>Covered today</p>
+            </div>
+            <div class="scope-card" data-reveal data-reveal-delay="0.06">
+              <p class="label">Asset class</p>
+              <p class="scope-card__value">Stock Tokens</p>
+              <p class="scope-card__state"><svg width="15" height="15" style="color: var(--onchain)" aria-hidden="true"><use href="#i-check"/></svg>Covered today</p>
+            </div>
+            <div class="scope-card scope-card--off" data-reveal data-reveal-delay="0.12">
+              <p class="label">Everything else</p>
+              <p class="scope-card__value">Other chains and assets</p>
+              <p class="scope-card__state">Not covered yet</p>
+            </div>
+          </div>
+
+          <div class="contracts" data-reveal>
+            <div class="contract-row">
+              <span class="contract-row__name">Rights registry</span>
+              <span class="contract-row__value">
+                <a data-contract-link="contracts.rightsRegistry" target="_blank" rel="noopener noreferrer" data-config-text="contracts.rightsRegistry">Not deployed yet</a>
+                <svg aria-hidden="true"><use href="#i-external"/></svg>
+              </span>
+            </div>
+            <div class="contract-row">
+              <span class="contract-row__name">Verification oracle</span>
+              <span class="contract-row__value">
+                <a data-contract-link="contracts.verificationOracle" target="_blank" rel="noopener noreferrer" data-config-text="contracts.verificationOracle">Not deployed yet</a>
+                <svg aria-hidden="true"><use href="#i-external"/></svg>
+              </span>
+            </div>
+            <div class="contract-row">
+              <span class="contract-row__name">RELL token</span>
+              <span class="contract-row__value mono" data-ca-mirror>Coming soon</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Roadmap --------------------------------------------------------------- -->
+      <section class="section section--wash" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="label">Roadmap</p>
+            <h2 class="display-2" id="roadmap-title">
+              <span class="quiet">From one network</span>
+              to a public rights registry.
+            </h2>
+          </div>
+
+          <div class="roadmap">
+            <div class="roadmap__item" data-reveal>
+              <p class="roadmap__phase">Phase 01</p>
+              <div>
+                <h3 class="roadmap__title">Rights model</h3>
+                <p class="roadmap__text">Six categories, three verification states, one readable format.</p>
+              </div>
+              <p class="roadmap__status"><span class="state state--onchain"><span class="state__dot"></span>Done</span></p>
+            </div>
+            <div class="roadmap__item" data-reveal data-reveal-delay="0.06">
+              <p class="roadmap__phase">Phase 02</p>
+              <div>
+                <h3 class="roadmap__title">Stock token coverage</h3>
+                <p class="roadmap__text">Mapping the stock tokens live on <span data-config-text="network.name">Robinhood Chain</span> today.</p>
+              </div>
+              <p class="roadmap__status"><span class="state state--issuer"><span class="state__dot"></span>In progress</span></p>
+            </div>
+            <div class="roadmap__item" data-reveal data-reveal-delay="0.12">
+              <p class="roadmap__phase">Phase 03</p>
+              <div>
+                <h3 class="roadmap__title">Onchain registry</h3>
+                <p class="roadmap__text">Publishing each mapped right so any app can read it directly.</p>
+              </div>
+              <p class="roadmap__status"><span class="state state--reported"><span class="state__dot"></span>Planned</span></p>
+            </div>
+            <div class="roadmap__item" data-reveal data-reveal-delay="0.18">
+              <p class="roadmap__phase">Phase 04</p>
+              <div>
+                <h3 class="roadmap__title">More networks</h3>
+                <p class="roadmap__text">Extending the same model to other chains and tokenized asset types.</p>
+              </div>
+              <p class="roadmap__status"><span class="state state--reported"><span class="state__dot"></span>Planned</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -------------------------------------------------------------------- -->
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="container container--narrow">
+          <div class="section-head section-head--center" data-reveal>
+            <p class="label">FAQ</p>
+            <h2 class="display-2" id="faq-title">Questions, answered plainly.</h2>
+          </div>
+
+          <div class="faq-list" data-faq>
+            <div class="faq-item">
+              <button class="faq-item__head" type="button" aria-expanded="false">
+                What is RELL?
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-item__body"><div><p>RELL is a rights intelligence layer for tokenized assets. It reads what a token actually gives its holder. Each right is published with its source.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-item__head" type="button" aria-expanded="false">
+                Is RELL a token issuer or a broker?
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-item__body"><div><p>No. RELL does not issue, sell or custody anything. It reads and reports, so holders can judge a token for themselves.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-item__head" type="button" aria-expanded="false">
+                Which assets does RELL cover today?
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-item__body"><div><p>Stock tokens on Robinhood Chain. One network and one asset class, mapped in depth before coverage widens.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-item__head" type="button" aria-expanded="false">
+                What do the three verification states mean?
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-item__body"><div><p>Onchain means read from contract state. Issuer means confirmed in published terms. Reported means drawn from public reporting or inference.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-item__head" type="button" aria-expanded="false">
+                What happens when a right cannot be verified?
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-item__body"><div><p>It stays marked as not yet mapped. RELL never fills a gap with a guess. A silent gap reads as a yes.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-item__head" type="button" aria-expanded="false">
+                Is there a RELL token?
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-item__body"><div><p>The bar at the top of this page reads Coming soon until launch. The address appears there when it does.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -------------------------------------------------------------------- -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__brand">
+            <span class="footer__word">
+              <svg class="nav__mark" aria-hidden="true"><use href="#i-mark"/></svg>
+              RELL
+            </span>
+            <p class="muted">Rights intelligence for tokenized assets. Know exactly what you hold.</p>
+          </div>
+
+          <div class="footer__col">
+            <h3>Product</h3>
+            <ul>
+              <li><a href="#map">Rights map</a></li>
+              <li><a href="#verification">Verification</a></li>
+              <li><a href="#example">Example</a></li>
+              <li><a href="#scope">Scope</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#roadmap">Roadmap</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contract">Contract address</a></li>
+              <li><span class="footer__soon">Docs <em>Soon</em></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__base">
+          <span>© <span data-year>2026</span> RELL. All rights reserved.</span>
+          <span>RELL reports rights. It does not give investment advice.</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast-region" data-toast-region aria-live="polite" aria-atomic="true"></div>
+  </div>
 
   <script src="config/contracts.js"></script>
   <script src="js/config.js"></script>
+  <script src="js/contract-bar.js"></script>
   <script src="js/header.js"></script>
   <script src="js/explorer.js"></script>
+  <script src="js/faq.js"></script>
   <script src="js/reveal.js"></script>
   <script src="js/main.js"></script>
-  <script type="module" src="js/wallet.js"></script>
+  <script src="js/wallet.js" type="module"></script>
 </body>
 </html>

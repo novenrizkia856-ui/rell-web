@@ -1,146 +1,99 @@
 /* ==========================================================================
    RELL design tokens
-
-   Built to the proportions of the infrastructure marketing style the client
-   asked for: a warm near white canvas, near black ink, hairline borders, one
-   hot accent used in very small doses, a large display scale with tight
-   leading, and a fixed spacing ladder.
-
-   The accent is RELL's own. Swap --accent alone to change it everywhere.
-
-   The three verification accents stay semantic, never decorative:
+   A light, quiet system: white canvas, thin display type, one accent.
+   The three verification colors stay semantic, never decorative:
      green  = verified onchain
-     violet = verified from issuer
+     purple = verified from issuer
      amber  = reported or inferred
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces */
-  --paper: #fafaf9;          /* page canvas */
-  --paper-2: #f3f3f1;        /* quiet band, inset panel */
-  --surface: #ffffff;        /* raised card */
-  --ink: #111111;            /* dark panel and primary text */
-  --ink-2: #282827;          /* dark panel, one step up */
+  /* Canvas and neutrals */
+  --white: #ffffff;
+  --black: #16181a;
+  --ink-700: #23272a;
+  --ink-600: #474e55;
+  --ink-500: #6a757f;
+  --ink-400: #8d9ca9;
+  --ink-300: #bcc0c3;
+  --ink-200: #d3dbe2;
+  --ink-100: #f0f2f4;
+  --ink-050: #f7f9fa;
 
-  /* Text */
-  --text-1: #111111;
-  --text-2: rgba(17, 17, 17, 0.6);
-  --text-3: rgba(17, 17, 17, 0.42);
-  --on-dark: #fafaf9;
-  --on-dark-2: rgba(250, 250, 249, 0.6);
-  --on-dark-3: rgba(250, 250, 249, 0.38);
+  --text-1: var(--black);
+  --text-2: var(--ink-500);
+  --text-3: var(--ink-400);
 
-  /* Hairlines */
-  --line: #dfdfdc;
-  --line-soft: rgba(17, 17, 17, 0.1);
-  --line-dark: rgba(250, 250, 249, 0.16);
+  /* Accent */
+  --accent: #7c5cff;
+  --accent-soft: #b87cff;
+  --accent-wash: #f3efff;
 
-  /* One hot accent, used for the thread, links and focus. Nothing else. */
-  --accent: #2b50ff;
-  --accent-ink: #ffffff;
-
-  /* Verification semantics */
-  --onchain: #236758;
-  --onchain-soft: #e6efeb;
-  --issuer: #4a3fbd;
-  --issuer-soft: #ebeaf7;
-  --reported: #8a5e0f;
-  --reported-soft: #f5eddc;
+  /* Verification states */
+  --onchain: #12a06a;
+  --onchain-wash: #e7f6ef;
+  --issuer: #7c5cff;
+  --issuer-wash: #f0ecff;
+  --reported: #b4780a;
+  --reported-wash: #fbf1de;
 
   /* Type */
-  --font-sans: "Rubik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-display: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
-  /* Display scale, mobile first. The desktop step is a hard switch rather
-     than a clamp, which is how the reference proportions hold together. */
-  --title-xxl-size: 46px;
-  --title-xxl-lh: 46px;
-  --title-xl-size: 38px;
-  --title-xl-lh: 42px;
-  --title-l-size: 28px;
-  --title-l-lh: 34px;
-  --title-m-size: 24px;
-  --title-m-lh: 28px;
-  --title-s-size: 18px;
-  --title-s-lh: 24px;
+  --h1: clamp(2.25rem, 1.2rem + 4.4vw, 4.5rem);
+  --h2: clamp(1.75rem, 1.1rem + 2.7vw, 3rem);
+  --h3: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  --h4: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --body: 1rem;
+  --body-lg: 1.125rem;
+  --small: 0.875rem;
+  --tiny: 0.75rem;
 
-  --body-l-size: 16px;
-  --body-l-lh: 24px;
-  --body-m-size: 14px;
-  --body-m-lh: 21px;
-  --body-s-size: 12px;
-  --body-s-lh: 16px;
-  --body-xs-size: 10px;
-  --body-xs-lh: 12px;
-
-  --tracking-display: -0.03em;
-  --tracking-title: -0.02em;
-  --tracking-label: 0.08em;
-
-  /* Spacing ladder */
-  --space-4: 4px;
-  --space-8: 8px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-32: 32px;
-  --space-40: 40px;
-  --space-48: 48px;
-  --space-56: 56px;
-  --space-64: 64px;
-  --space-80: 80px;
-  --space-96: 96px;
-  --space-120: 120px;
-  --space-160: 160px;
+  --track-display: -0.03em;
+  --track-label: 0.08em;
+  --leading-display: 1.1;
+  --leading-body: 1.55;
 
   /* Layout */
-  --container: 1360px;
-  --gutter: var(--space-20);
-  --section-y: var(--space-64);
+  --container: 76rem;
+  --gutter: 1.25rem;
+  --section-y: 4.5rem;
+  --nav-h: 2.75rem;
+  --ca-h: 2.25rem;
 
-  /* Radii */
-  --r-2: 2px;
-  --r-5: 5px;
-  --r-10: 10px;
-  --r-20: 20px;
-  --r-40: 24px;
-  --r-pill: 999px;
+  /* Radii. The large bottom left corner is the signature shape. */
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1rem;
+  --r-pill: 100px;
+  --r-card: 12px 12px 12px 44px;
+  --r-card-lg: 20px 20px 20px 64px;
+
+  /* Elevation */
+  --shadow-nav: 0 1px 2px rgba(22, 24, 26, 0.04), 0 8px 24px rgba(22, 24, 26, 0.08);
+  --shadow-card: 0 1px 2px rgba(22, 24, 26, 0.04), 0 12px 32px -12px rgba(22, 24, 26, 0.12);
+  --shadow-lift: 0 2px 4px rgba(22, 24, 26, 0.06), 0 20px 44px -16px rgba(22, 24, 26, 0.18);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 160ms;
-  --dur: 320ms;
-  --dur-slow: 700ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --fast: 180ms;
+  --slow: 400ms;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 640px) {
   :root {
-    --gutter: var(--space-32);
-    --section-y: var(--space-96);
+    --gutter: 2rem;
+    --section-y: 6rem;
   }
 }
 
-@media (min-width: 62em) {
+@media (min-width: 1024px) {
   :root {
-    --title-xxl-size: 90px;
-    --title-xxl-lh: 88px;
-    --title-xl-size: 75px;
-    --title-xl-lh: 78px;
-    --title-l-size: 48px;
-    --title-l-lh: 54px;
-    --title-m-size: 36px;
-    --title-m-lh: 40px;
-    --title-s-size: 24px;
-    --title-s-lh: 28px;
-
-    --body-l-size: 18px;
-    --body-l-lh: 26px;
-
-    --gutter: var(--space-40);
-    --section-y: var(--space-120);
-    --r-40: 40px;
+    --section-y: 6.25rem;
   }
 }
