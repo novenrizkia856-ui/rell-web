@@ -53,7 +53,6 @@
 
     RELL.initHeader();
     RELL.initExplorer();
-    RELL.initFaq();
     RELL.initReveal();
 
     RELL.loadConfig().then(function (config) {
