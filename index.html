@@ -170,7 +170,6 @@
           <img class="chrome chrome--hero-right" src="assets/art/chrome-peanut.webp" width="900" height="900" alt="" loading="lazy" decoding="async">
           <div class="hero__fade"></div>
         </div>
-        </div>
       </section>
 
       <!-- Coverage ----------------------------------------------------------- -->
@@ -194,94 +193,92 @@
         </div>
       </div>
 
-      <!-- Stats -------------------------------------------------------------- -->
-      <section class="section" aria-label="RELL in numbers">
-        <div class="container stats">
-          <div class="stat" data-reveal>
-            <p class="stat__value">6</p>
-            <p class="stat__label">Rights categories</p>
-            <p class="stat__note">Ownership, economics, control, transfer, DeFi and status.</p>
+      <!-- Focus: one number, then the claim ---------------------------------- -->
+      <section class="section" id="problem" aria-labelledby="problem-title">
+        <div class="container stack-center">
+          <div class="stat-stack" data-reveal>
+            <p class="stat-stack__number">6</p>
+            <p class="stat-stack__text">Rights categories, mapped per token</p>
           </div>
-          <div class="stat" data-reveal data-reveal-delay="0.06">
-            <p class="stat__value">3</p>
-            <p class="stat__label">Verification states</p>
-            <p class="stat__note">Every claim is read onchain, taken from the issuer, or reported.</p>
-          </div>
-          <div class="stat" data-reveal data-reveal-delay="0.12">
-            <p class="stat__value">1</p>
-            <p class="stat__label">Network covered</p>
-            <p class="stat__note">One network, one asset class, mapped in depth first.</p>
-          </div>
+          <h2 class="display-2 center" id="problem-title" data-reveal data-reveal-delay="0.06">
+            <span class="quiet">Ownership is assumed.</span>
+            It should be proven.
+          </h2>
+          <p class="text-narrow center" data-reveal data-reveal-delay="0.1">
+            A stock token can carry the ticker, track the price and sit in your wallet. None of that proves what you hold.
+          </p>
         </div>
       </section>
 
-      <!-- Problem ------------------------------------------------------------ -->
-      <section class="section section--wash" id="problem" aria-labelledby="problem-title">
+      <!-- The layer, with the feature and metric grid -------------------------- -->
+      <section class="section section--wash" aria-labelledby="layer-title">
         <div class="container">
-          <div class="section-head" data-reveal>
-            <p class="label">The problem</p>
-            <h2 class="display-2" id="problem-title">
-              <span class="quiet">Ownership is assumed.</span>
-              It should be proven.
-            </h2>
-            <p class="lede">
-              A stock token can carry the ticker, track the price and sit in your wallet. None of that proves what you hold.
-            </p>
-          </div>
-
-          <div class="feature-grid">
-            <div class="feature" data-reveal>
-              <div class="feature__rule"></div>
-              <h3 class="feature__title">Rights are buried</h3>
-              <p class="feature__text">Terms, filings and contract code each hold a piece. Few holders read all three.</p>
-            </div>
-            <div class="feature" data-reveal data-reveal-delay="0.06">
-              <div class="feature__rule"></div>
-              <h3 class="feature__title">Claims travel without proof</h3>
-              <p class="feature__text">Marketing says ownership. The contract may only promise price exposure.</p>
-            </div>
-            <div class="feature" data-reveal data-reveal-delay="0.12">
-              <div class="feature__rule"></div>
-              <h3 class="feature__title">Gaps stay invisible</h3>
-              <p class="feature__text">When nothing is documented, silence reads as a yes. RELL flags it instead.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- What RELL does ------------------------------------------------------ -->
-      <section class="section" aria-labelledby="layer-title">
-        <div class="container">
-          <div class="section-head" data-reveal>
-            <p class="label">The layer</p>
+          <div class="split" data-reveal>
             <h2 class="display-2" id="layer-title">
-              <span class="quiet">The rights intelligence layer</span>
-              for tokenized assets.
+              <span class="quiet">The rights intelligence</span>
+              layer for tokenized assets.
             </h2>
-            <p class="lede">
+            <p class="text-body">
               RELL sits beside the token, not inside it. It reads contract state, issuer terms and public reporting. Each right keeps the source behind it.
             </p>
           </div>
 
-          <div class="action-grid">
-            <a class="action-card" href="#map" data-reveal>
-              <p class="action-card__num">01</p>
-              <h3 class="card__title">Read the rights map</h3>
-              <p class="card__text">Six categories cover every question a holder should ask before buying.</p>
-              <p class="card__foot"><span class="link-arrow">Open the map <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></p>
-            </a>
-            <a class="action-card" href="#verification" data-reveal data-reveal-delay="0.06">
-              <p class="action-card__num">02</p>
-              <h3 class="card__title">Check the source</h3>
-              <p class="card__text">Each claim shows whether it was read onchain, given by the issuer, or reported.</p>
-              <p class="card__foot"><span class="link-arrow">See the states <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></p>
-            </a>
-            <a class="action-card" href="#example" data-reveal data-reveal-delay="0.12">
-              <p class="action-card__num">03</p>
-              <h3 class="card__title">Compare before you buy</h3>
-              <p class="card__text">One view holds the full picture, so two tokens can be read side by side.</p>
-              <p class="card__foot"><span class="link-arrow">Read an example <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></p>
-            </a>
+          <div class="grid-6">
+            <article class="grid-item" data-reveal>
+              <div class="grid-item__head"><h3 class="h5">Source on every claim</h3></div>
+              <p class="text-mid">Nothing is asserted without saying where it came from.</p>
+            </article>
+            <article class="grid-item" data-reveal data-reveal-delay="0.05">
+              <div class="grid-item__head"><h3 class="h5">Reads the contract</h3></div>
+              <p class="text-mid">Onchain state is checked directly, rather than taken on trust.</p>
+            </article>
+            <article class="grid-item" data-reveal data-reveal-delay="0.1">
+              <div class="grid-item__head"><h3 class="h5">Gaps stay visible</h3></div>
+              <p class="text-mid">What cannot be verified is marked, never quietly filled in.</p>
+            </article>
+
+            <div class="grid-item grid-item--metric" data-reveal data-reveal-delay="0.15">
+              <p class="metric__number">6</p>
+              <div class="metric__label">
+                <p class="metric__big">Rights categories covered</p>
+                <p class="metric__sub">per token</p>
+              </div>
+            </div>
+            <div class="grid-item grid-item--metric" data-reveal data-reveal-delay="0.2">
+              <p class="metric__number">3</p>
+              <div class="metric__label">
+                <p class="metric__big">Verification states</p>
+                <p class="metric__sub">on every claim</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What RELL does for holders ------------------------------------------- -->
+      <section class="section" aria-labelledby="holders-title">
+        <div class="container">
+          <h2 class="display-3 holders__title" id="holders-title" data-reveal>
+            <span class="quiet">What RELL can</span>
+            do for holders
+          </h2>
+
+          <div class="holders">
+            <article class="holder" data-reveal>
+              <h3 class="h4">Read the rights map</h3>
+              <p class="text-mid">Six categories cover every question a holder should ask before buying.</p>
+              <a class="link-arrow" href="#map">Open the map <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
+            <article class="holder" data-reveal data-reveal-delay="0.06">
+              <h3 class="h4">Check the source</h3>
+              <p class="text-mid">Each claim shows whether it was read onchain, given by the issuer, or reported.</p>
+              <a class="link-arrow" href="#verification">See the states <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
+            <article class="holder" data-reveal data-reveal-delay="0.12">
+              <h3 class="h4">Compare before you buy</h3>
+              <p class="text-mid">One view holds the full picture, so two tokens can be read side by side.</p>
+              <a class="link-arrow" href="#example">Read an example <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
           </div>
         </div>
       </section>

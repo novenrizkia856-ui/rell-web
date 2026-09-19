@@ -17,7 +17,8 @@ reference. Measured from that page and rewritten here in our own code:
 | Body type | Geist Regular at 16px, Geist Mono for labels |
 | Nav | A floating pill, 44px tall, blurred white, with a black action pill inside |
 | Buttons | Full radius pills, black on white, accent on hover |
-| Cards | 12px corners with one oversized 44px bottom left corner |
+| Cards | 12px corners with one oversized 52px bottom left corner |
+| Feature grid | Six columns: three cards at `40px 12px`, two metric bars in `#474e55` |
 | Sections | 100px of vertical air, 80px on mobile |
 
 The signature moves it borrows: the floating pill nav, two tone headings where the first line drops
@@ -74,9 +75,9 @@ tools/                  sync-config.mjs, check-copy.mjs, make-chrome.py, make-og
 | Contract address bar | Fixed at the very top. Reads Coming soon until a token launches. |
 | Hero | The claim in two tones, two actions, and the chrome study. |
 | Coverage | One pill naming the network, the asset class and the category count. |
-| Stats | Three honest numbers. Nothing here is inflated. |
-| Problem | Why a token can look like ownership without being it. |
-| The layer | What RELL reads, and three ways a holder uses it. |
+| Problem | One number, then the claim, centred like the reference. |
+| The layer | Heading left, paragraph right, then three cards and two metric bars. |
+| For holders | Three columns, each with a link into the page. |
 | The map | The six categories as a tab list, with checks and usual source. |
 | Verification | The three proof levels, one card each. |
 | Example | A sample token read claim by claim. Clearly labelled as sample data. |

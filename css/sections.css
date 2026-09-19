@@ -229,73 +229,181 @@
   color: var(--ink-400);
 }
 
-/* Stat band ---------------------------------------------------------------- */
+/* Focus block: one number, then the claim ---------------------------------- */
 
-.stats {
-  display: grid;
-  gap: 2rem;
-  padding-block: var(--section-y);
+.stack-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-@media (min-width: 720px) {
-  .stats { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.stat-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
 }
 
-.stat__value {
+.stat-stack__number {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 1.6rem + 3.4vw, 3.75rem);
+  font-size: clamp(3.25rem, 2rem + 4.5vw, 3.875rem);
   font-weight: 300;
-  letter-spacing: var(--track-display);
   line-height: 1;
+  color: var(--ink-400);
 }
 
-.stat__label {
-  margin-top: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: var(--tiny);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--text-3);
-}
-
-.stat__note {
+.stat-stack__text {
   margin-top: 0.5rem;
-  font-size: var(--small);
+  font-size: var(--body);
+  color: var(--text-1);
+}
+
+.text-narrow {
+  max-width: 27.5rem;
+  margin-top: 1.5rem;
+  color: var(--ink-400);
+  font-size: var(--body);
+  line-height: 1.26;
+}
+
+.text-body {
   color: var(--text-2);
-  max-width: 22rem;
+  line-height: 1.26;
 }
 
-/* Three column feature row ------------------------------------------------- */
+.text-mid {
+  color: var(--text-2);
+  font-size: var(--small);
+  line-height: 1.26;
+}
 
-.feature-grid {
+/* Two column lead in: heading left, paragraph right ------------------------- */
+
+.split {
   display: grid;
-  gap: 2rem;
-  padding-top: 1rem;
+  gap: 1.25rem;
 }
 
-@media (min-width: 820px) {
-  .feature-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
 }
 
-.feature__title {
-  margin-bottom: 0.6rem;
+/* The six column grid: three cards, then two metric bars -------------------- */
+
+.grid-6 {
+  display: grid;
+  gap: 0.375rem;
+  margin-top: 3.75rem;
+}
+
+@media (min-width: 900px) {
+  .grid-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .grid-6 > .grid-item { grid-column: span 2; }
+  .grid-6 > .grid-item--metric { grid-column: span 3; }
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3.75rem;
+  padding: 2rem;
+  border-radius: 40px 12px;
+  background: var(--ink-100);
+}
+
+.grid-item__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.h5 {
   font-family: var(--font-display);
-  font-size: var(--body-lg);
-  font-weight: 500;
+  font-size: 1.625rem;
+  font-weight: 400;
+  line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
-.feature__text {
-  color: var(--text-2);
-  font-size: var(--small);
+.h4 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
 }
 
-.feature__rule {
-  width: 2rem;
-  height: 2px;
-  margin-bottom: 1.25rem;
-  border-radius: 2px;
-  background: var(--black);
+@media (min-width: 640px) {
+  .h4 { font-size: 1.625rem; }
+}
+
+.grid-item--metric {
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--ink-600);
+  color: var(--white);
+}
+
+.metric__number {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 1.8rem + 3.2vw, 3.625rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.metric__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.metric__big {
+  font-size: var(--small);
+  line-height: 1.26;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric__sub {
+  font-size: var(--small);
+  color: var(--ink-300);
+}
+
+/* What RELL does for holders ----------------------------------------------- */
+
+.holders__title {
+  max-width: 24ch;
+  margin-bottom: 3rem;
+}
+
+.holders {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .holders { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+}
+
+.holder {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ink-200);
 }
 
 /* Action cards ------------------------------------------------------------- */
