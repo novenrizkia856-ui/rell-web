@@ -1,11 +1,14 @@
 /* ==========================================================================
    RELL design tokens
 
-   A calm infrastructure theme: soft paper canvas, generous space, large quiet
-   type, thin hairline borders. Colour is used sparingly and only where it
-   carries meaning.
+   Built to the proportions of the infrastructure marketing style the client
+   asked for: a warm near white canvas, near black ink, hairline borders, one
+   hot accent used in very small doses, a large display scale with tight
+   leading, and a fixed spacing ladder.
 
-   The three accents stay semantic, never decorative:
+   The accent is RELL's own. Swap --accent alone to change it everywhere.
+
+   The three verification accents stay semantic, never decorative:
      green  = verified onchain
      violet = verified from issuer
      amber  = reported or inferred
@@ -14,93 +17,130 @@
 :root {
   color-scheme: light;
 
-  /* Canvas and surfaces */
-  --paper: #fbfbfa;          /* page canvas, a warm off white */
+  /* Surfaces */
+  --paper: #fafaf9;          /* page canvas */
+  --paper-2: #f3f3f1;        /* quiet band, inset panel */
   --surface: #ffffff;        /* raised card */
-  --surface-sunken: #f4f4f2; /* inset panel, quiet band */
-  --ink-panel: #12100f;      /* dark focus panel */
-  --ink-panel-2: #1c1a18;
+  --ink: #111111;            /* dark panel and primary text */
+  --ink-2: #282827;          /* dark panel, one step up */
 
   /* Text */
-  --text-1: #12100f;
-  --text-2: #5c5854;
-  --text-3: #8a8580;
-  --text-on-dark: #fbfbfa;
-  --text-on-dark-2: #a8a29c;
+  --text-1: #111111;
+  --text-2: rgba(17, 17, 17, 0.6);
+  --text-3: rgba(17, 17, 17, 0.42);
+  --on-dark: #fafaf9;
+  --on-dark-2: rgba(250, 250, 249, 0.6);
+  --on-dark-3: rgba(250, 250, 249, 0.38);
 
-  /* Hairlines. Thin and low contrast, never a heavy outline. */
-  --line: rgba(18, 16, 15, 0.1);
-  --line-strong: rgba(18, 16, 15, 0.18);
-  --line-on-dark: rgba(251, 251, 250, 0.14);
+  /* Hairlines */
+  --line: #dfdfdc;
+  --line-soft: rgba(17, 17, 17, 0.1);
+  --line-dark: rgba(250, 250, 249, 0.16);
 
-  /* Semantic accents, muted so they read as labels rather than decoration */
-  --onchain: #1f7a4d;
-  --onchain-soft: #e7f2ec;
-  --issuer: #5b4bc4;
-  --issuer-soft: #ecebf9;
-  --reported: #9a6b12;
-  --reported-soft: #f7efdf;
-  --unmapped: #8a8580;
-  --unmapped-soft: #f0efed;
+  /* One hot accent, used for the thread, links and focus. Nothing else. */
+  --accent: #2b50ff;
+  --accent-ink: #ffffff;
 
-  /* Primary action */
-  --primary: #12100f;
-  --primary-hover: #2c2926;
-
-  /* Soft depth. Small and diffuse, never a hard offset. */
-  --shadow-sm: 0 1px 2px rgba(18, 16, 15, 0.04), 0 1px 1px rgba(18, 16, 15, 0.03);
-  --shadow-md: 0 4px 16px rgba(18, 16, 15, 0.06), 0 1px 3px rgba(18, 16, 15, 0.04);
-  --shadow-lg: 0 18px 50px rgba(18, 16, 15, 0.09), 0 2px 8px rgba(18, 16, 15, 0.04);
+  /* Verification semantics */
+  --onchain: #236758;
+  --onchain-soft: #e6efeb;
+  --issuer: #4a3fbd;
+  --issuer-soft: #ebeaf7;
+  --reported: #8a5e0f;
+  --reported-soft: #f5eddc;
 
   /* Type */
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-sans: "Rubik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
-  /* A single fluid scale carries every heading on the page */
-  --step-hero: clamp(2.75rem, 1.6rem + 5.2vw, 6rem);
-  --step-1: clamp(2rem, 1.35rem + 2.9vw, 3.75rem);
-  --step-2: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
-  --step-3: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
-  --step-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
-  --step-body: 1rem;
-  --step-sm: 0.875rem;
-  --step-xs: 0.8125rem;
-  --step-label: 0.6875rem;
+  /* Display scale, mobile first. The desktop step is a hard switch rather
+     than a clamp, which is how the reference proportions hold together. */
+  --title-xxl-size: 46px;
+  --title-xxl-lh: 46px;
+  --title-xl-size: 38px;
+  --title-xl-lh: 42px;
+  --title-l-size: 28px;
+  --title-l-lh: 34px;
+  --title-m-size: 24px;
+  --title-m-lh: 28px;
+  --title-s-size: 18px;
+  --title-s-lh: 24px;
 
-  --tracking-hero: -0.038em;
-  --tracking-tight: -0.022em;
-  --tracking-label: 0.1em;
+  --body-l-size: 16px;
+  --body-l-lh: 24px;
+  --body-m-size: 14px;
+  --body-m-lh: 21px;
+  --body-s-size: 12px;
+  --body-s-lh: 16px;
+  --body-xs-size: 10px;
+  --body-xs-lh: 12px;
 
-  --leading-hero: 0.98;
-  --leading-tight: 1.1;
-  --leading-body: 1.6;
+  --tracking-display: -0.03em;
+  --tracking-title: -0.02em;
+  --tracking-label: 0.08em;
+
+  /* Spacing ladder */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-120: 120px;
+  --space-160: 160px;
 
   /* Layout */
-  --container: 77.5rem;
-  --container-narrow: 46rem;
-  --gutter: 1.25rem;
-  --section-y: clamp(3.25rem, 2.25rem + 4vw, 6.5rem);
+  --container: 1360px;
+  --gutter: var(--space-20);
+  --section-y: var(--space-64);
 
-  /* Radii, generous and soft */
-  --r-sm: 0.5rem;
-  --r-md: 0.875rem;
-  --r-lg: 1.25rem;
-  --r-xl: 1.75rem;
-  --r-2xl: 2.25rem;
+  /* Radii */
+  --r-2: 2px;
+  --r-5: 5px;
+  --r-10: 10px;
+  --r-20: 20px;
+  --r-40: 24px;
   --r-pill: 999px;
 
   /* Motion */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-fast: 160ms;
   --dur: 320ms;
-  --dur-slow: 720ms;
+  --dur-slow: 700ms;
 }
 
-@media (min-width: 40em) {
-  :root { --gutter: 2rem; }
+@media (min-width: 48em) {
+  :root {
+    --gutter: var(--space-32);
+    --section-y: var(--space-96);
+  }
 }
 
-@media (min-width: 80em) {
-  :root { --gutter: 3rem; }
+@media (min-width: 62em) {
+  :root {
+    --title-xxl-size: 90px;
+    --title-xxl-lh: 88px;
+    --title-xl-size: 75px;
+    --title-xl-lh: 78px;
+    --title-l-size: 48px;
+    --title-l-lh: 54px;
+    --title-m-size: 36px;
+    --title-m-lh: 40px;
+    --title-s-size: 24px;
+    --title-s-lh: 28px;
+
+    --body-l-size: 18px;
+    --body-l-lh: 26px;
+
+    --gutter: var(--space-40);
+    --section-y: var(--space-120);
+    --r-40: 40px;
+  }
 }

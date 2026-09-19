@@ -1,41 +1,38 @@
-"""Renders assets/brand/og-image.png in the calm infrastructure theme.
+"""Renders assets/brand/og-image.png.
 
-Mirrors the hero: paper canvas, a faint measuring grid, the headline in Inter
-Medium, and the three verification labels as quiet pills.
+Reuses the hero field from assets/bg/hero.jpg and lays the same two tone
+heading over it, so the share card and the page hero are the same artwork.
 
-Needs Pillow and the Inter variable font at %TEMP%/inter.ttf:
-  curl -sL -o %TEMP%/inter.ttf \
-    "https://github.com/google/fonts/raw/main/ofl/inter/Inter%5Bopsz,wght%5D.ttf"
+Run make-backgrounds.py first. Needs Pillow and the Rubik variable font at
+%TEMP%/rubik.ttf:
+  curl -sL -o %TEMP%/rubik.ttf \
+    "https://github.com/google/fonts/raw/main/ofl/rubik/Rubik%5Bwght%5D.ttf"
 """
 import math
 import os
 
 from PIL import Image, ImageDraw, ImageFont
 
-S = 2  # supersample, downscaled at the end for clean edges
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+S = 2
 W, H = 1200 * S, 630 * S
 
-PAPER = (251, 251, 250)
-INK = (18, 16, 15)
-TEXT_2 = (92, 88, 84)
-TEXT_3 = (138, 133, 128)
-LINE = (232, 231, 228)
+PAPER = (250, 250, 249)
+DIM = (250, 250, 249, 92)
+ONCHAIN = (126, 214, 180)
+ISSUER = (168, 158, 240)
+REPORTED = (226, 188, 116)
 
-ONCHAIN, ONCHAIN_SOFT = (31, 122, 77), (231, 242, 236)
-ISSUER, ISSUER_SOFT = (91, 75, 196), (236, 235, 249)
-REPORTED, REPORTED_SOFT = (154, 107, 18), (247, 239, 223)
-
-FONT = os.path.join(os.environ["TEMP"], "inter.ttf")
+FONT = os.path.join(os.environ["TEMP"], "rubik.ttf")
 
 
-def inter(size, style="Medium"):
+def rubik(size, style="Regular"):
     f = ImageFont.truetype(FONT, size * S)
     f.set_variation_by_name(style)
     return f
 
 
 def tracked(draw, xy, text, font, fill, tracking=0):
-    """Pillow has no letter spacing, so step the pen manually."""
     x, y = xy
     for ch in text:
         draw.text((x, y), ch, font=font, fill=fill)
@@ -43,85 +40,77 @@ def tracked(draw, xy, text, font, fill, tracking=0):
     return x
 
 
-def tracked_width(draw, text, font, tracking=0):
-    return sum(draw.textlength(c, font=font) + tracking * S for c in text)
+# ---- the field, cropped to card proportions ---------------------------------
+src = Image.open(os.path.join(ROOT, "assets", "bg", "hero.jpg")).convert("RGB")
+scale = max(W / src.width, H / src.height)
+src = src.resize((round(src.width * scale), round(src.height * scale)), Image.LANCZOS)
+left = (src.width - W) // 2
+top = (src.height - H) // 2
+base = src.crop((left, top, left + W, top + H)).convert("RGBA")
 
+# Same legibility wash the page panel uses
+wash = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+wd = ImageDraw.Draw(wash)
+for x in range(W):
+    f = x / W
+    a = int(200 * max(0.0, 1 - f * 1.45) + 30)
+    wd.line([(x, 0), (x, H)], fill=(10, 12, 18, a))
+base = Image.alpha_composite(base, wash)
+d = ImageDraw.Draw(base, "RGBA")
 
-base = Image.new("RGB", (W, H), PAPER)
-d = ImageDraw.Draw(base)
+M = 80 * S
 
-# ---- measuring grid, uniform and faint ---------------------------------------
-grid = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-gd = ImageDraw.Draw(grid)
-step = 96 * S
-for x in range(step, W, step):
-    gd.line([(x, 0), (x, H)], fill=LINE + (170,), width=S)
-for y in range(step, H, step):
-    gd.line([(0, y), (W, y)], fill=LINE + (170,), width=S)
-base = Image.alpha_composite(base.convert("RGBA"), grid).convert("RGB")
-d = ImageDraw.Draw(base)
-
-# The colour on this card comes from the pills alone. A washed gradient banded
-# into a visible arc once the PNG was palettised, and paper reads cleaner.
-
-M = 84 * S  # left margin
+# ---- corner frame -----------------------------------------------------------
+fi = 40 * S
+d.rounded_rectangle([fi, fi, W - fi, H - fi], radius=14 * S,
+                    outline=(250, 250, 249, 46), width=max(1, S))
+sq = 9 * S
+d.rectangle([fi - sq // 2, H - fi - sq // 2, fi + sq // 2, H - fi + sq // 2], fill=PAPER)
+d.rectangle([W - fi - sq // 2, fi - sq // 2, W - fi + sq // 2, fi + sq // 2], fill=PAPER)
 
 # ---- wordmark ---------------------------------------------------------------
-my = 74 * S
-hex_r = 15 * S
+my = M + 10 * S
+hex_r = 13 * S
 hx, hy = M + hex_r, my + hex_r
-pts = [
-    (hx + hex_r * math.cos(math.radians(a)), hy + hex_r * math.sin(math.radians(a)))
-    for a in (-90, -30, 30, 90, 150, 210)
-]
-d.polygon(pts, outline=INK, width=int(2.2 * S))
-d.ellipse([hx - 4.2 * S, hy - 4.2 * S, hx + 4.2 * S, hy + 4.2 * S], fill=INK)
-d.text((M + hex_r * 2 + 12 * S, my - 1 * S), "RELL", font=inter(25, "SemiBold"), fill=INK)
+pts = [(hx + hex_r * math.cos(math.radians(a)), hy + hex_r * math.sin(math.radians(a)))
+       for a in (-90, -30, 30, 90, 150, 210)]
+d.polygon(pts, outline=PAPER, width=int(1.8 * S))
+d.ellipse([hx - 3.6 * S, hy - 3.6 * S, hx + 3.6 * S, hy + 3.6 * S], fill=PAPER)
+d.text((M + hex_r * 2 + 11 * S, my - 2 * S), "RELL", font=rubik(23, "Medium"), fill=PAPER)
 
 # ---- eyebrow ----------------------------------------------------------------
-f_eyebrow = inter(13, "Medium")
-ey = my + 84 * S
-d.line([M, ey + 8 * S, M + 26 * S, ey + 8 * S], fill=TEXT_3, width=int(1.4 * S))
-tracked(d, (M + 38 * S, ey), "RIGHTS INTELLIGENCE", f_eyebrow, TEXT_3, tracking=1.9)
+ey = my + 214 * S
+tracked(d, (M, ey), "RIGHTS INTELLIGENCE", rubik(13, "Regular"), (250, 250, 249, 150), tracking=2.2)
 
-# ---- headline ---------------------------------------------------------------
-f_h = inter(72, "Medium")
-ty = ey + 54 * S
-line_gap = 82 * S
-for i, line in enumerate(("Know what your token", "really gives you.")):
-    d.text((M, ty + i * line_gap), line, font=f_h, fill=INK)
-
-# ---- supporting line --------------------------------------------------------
-f_sub = inter(22, "Regular")
-sy = ty + 2 * line_gap + 26 * S
-d.text((M, sy), "Six categories, three levels of proof, sources always shown.", font=f_sub, fill=TEXT_2)
+# ---- two tone heading -------------------------------------------------------
+f_h = rubik(66, "Regular")
+ty = ey + 44 * S
+gap = 70 * S
+d.text((M, ty), "Know what your token", font=f_h, fill=PAPER)
+d.text((M, ty + gap), "really gives you.", font=f_h, fill=DIM)
 
 # ---- verification pills -----------------------------------------------------
-f_pill = inter(17, "Medium")
-py_ = sy + 62 * S
+# Drawn on their own layer and composited, so the translucent fill blends
+# reliably rather than replacing the pixels underneath.
+pills = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+pd = ImageDraw.Draw(pills, "RGBA")
+f_pill = rubik(16, "Regular")
+py_ = ty + 2 * gap + 34 * S
 px = M
-for label, fg, bg in (
-    ("Verified Onchain", ONCHAIN, ONCHAIN_SOFT),
-    ("Verified From Issuer", ISSUER, ISSUER_SOFT),
-    ("Reported Inferred", REPORTED, REPORTED_SOFT),
-):
-    tw = d.textlength(label, font=f_pill)
-    pad = 20 * S
-    dot = 7 * S
-    h = 40 * S
+for label, fg in (("Verified Onchain", ONCHAIN),
+                  ("Verified From Issuer", ISSUER),
+                  ("Reported Inferred", REPORTED)):
+    tw = pd.textlength(label, font=f_pill)
+    pad, dot, h = 18 * S, 6 * S, 36 * S
     w = pad * 2 + dot + 9 * S + tw
-    d.rounded_rectangle([px, py_, px + w, py_ + h], radius=h / 2, fill=bg)
-    d.ellipse(
-        [px + pad, py_ + h / 2 - dot / 2, px + pad + dot, py_ + h / 2 + dot / 2],
-        fill=fg,
-    )
-    d.text((px + pad + dot + 9 * S, py_ + 9 * S), label, font=f_pill, fill=fg)
-    px += w + 14 * S
+    pd.rounded_rectangle([px, py_, px + w, py_ + h], radius=h / 2,
+                         fill=(250, 250, 249, 28), outline=(250, 250, 249, 60), width=max(1, S))
+    pd.ellipse([px + pad, py_ + h / 2 - dot / 2, px + pad + dot, py_ + h / 2 + dot / 2], fill=fg)
+    pd.text((px + pad + dot + 9 * S, py_ + 8 * S), label, font=f_pill, fill=PAPER)
+    px += w + 12 * S
+base = Image.alpha_composite(base, pills)
 
-out = base.resize((1200, 630), Image.LANCZOS)
-dest = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                    "assets", "brand", "og-image.png")
-out.quantize(colors=255, method=Image.MEDIANCUT, dither=Image.FLOYDSTEINBERG).save(
-    dest, "PNG", optimize=True
-)
-print("wrote", dest, os.path.getsize(dest), "bytes")
+out = base.convert("RGB").resize((1200, 630), Image.LANCZOS)
+dest = os.path.join(ROOT, "assets", "brand", "og-image.png")
+out.save(dest, "PNG", optimize=True)
+print("wrote", os.path.relpath(dest, ROOT), os.path.getsize(dest), "bytes")
