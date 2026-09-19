@@ -383,10 +383,10 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.7rem 1.5rem;
-  border-radius: var(--r-pill);
+  border-radius: 80px;
   font-size: var(--small);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   white-space: nowrap;
   transition: background-color var(--slow) var(--ease-out), color var(--slow) var(--ease-out),

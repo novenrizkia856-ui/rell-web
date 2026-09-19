@@ -147,6 +147,16 @@
 
       <!-- Hero -------------------------------------------------------------- -->
       <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__field" aria-hidden="true">
+          <img class="chrome chrome--a" src="assets/art/chrome-sphere.webp" width="640" height="640" alt="" fetchpriority="high" decoding="async">
+          <img class="chrome chrome--b" src="assets/art/chrome-sphere.webp" width="640" height="640" alt="" decoding="async">
+          <img class="chrome chrome--c" src="assets/art/chrome-stack.webp" width="760" height="760" alt="" fetchpriority="high" decoding="async">
+          <img class="chrome chrome--d" src="assets/art/chrome-hourglass.webp" width="820" height="820" alt="" fetchpriority="high" decoding="async">
+          <img class="chrome chrome--e" src="assets/art/chrome-sphere.webp" width="640" height="640" alt="" decoding="async">
+          <img class="chrome chrome--f" src="assets/art/chrome-blob.webp" width="780" height="780" alt="" decoding="async">
+          <img class="chrome chrome--g" src="assets/art/chrome-peanut.webp" width="800" height="800" alt="" decoding="async">
+        </div>
+
         <div class="container hero__inner">
           <h1 class="display-1 hero__title" id="hero-title" data-reveal>
             <span class="quiet">A token can look like ownership.</span>
@@ -159,23 +169,12 @@
             <p class="hero__cta-note">Covering Robinhood Chain stock tokens</p>
             <div class="hero__buttons">
               <a class="btn btn--primary" href="#map">Explore the map</a>
-              <a class="btn btn--ghost" href="#example">See an example</a>
             </div>
           </div>
         </div>
 
-        <div class="hero__visual" aria-hidden="true">
-          <img class="chrome chrome--hero-main" src="assets/art/chrome-drop.webp" width="860" height="860" alt="" fetchpriority="high" decoding="async">
-          <img class="chrome chrome--hero-left" src="assets/art/chrome-sphere.webp" width="720" height="720" alt="" loading="lazy" decoding="async">
-          <img class="chrome chrome--hero-right" src="assets/art/chrome-peanut.webp" width="900" height="900" alt="" loading="lazy" decoding="async">
-          <div class="hero__fade"></div>
-        </div>
-      </section>
-
-      <!-- Coverage ----------------------------------------------------------- -->
-      <div class="coverage">
-        <div class="container">
-          <div class="coverage__pill" data-reveal>
+        <div class="coverage">
+          <div class="coverage__pill" data-reveal data-reveal-delay="0.18">
             <span class="coverage__label">Coverage<br>today</span>
             <span class="coverage__item">
               <svg aria-hidden="true"><use href="#i-network"/></svg>
@@ -191,7 +190,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- Focus: one number, then the claim ---------------------------------- -->
       <section class="section" id="problem" aria-labelledby="problem-title">

@@ -165,7 +165,7 @@ ol {
 .display-2 .quiet,
 .display-3 .quiet {
   display: block;
-  color: var(--ink-300);
+  color: var(--ink-400);
 }
 
 .lede {

@@ -55,10 +55,35 @@ def scene_drop(p):
     return smooth_union(a, b, 0.5)
 
 
+def scene_hourglass(p):
+    """Two round lobes pinched in the middle, the tall form in the centre."""
+    a = sphere(p, np.array([0.02, 0.78, 0.0]), 0.62)
+    b = sphere(p, np.array([-0.04, -0.72, 0.0]), 0.72)
+    return smooth_union(a, b, 0.62)
+
+
+def scene_stack(p):
+    """Two discs resting on each other, the stacked form on the left."""
+    a = sphere(p, np.array([0.0, 0.34, 0.0]), 0.78)
+    b = sphere(p, np.array([0.06, -0.36, 0.06]), 0.80)
+    return smooth_union(a, b, 0.22)
+
+
+def scene_blob(p):
+    """A soft rounded mass, wider than it is tall."""
+    a = sphere(p, np.array([-0.26, 0.0, 0.0]), 0.74)
+    b = sphere(p, np.array([0.28, 0.06, 0.04]), 0.70)
+    c = sphere(p, np.array([0.0, -0.22, -0.05]), 0.66)
+    return smooth_union(smooth_union(a, b, 0.55), c, 0.5)
+
+
 SCENES = {
     "sphere": (scene_sphere, 2.9),
     "peanut": (scene_peanut, 4.0),
     "drop": (scene_drop, 3.3),
+    "hourglass": (scene_hourglass, 4.2),
+    "stack": (scene_stack, 3.6),
+    "blob": (scene_blob, 3.4),
 }
 
 
@@ -69,22 +94,24 @@ def environment(d):
 
     sky_t = np.clip((y + 0.15) / 0.9, 0.0, 1.0)
     sky = np.stack([
-        0.90 + 0.10 * sky_t,
-        0.91 + 0.09 * sky_t,
-        0.93 + 0.07 * sky_t,
+        0.95 + 0.05 * sky_t,
+        0.96 + 0.04 * sky_t,
+        0.97 + 0.03 * sky_t,
     ], axis=-1)
 
+    # The floor stays bright. A dark floor turned these into charcoal balls;
+    # the reference forms are light silver nearly all the way round.
     floor_t = np.clip((-y) / 0.8, 0.0, 1.0)
     floor = np.stack([
-        0.82 - 0.24 * floor_t,
-        0.83 - 0.24 * floor_t,
-        0.85 - 0.23 * floor_t,
+        0.90 - 0.30 * floor_t,
+        0.91 - 0.30 * floor_t,
+        0.93 - 0.29 * floor_t,
     ], axis=-1)
 
     col = np.where((y > 0)[..., None], sky, floor)
 
-    # dark band at the horizon, the line that reads as metal
-    band = np.exp(-((y / 0.075) ** 2)) * 0.42
+    # a soft horizon, just enough to read as metal rather than plastic
+    band = np.exp(-((y / 0.055) ** 2)) * 0.30
     col = col * (1.0 - band[..., None])
 
     # key softbox, upper left
@@ -96,8 +123,8 @@ def environment(d):
     # fill softbox, lower right, keeps the shadow side alive
     fill_dir = np.array([0.66, -0.34, 0.62])
     fill_dir = fill_dir / np.linalg.norm(fill_dir)
-    fill = np.clip((d * fill_dir).sum(-1), 0, 1) ** 16
-    col = col + fill[..., None] * 0.35
+    fill = np.clip((d * fill_dir).sum(-1), 0, 1) ** 14
+    col = col + fill[..., None] * 0.42
 
     return col
 
@@ -157,8 +184,9 @@ def render(name, size):
     fres = (0.04 + 0.96 * (1 - cos_t) ** 4)[..., None]
     col = env * (0.86 + 0.14 * fres) + fres * 0.30
 
-    # a touch of contrast so the form reads on a white page
-    col = np.clip((col - 0.5) * 1.12 + 0.5, 0, 1)
+    # a touch of contrast so the form reads on a white page, pivoted high so
+    # it brightens rather than crushing the shadow side
+    col = np.clip((col - 0.62) * 1.08 + 0.66, 0, 1)
 
     rgb = (col ** (1 / 1.05) * 255).astype(np.uint8)
     alpha = np.where(hit, 255, 0).astype(np.uint8)
@@ -176,7 +204,8 @@ def render(name, size):
 
 def main():
     wanted = sys.argv[1:] or list(SCENES)
-    sizes = {"sphere": 720, "peanut": 900, "drop": 860}
+    sizes = {"sphere": 640, "peanut": 800, "drop": 800,
+             "hourglass": 820, "stack": 760, "blob": 780}
     for name in wanted:
         render(name, sizes.get(name, 720))
 
