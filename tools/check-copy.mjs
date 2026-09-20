@@ -59,9 +59,16 @@ for (const file of readdirSync(jsDir)) {
   for (const m of src.matchAll(/setAttribute\("aria-label", "([^"]*)"/g)) add(`js/${file} aria`, m[1]);
 }
 
+// Copy the client dictated word for word. It breaks both house rules, so it is
+// exempted here rather than quietly rewritten.
+const CLIENT_COPY = new Set([
+  "RELL reads the rights behind tokenized stocks and turns them into clear, machine-readable claims, with every claim traced back to its source.",
+]);
+
 // ---- checks
 const problems = [];
 for (const { source, text } of strings) {
+  if (CLIENT_COPY.has(text)) continue;
   if (DASHES.test(text)) problems.push(`[dash] ${source}: "${text}"`);
   const sentences = text.split(/(?<=[.!?])\s+/);
   for (const sentence of sentences) {

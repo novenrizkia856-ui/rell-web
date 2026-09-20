@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docs. RELL</title>
+  <meta name="description" content="How RELL reads the rights behind a tokenized stock, and how each claim is sourced and verified.">
+  <link rel="canonical" href="https://tryrell.xyz/docs">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Docs. RELL">
+  <meta property="og:description" content="How RELL reads the rights behind a tokenized stock, and how each claim is sourced and verified.">
+  <meta property="og:url" content="https://tryrell.xyz/docs">
+  <meta property="og:image" content="https://tryrell.xyz/assets/brand/og-image.png">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/docs.css">
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#doc-main">Skip to content</a>
+
+  <header class="docs-head">
+    <a class="docs-head__brand" href="index.html">
+      <span class="docs-head__mark" aria-hidden="true">R</span>
+      RELL
+    </a>
+    <nav class="docs-head__nav" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="index.html#map">Rights map</a>
+      <a class="docs-head__cta" href="index.html#map">Explore the map</a>
+    </nav>
+  </header>
+
+  <div class="docs-shell">
+    <details class="docs-side" id="docs-toc" open>
+      <summary class="docs-side__label">Contents</summary>
+      <ol class="docs-side__list">
+            <li><a href="#introduction" data-doc-link>Introduction</a></li>
+            <li><a href="#problem-statement" data-doc-link>Problem Statement</a></li>
+            <li><a href="#solution-overview" data-doc-link>Solution Overview</a></li>
+            <li><a href="#core-concepts" data-doc-link>Core Concepts</a></li>
+            <li><a href="#data-model" data-doc-link>Data Model</a></li>
+            <li><a href="#data-sources" data-doc-link>Data Sources</a></li>
+            <li><a href="#verification-system" data-doc-link>Verification System</a></li>
+            <li><a href="#system-mechanism" data-doc-link>System Mechanism</a></li>
+            <li><a href="#scope" data-doc-link>Scope</a></li>
+            <li><a href="#api-design" data-doc-link>API Design</a></li>
+            <li><a href="#non-goals" data-doc-link>What RELL Is Not</a></li>
+            <li><a href="#positioning" data-doc-link>Positioning</a></li>
+      </ol>
+    </details>
+
+    <main class="docs-main" id="doc-main">
+      <div class="docs-intro">
+        <p class="label">Documentation</p>
+        <h1 class="display-2">Rights intelligence for tokenized assets.</h1>
+        <p class="lede">The concept, the mechanism and the system design behind RELL.</p>
+      </div>
+
+      <section class="doc" id="introduction" aria-labelledby="introduction-title">
+            <h2 class="doc__title" id="introduction-title">Introduction</h2>
+            <p><strong>Rights intelligence for tokenized assets.</strong></p>
+            <h2>One-liner</h2>
+            <p>RELL tells you exactly what a tokenized real-world asset actually gives you.</p>
+            <h2>Why This Exists</h2>
+            <p>Tokenized stocks and other tokenized real-world assets (RWA) are often marketed and perceived as if holding the token is equivalent to holding the underlying asset. In practice, a token can represent anywhere from full legal ownership to nothing more than synthetic economic exposure — and the difference is usually buried across smart contracts, issuer terms, and legal disclosures that most holders never read in full.</p>
+            <p>RELL exists to close that gap. It is a rights and claims intelligence layer: for any supported tokenized asset, it produces a standardized, plain-English breakdown of what the token actually entitles the holder to, backed by verifiable sources.</p>
+            <h2>Who This Is For</h2>
+            <ul class="doc-list"><li>Holders of tokenized stocks / RWA who want to know what they actually own</li><li>DeFi protocols deciding whether to accept a tokenized asset as collateral</li><li>Issuers and platforms who want a neutral, standardized way to disclose token rights</li><li>Researchers and auditors assessing tokenized asset structures</li></ul>
+            <h2>Document Scope</h2>
+            <p>This document set describes the <strong>concept, mechanism, and system design</strong> of RELL. It intentionally does not cover implementation details (contract code, backend architecture, tech stack) — those live in a separate implementation-track document once build begins.</p>
+          </section>
+
+          <section class="doc" id="problem-statement" aria-labelledby="problem-statement-title">
+            <h2 class="doc__title" id="problem-statement-title">Problem Statement</h2>
+            <h2>The Core Issue</h2>
+            <p>A tokenized stock or RWA can <em>look like</em> the underlying asset without giving the holder all the rights normally associated with owning that asset.</p>
+            <p>For example, a stock token might provide:</p>
+            <ul class="doc-list"><li>Economic exposure</li><li>Distribution / dividend entitlement</li><li>Redemption rights</li><li>Transferability</li><li>DeFi / collateral compatibility</li></ul>
+            <p>But it may <strong>not</strong> provide:</p>
+            <ul class="doc-list"><li>Legal ownership of the underlying security</li><li>Voting rights</li><li>Direct shareholder rights</li></ul>
+            <h2>Why It's Hard to Know</h2>
+            <p>Figuring out which of these apply for a given token currently requires reading:</p>
+            <ul class="doc-list"><li>The token's smart contract</li><li>Issuer terms and conditions</li><li>Legal / custodial structure documents</li><li>Distribution and redemption policies</li><li>Corporate action disclosures</li></ul>
+            <p>Most holders never do this. Even when they try, the information is scattered across sources that use different terminology, different disclosure standards, and different levels of detail.</p>
+            <h2>The Consequence</h2>
+            <p>Holders, integrators, and protocols end up making decisions — buying, using as collateral, assuming certain rights exist — based on assumption rather than verified fact. Misunderstanding what a token represents is a structural risk, not just a UX inconvenience.</p>
+          </section>
+
+          <section class="doc" id="solution-overview" aria-labelledby="solution-overview-title">
+            <h2 class="doc__title" id="solution-overview-title">Solution Overview</h2>
+            <p>RELL creates a <strong>plain-English rights profile</strong> for every supported tokenized asset.</p>
+            <p>A user searches for a token and receives a standardized breakdown across six rights categories (see <a href="#core-concepts">Core Concepts</a>), with every claim tied to a source and a verification status (see <a href="#verification-system">Verification System</a>).</p>
+            <h2>Example</h2>
+            <p>A user searches: <code>AAPL Stock Token</code></p>
+            <p>RELL displays:</p>
+            <div class="doc-table"><table><thead><tr><th>Claim</th><th>Status</th></tr></thead><tbody><tr><td>Economic exposure</td><td>Yes</td></tr><tr><td>Dividend / distribution</td><td>Yes — according to issuer terms</td></tr><tr><td>Legal ownership of Apple shares</td><td>No</td></tr><tr><td>Voting rights</td><td>No</td></tr><tr><td>Redemption</td><td>Depends on issuer</td></tr><tr><td>Permissionless transfer</td><td>Depends on restrictions</td></tr><tr><td>DeFi collateral</td><td>Depends on integration</td></tr><tr><td>Current asset status</td><td>Active</td></tr></tbody></table></div>
+            <p>Each row is expandable into a plain-language explanation, its verification label, and a link to the underlying source.</p>
+            <h2>What Makes This Different</h2>
+            <p>RELL does not just show contract data (that's a block explorer) or price/portfolio data (that's a tracker). It answers one specific, narrow question — <strong>&quot;what rights does this token actually carry?&quot;</strong> — by combining onchain evidence with offchain documentation into one standardized, sourced answer.</p>
+          </section>
+
+          <section class="doc" id="core-concepts" aria-labelledby="core-concepts-title">
+            <h2 class="doc__title" id="core-concepts-title">Core Concepts</h2>
+            <p>Every asset in RELL is evaluated across six rights categories. These categories are fixed and standardized — every asset is scored against the same six, regardless of asset type, so profiles are comparable across tokens.</p>
+            <h2>1. Ownership</h2>
+            <p>What the token actually represents, and who legally owns the underlying asset.</p>
+            <ul class="doc-list"><li>Does holding the token constitute legal ownership of the underlying security?</li><li>Who is the legal owner of record?</li><li>What is the token, legally — a claim, a derivative, a wrapped representation, a certificate?</li></ul>
+            <h2>2. Economic Claims</h2>
+            <p>What financial entitlement the token carries.</p>
+            <ul class="doc-list"><li>Does the holder receive dividends / distributions?</li><li>Is the holder entitled to redemption for the underlying asset or its cash value?</li><li>What economic exposure does the token provide (price tracking, synthetic, direct)?</li></ul>
+            <h2>3. Control Rights</h2>
+            <p>Whether holding the token grants any say over the underlying asset or issuer.</p>
+            <ul class="doc-list"><li>Voting rights on the underlying security?</li><li>Governance rights over the token or protocol?</li><li>Any other shareholder / control rights?</li></ul>
+            <h2>4. Transfer Rights</h2>
+            <p>The practical and permissioned ability to move the token.</p>
+            <ul class="doc-list"><li>Can anyone hold and transfer it, or are there eligibility restrictions (KYC, jurisdiction, accreditation)?</li><li>Can the issuer freeze, pause, or blacklist transfers?</li><li>Is transfer permissionless, permissioned, or conditional?</li></ul>
+            <h2>5. DeFi Compatibility</h2>
+            <p>How the token behaves once it leaves the issuer's own platform.</p>
+            <ul class="doc-list"><li>Can it be used as collateral?</li><li>Can it be supplied to lending protocols?</li><li>Can it be used in other DeFi applications (AMMs, derivatives, etc.)?</li></ul>
+            <h2>6. Asset Status</h2>
+            <p>The current operational state of the token.</p>
+            <ul class="doc-list"><li>Active, paused, or restricted?</li><li>Redeemable right now?</li><li>Subject to an ongoing corporate action (split, delisting, merger, etc.)?</li></ul>
+            <p>Each category is populated using the data sources and verification mechanism described in the following sections.</p>
+          </section>
+
+          <section class="doc" id="data-model" aria-labelledby="data-model-title">
+            <h2 class="doc__title" id="data-model-title">Data Model</h2>
+            <p>Every asset tracked by RELL follows one standardized structure. This keeps every profile comparable regardless of asset type or issuer.</p>
+            <pre class="doc-pre"><code>Asset
+├── Identity
+│   ├── Name
+│   ├── Symbol
+│   ├── Contract
+│   ├── Chain
+│   └── Underlying Asset
+│
+├── Ownership
+│   ├── Legal Ownership
+│   └── Token Representation
+│
+├── Economic Claims
+│   ├── Economic Exposure
+│   ├── Dividends / Distributions
+│   └── Redemption
+│
+├── Control Rights
+│   ├── Voting
+│   └── Governance
+│
+├── Transfer Rights
+│   ├── Transferability
+│   ├── Restrictions
+│   └── Eligibility
+│
+├── DeFi Compatibility
+│   ├── Collateral
+│   ├── Lending
+│   └── Other Integrations
+│
+├── Status
+│   ├── Active
+│   ├── Paused
+│   ├── Restricted
+│   └── Corporate Action
+│
+└── Sources
+    ├── Onchain
+    ├── Issuer
+    ├── Legal
+    └── Last Updated</code></pre>
+            <h2>Notes on the Model</h2>
+            <ul class="doc-list"><li><strong>Identity</strong> anchors the profile to one specific contract on one specific chain — no cross-chain ambiguity.</li><li>Each leaf node under Ownership / Economic Claims / Control Rights / Transfer Rights / DeFi Compatibility carries its own verification label (see <a href="#verification-system">Verification System</a>) — the model is not scored as a whole, but claim by claim.</li><li><strong>Sources</strong> is not metadata bolted on at the end — it is a first-class part of the model. A claim without a traceable source should not be presented as a claim.</li><li><strong>Last Updated</strong> exists at the asset level because status and rights can change (corporate actions, contract upgrades, revised terms) — see <a href="#system-mechanism">System Mechanism</a> for how freshness is maintained.</li></ul>
+          </section>
+
+          <section class="doc" id="data-sources" aria-labelledby="data-sources-title">
+            <h2 class="doc__title" id="data-sources-title">Data Sources</h2>
+            <p>RELL combines two categories of information. Neither is sufficient on its own — onchain data tells you what's technically possible, offchain data tells you what's legally and economically true.</p>
+            <h2>Onchain</h2>
+            <p>Read directly from the blockchain:</p>
+            <ul class="doc-list"><li>Token contract</li><li>Chain</li><li>Token standard</li><li>Supply</li><li>Transfer permissions</li><li>Pause / freeze functionality</li><li>Contract ownership / admin controls</li><li>Related contracts</li><li>Oracle / reference-price information</li><li>DeFi integrations where verifiable onchain</li></ul>
+            <p>Onchain data answers questions like: <em>can</em> this token be paused, <em>can</em> the admin blacklist an address, <em>is</em> there a redemption function present.</p>
+            <h2>Offchain</h2>
+            <p>Authoritative issuer, legal, and asset documentation:</p>
+            <ul class="doc-list"><li>Terms and conditions</li><li>Issuer documentation</li><li>Legal structure</li><li>Distribution terms</li><li>Redemption rules</li><li>Eligibility requirements</li><li>Corporate action information</li><li>Custodian / underlying-asset information</li></ul>
+            <p>Offchain data answers questions onchain data structurally cannot: whether the holder has legal ownership, whether dividends are contractually owed, what the custodial arrangement actually is.</p>
+            <h2>Why Both Are Required</h2>
+            <p>A contract can technically allow permissionless transfer while the issuer's terms impose eligibility restrictions enforced off the smart contract (e.g. at a frontend or custodial layer). Relying on only one source produces an incomplete or misleading rights profile. Every claim in RELL is mapped to whichever source category is actually authoritative for that specific claim.</p>
+          </section>
+
+          <section class="doc" id="verification-system" aria-labelledby="verification-system-title">
+            <h2 class="doc__title" id="verification-system-title">Verification System</h2>
+            <p>Not all claims can be verified to the same standard. RELL makes the confidence level of every claim explicit, rather than presenting all information as equally certain.</p>
+            <h2>Verification Labels</h2>
+            <p><strong>VERIFIED ONCHAIN</strong> Directly observable from blockchain data — contract code, contract state, or onchain events. Highest confidence for anything it covers.</p>
+            <p><strong>VERIFIED FROM ISSUER / DOCUMENTATION</strong> Supported by authoritative documentation from the issuer or a legal/custodial source. High confidence, but dependent on the source document remaining current and accurate.</p>
+            <p><strong>REPORTED / INFERRED</strong> Information that cannot currently be independently verified — pulled from secondary sources, inferred from pattern/precedent, or self-reported without a verifiable primary source. Lowest confidence.</p>
+            <h2>The Core Rule</h2>
+            <p>Inferred information is never presented as fact. Every claim in a rights profile shows its label alongside the claim itself, so a user can immediately see the difference between &quot;this is directly verifiable&quot; and &quot;this is reported but unconfirmed.&quot;</p>
+            <h2>Handling Conflicts</h2>
+            <p>Where onchain data and offchain documentation appear to disagree (e.g. a contract technically allows a transfer that issuer terms prohibit), RELL surfaces both rather than silently picking one:</p>
+            <ul class="doc-list"><li>The onchain claim reflects <strong>technical capability</strong></li><li>The offchain claim reflects <strong>permitted / legal use</strong></li></ul>
+            <p>Both are shown with their own label so the user understands that technical capability does not necessarily equal legally sanctioned use.</p>
+          </section>
+
+          <section class="doc" id="system-mechanism" aria-labelledby="system-mechanism-title">
+            <h2 class="doc__title" id="system-mechanism-title">System Mechanism</h2>
+            <p>This describes how a rights profile gets built and kept current — conceptually, not as an implementation spec.</p>
+            <h2>Pipeline Overview</h2>
+            <div class="doc-flow"><ol class="doc-flow__list"><li class="doc-flow__step">Asset Registration</li><li class="doc-flow__step">Onchain Data Ingestion</li><li class="doc-flow__step">Offchain Document Ingestion</li><li class="doc-flow__step">Claim Extraction and Mapping</li><li class="doc-flow__step">Verification Labeling</li><li class="doc-flow__step">Conflict Resolution</li><li class="doc-flow__step">Rights Matrix Assembly</li><li class="doc-flow__step">Plain-English Explanation Layer</li><li class="doc-flow__step">Published RELL Profile</li><li class="doc-flow__step">Status Monitoring</li></ol><p class="doc-flow__note">Loops back: Status Monitoring back to Onchain Data Ingestion, Status Monitoring back to Offchain Document Ingestion.</p></div>
+            <h2>1. Asset Registration</h2>
+            <p>An asset is added by identifying its token contract, chain, token standard, and the underlying real-world asset it references. This becomes the anchor for everything else in the profile.</p>
+            <h2>2. Onchain Data Ingestion</h2>
+            <p>The token contract and related contracts are read to determine supply, transfer/pause logic, admin/ownership controls, and any oracle or DeFi integration points.</p>
+            <h2>3. Offchain Document Ingestion</h2>
+            <p>Issuer terms, legal structure documents, and disclosure materials are collected and mapped against the six rights categories.</p>
+            <h2>4. Claim Extraction &amp; Mapping</h2>
+            <p>Each leaf in the <a href="#data-model">Data Model</a> is populated from whichever source (onchain or offchain) is authoritative for that specific claim.</p>
+            <h2>5. Verification Labeling</h2>
+            <p>Every populated claim is tagged with one of the three <a href="#verification-system">verification labels</a>, based on how it was sourced.</p>
+            <h2>6. Conflict Resolution</h2>
+            <p>Where onchain and offchain evidence disagree, both are retained and shown side by side rather than collapsed into a single answer (see <a href="#verification-system">Verification System</a>).</p>
+            <h2>7. Rights Matrix Assembly</h2>
+            <p>The individual claims are assembled into the standardized rights matrix — the same format used across every asset, so profiles remain comparable.</p>
+            <h2>8. Plain-English Explanation Layer</h2>
+            <p>Each claim in the matrix is paired with a short, non-technical explanation of what it means in practice for the holder.</p>
+            <h2>9. Status Monitoring</h2>
+            <p>Assets are re-checked when trigger events occur — a corporate action, a contract upgrade, a pause/freeze event, or a revision to issuer documentation — rather than on a fixed schedule alone. A re-check re-runs the pipeline from ingestion.</p>
+            <h2>10. Publishing</h2>
+            <p>The finished profile is what a user sees when they search or look up an asset, along with its sources and last-updated timestamp.</p>
+          </section>
+
+          <section class="doc" id="scope" aria-labelledby="scope-title">
+            <h2 class="doc__title" id="scope-title">Scope</h2>
+            <p>RELL covers <strong>Robinhood Chain + Stock Tokens</strong>.</p>
+            <h2>What's Built</h2>
+            <ol class="doc-list doc-list--num"><li>Asset search</li><li>Token lookup</li><li>RELL profile page</li><li>Rights matrix (the six categories)</li><li>Source / document references</li><li>Onchain verification</li><li>Plain-English explanations</li><li>Last-updated timestamp</li></ol>
+            <h2>Why This Scope</h2>
+            <p>Stock tokens on Robinhood Chain are a single, well-documented asset class — enough to fully exercise the rights-matrix concept, the verification labeling, and the conflict-resolution logic in one coherent product.</p>
+            <h2>Out of Scope</h2>
+            <ul class="doc-list"><li>Other chains</li><li>Non-stock RWA categories</li><li>Any of the items listed in <a href="#non-goals">What RELL Is Not</a></li></ul>
+          </section>
+
+          <section class="doc" id="api-design" aria-labelledby="api-design-title">
+            <h2 class="doc__title" id="api-design-title">API Design</h2>
+            <p>This describes the conceptual surface area the product needs to expose — not request/response schemas or implementation.</p>
+            <div class="doc-table"><table><thead><tr><th>Endpoint</th><th>Purpose</th></tr></thead><tbody><tr><td><code>GET /assets</code></td><td>List supported tokenized assets</td></tr><tr><td><code>GET /assets/{asset}</code></td><td>Full profile for one asset (identity + summary)</td></tr><tr><td><code>GET /assets/{asset}/claims</code></td><td>The complete rights matrix for the asset</td></tr><tr><td><code>GET /assets/{asset}/rights</code></td><td>Rights-category breakdown (ownership, economic, control, transfer, DeFi)</td></tr><tr><td><code>GET /assets/{asset}/restrictions</code></td><td>Transfer and eligibility restrictions specifically</td></tr><tr><td><code>GET /assets/{asset}/sources</code></td><td>Source documents and onchain references backing the claims</td></tr><tr><td><code>GET /assets/{asset}/status</code></td><td>Current asset status (active / paused / restricted / corporate action)</td></tr></tbody></table></div>
+            <h2>Design Principles for the API</h2>
+            <ul class="doc-list"><li>Every claims-related response should carry its verification label — the API should never return a claim without also returning its confidence level and source.</li><li><code>/status</code> is separated out because it is the field most likely to need near-real-time freshness, while the rest of the profile changes less frequently.</li><li>The API mirrors the <a href="#data-model">Data Model</a> directly — no additional grouping or transformation layer between the model and the API surface.</li></ul>
+          </section>
+
+          <section class="doc" id="non-goals" aria-labelledby="non-goals-title">
+            <h2 class="doc__title" id="non-goals-title">What RELL Is Not</h2>
+            <p>RELL has one narrow job: tell users what they actually get when they hold a tokenized asset. It is deliberately <strong>not</strong>:</p>
+            <ul class="doc-list"><li>A token screener</li><li>A portfolio tracker</li><li>A trading platform</li><li>A price dashboard</li><li>A generic RWA explorer</li><li>A wallet</li><li>A lending protocol</li><li>A legal-advice platform</li></ul>
+            <p>Every one of these is a legitimate product category — they are simply not this product. Feature requests that pull RELL toward any of the above should be treated as scope creep away from its core purpose.</p>
+          </section>
+
+          <section class="doc" id="positioning" aria-labelledby="positioning-title">
+            <h2 class="doc__title" id="positioning-title">Positioning</h2>
+            <h2>Primary</h2>
+            <p><strong>RELL — Rights intelligence for tokenized assets.</strong></p>
+            <h2>Alternative</h2>
+            <p><strong>Know what your token actually gives you.</strong></p>
+            <h2>Product Feel</h2>
+            <p>RELL should feel like a rights/claims intelligence layer — closer to a disclosure or compliance tool than a crypto dashboard. The tone throughout the product (copy, explanations, matrix design) should read as neutral and factual, not promotional. It is reporting what a token gives you, not selling the token.</p>
+          </section>
+    </main>
+  </div>
+
+  <footer class="docs-foot">
+    <span>&copy; <span id="docs-year">2026</span> RELL. All rights reserved.</span>
+    <a href="index.html">Back to the landing page</a>
+  </footer>
+
+  <script>
+    document.getElementById("docs-year").textContent = String(new Date().getFullYear());
+
+    /* The contents list is a sidebar on a wide screen and a disclosure on a
+       narrow one, where leaving it open would fill the whole first screen. */
+    (function () {
+      var toc = document.getElementById("docs-toc");
+      var narrow = window.matchMedia("(max-width: 959px)");
+      var sync = function () { toc.open = !narrow.matches; };
+      sync();
+      if (narrow.addEventListener) narrow.addEventListener("change", sync);
+      toc.addEventListener("click", function (event) {
+        if (narrow.matches && event.target.closest("a")) toc.open = false;
+      });
+    })();
+
+    /* Mark whichever section the reader is in, in the sidebar. */
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll("[data-doc-link]"));
+      var sections = Array.prototype.slice.call(document.querySelectorAll(".doc"));
+      if (!("IntersectionObserver" in window) || !sections.length) return;
+
+      var byId = {};
+      links.forEach(function (link) { byId[link.getAttribute("href").slice(1)] = link; });
+
+      var seen = {};
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { seen[entry.target.id] = entry.isIntersecting; });
+        var current = null;
+        sections.forEach(function (section) { if (!current && seen[section.id]) current = section.id; });
+        links.forEach(function (link) { link.classList.remove("is-current"); });
+        if (current && byId[current]) byId[current].classList.add("is-current");
+      }, { rootMargin: "-96px 0px -70% 0px" });
+
+      sections.forEach(function (section) { observer.observe(section); });
+    })();
+  </script>
+</body>
+</html>

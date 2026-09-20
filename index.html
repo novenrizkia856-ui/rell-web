@@ -63,24 +63,6 @@
 
   <div class="page" id="top">
 
-    <!-- Contract address bar ------------------------------------------------ -->
-    <div class="ca-bar" id="contract" data-ca-bar data-state="soon">
-      <div class="ca-bar__inner">
-        <span class="ca-bar__label">Contract address</span>
-        <span class="ca-bar__value">
-          <span class="ca-bar__symbol" data-config-text="token.symbol">RELL</span>
-          <span class="ca-bar__text" data-ca-text aria-live="polite">Coming soon</span>
-          <a class="ca-bar__explorer" data-ca-explorer href="#" target="_blank" rel="noopener noreferrer" hidden aria-label="View the token on the explorer">
-            <svg width="13" height="13" aria-hidden="true"><use href="#i-external"/></svg>
-          </a>
-        </span>
-        <button class="ca-bar__copy" type="button" data-ca-copy data-copy-state="idle" aria-label="Copy the contract address">
-          <svg aria-hidden="true"><use href="#i-copy"/></svg>
-          <span data-ca-copy-text>Copy</span>
-        </button>
-      </div>
-    </div>
-
     <!-- Navigation ---------------------------------------------------------- -->
     <div class="nav-wrap" data-header>
       <nav class="nav" aria-label="Primary">
@@ -102,6 +84,7 @@
             </div>
           </div>
           <a class="nav__link" href="#scope">Scope</a>
+          <a class="nav__link" href="docs.html">Docs</a>
         </div>
 
         <div class="nav__actions">
@@ -134,6 +117,7 @@
           <a href="#verification" data-sheet-close>Verification</a>
           <a href="#example" data-sheet-close>Example</a>
           <a href="#scope" data-sheet-close>Scope</a>
+          <a href="docs.html" data-sheet-close>Docs</a>
         </div>
         <a class="btn btn--primary" href="#map" data-sheet-close>Explore the map</a>
       </div>
@@ -159,8 +143,24 @@
             RELL shows what it gives.
           </h1>
           <p class="lede hero__lede" data-reveal data-reveal-delay="0.06">
-            RELL reads the rights behind tokenized stocks. Every claim arrives with the source it came from.
+            RELL reads the rights behind tokenized stocks and turns them into clear, machine-readable claims, with every claim traced back to its source.
           </p>
+          <div class="ca-bar" id="contract" data-ca-bar data-state="soon" data-reveal data-reveal-delay="0.1">
+            <div class="ca-bar__inner">
+              <span class="ca-bar__label">Contract address</span>
+              <span class="ca-bar__value">
+                <span class="ca-bar__symbol" data-config-text="token.symbol">RELL</span>
+                <span class="ca-bar__text" data-ca-text aria-live="polite">Coming soon</span>
+                <a class="ca-bar__explorer" data-ca-explorer href="#" target="_blank" rel="noopener noreferrer" hidden aria-label="View the token on the explorer">
+                  <svg width="13" height="13" aria-hidden="true"><use href="#i-external"/></svg>
+                </a>
+              </span>
+              <button class="ca-bar__copy" type="button" data-ca-copy data-copy-state="idle" aria-label="Copy the contract address">
+                <svg aria-hidden="true"><use href="#i-copy"/></svg>
+                <span data-ca-copy-text>Copy</span>
+              </button>
+            </div>
+          </div>
           <div class="hero__cta" data-reveal data-reveal-delay="0.12">
             <p class="hero__cta-note">Covering Robinhood Chain stock tokens</p>
             <div class="hero__buttons">
@@ -485,7 +485,7 @@
             <h3>Resources</h3>
             <ul>
               <li><a href="#contract">Contract address</a></li>
-              <li><span class="footer__soon">Docs <em>Soon</em></span></li>
+              <li><a href="docs.html">Docs</a></li>
             </ul>
           </div>
         </div>

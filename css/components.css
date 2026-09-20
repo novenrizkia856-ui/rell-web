@@ -4,17 +4,16 @@
 
 /* Contract address bar ----------------------------------------------------- */
 
+/* The bar used to be pinned across the top of the page. The client wants it
+   in the hero, under the sub heading, so it is an inline pill now. */
 .ca-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 110;
-  width: 100%;
-  min-height: var(--ca-h);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.35rem var(--gutter);
+  max-width: 100%;
+  margin: 1.5rem auto 0;
+  padding: 0.35rem 0.35rem 0.35rem 0.9rem;
+  border-radius: var(--r-pill);
   background: var(--black);
   color: var(--white);
 }
@@ -112,7 +111,7 @@
 
 .nav-wrap {
   position: fixed;
-  top: calc(var(--ca-h) + 0.75rem);
+  top: 1rem;
   left: 0;
   z-index: 100;
   width: 100%;

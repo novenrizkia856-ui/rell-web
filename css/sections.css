@@ -15,8 +15,10 @@
   /* The reference starts the heading near the top of the band rather than
      centring it, which is why ours sat about 150px too low. */
   justify-content: flex-start;
-  min-height: calc(100vh - var(--ca-h));
-  padding-top: calc(var(--ca-h) + 4.3125rem);
+  min-height: 100vh;
+  /* Clears the floating nav, then the extra breathing room the client asked
+     for so the heading block sits a little lower in the band. */
+  padding-top: 8.5rem;
   padding-bottom: 7.5rem;
   overflow: hidden;
   background: linear-gradient(180deg, #dbe1e7 0%, #e7ebef 26%, #f4f6f8 62%, var(--white) 100%);

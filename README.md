@@ -22,8 +22,8 @@ reference. Measured from that page and rewritten here in our own code:
 | Sections | 100px of vertical air, 80px on mobile |
 
 The signature moves it borrows: the floating pill nav, two tone headings where the first line drops
-back to grey, a chrome study under the hero, the asymmetric card corner, the pill of coverage logos,
-and a quiet FAQ accordion above the footer.
+back to grey, a chrome study under the hero, the asymmetric card corner, and the pill of coverage
+logos resting at the foot of the hero.
 
 Nothing was taken from the reference itself. No markup, styling, copy, imagery or compiled code.
 That page is another company's production build. What carried over are measurements and layout
@@ -72,7 +72,7 @@ tools/                  sync-config.mjs, check-copy.mjs, make-chrome.py, make-og
 
 | Section | What it does |
 | --- | --- |
-| Contract address bar | Fixed at the very top. Reads Coming soon until a token launches. |
+| Contract address bar | In the hero, under the sub heading. Reads Coming soon until a token launches. |
 | Hero | The claim in two tones, two actions, and the chrome study. |
 | Coverage | One pill naming the network, the asset class and the category count. |
 | Problem | One number, then the claim, centred like the reference. |
@@ -82,9 +82,8 @@ tools/                  sync-config.mjs, check-copy.mjs, make-chrome.py, make-og
 | Verification | The three proof levels, one card each. |
 | Example | A sample token read claim by claim. Clearly labelled as sample data. |
 | Scope | What is covered today, plus the deployed contracts. |
-| Roadmap | Four phases with an honest status on each. |
-| FAQ | Six questions, answered plainly. |
 | Footer | Product and resource links. No social links by request. |
+| Docs | A separate page, linked from the top menu, built from markdown. |
 
 ## Contract address bar
 
@@ -123,6 +122,18 @@ of the page working, and an empty project id hides the button.
 **Add `tryrell.xyz` to the allowlist for this project in Reown Cloud** before launch, or
 connections will fail in production. Keep `localhost` on the list for local work.
 
+## Docs page
+
+`docs.html` is generated. Never edit it by hand, the next build overwrites it.
+
+1. Edit or add a markdown file in `content/docs/`.
+2. List it in `content/docs/SUMMARY.md`, which sets the order and the titles.
+3. Run `node tools/build-docs.mjs`.
+
+The markdown lives outside the web root so it cannot collide with the published `/docs` URL.
+Links between documents are rewritten to anchors on the single page, so `[Data Model](data-model.md)`
+lands on that section. One mermaid flowchart is redrawn as a numbered list, no library needed.
+
 ## Run locally
 
 Open `index.html` directly in a browser. It works from disk with no server, reading
@@ -136,6 +147,7 @@ python -m http.server 5240
 
 ```
 node tools/check-copy.mjs          no dashes, no sentence over 15 words, in any visible string
+node tools/build-docs.mjs          regenerates docs.html, run after editing content/docs/
 node tools/sync-config.mjs --check config mirror is up to date
 ```
 
