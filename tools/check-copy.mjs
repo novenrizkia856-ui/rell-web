@@ -25,27 +25,29 @@ const add = (source, text) => {
   if (clean) strings.push({ source, text: clean });
 };
 
-// ---- index.html
-let html = readFileSync(join(root, "index.html"), "utf8");
-html = html.replace(/<!--[\s\S]*?-->/g, "");
+// ---- public HTML shells
+for (const file of ["index.html", "app.html"]) {
+  let html = readFileSync(join(root, file), "utf8");
+  html = html.replace(/<!--[\s\S]*?-->/g, "");
 
-for (const m of html.matchAll(/<(?:meta)[^>]+(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"[^>]*content="([^"]*)"/g)) {
-  add("meta", m[1]);
+  for (const m of html.matchAll(/<(?:meta)[^>]+(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"[^>]*content="([^"]*)"/g)) {
+    add(`${file} meta`, m[1]);
+  }
+  for (const m of html.matchAll(/<title>([\s\S]*?)<\/title>/g)) add(`${file} title`, m[1]);
+  for (const m of html.matchAll(/\s(?:aria-label|alt|title|placeholder)="([^"]*)"/g)) add(`${file} attribute`, m[1]);
+
+  const body = html
+    .replace(/<head>[\s\S]*?<\/head>/, "")
+    .replace(/<script[\s\S]*?<\/script>/g, "")
+    .replace(/<style[\s\S]*?<\/style>/g, "")
+    .replace(/<defs>[\s\S]*?<\/defs>/g, "");
+
+  // Split on block level tags so separate elements do not merge into one sentence.
+  const textOnly = body
+    .replace(/<(\/?)(p|h[1-6]|li|a|button|span|div|section|header|footer|nav|dt|dd|td|th|text|tspan|main|ul|dialog|article)\b[^>]*>/g, "\n")
+    .replace(/<[^>]+>/g, " ");
+  for (const line of textOnly.split("\n")) add(`${file} text`, line);
 }
-for (const m of html.matchAll(/<title>([\s\S]*?)<\/title>/g)) add("title", m[1]);
-for (const m of html.matchAll(/\s(?:aria-label|alt|title|placeholder)="([^"]*)"/g)) add("attribute", m[1]);
-
-const body = html
-  .replace(/<head>[\s\S]*?<\/head>/, "")
-  .replace(/<script[\s\S]*?<\/script>/g, "")
-  .replace(/<style[\s\S]*?<\/style>/g, "")
-  .replace(/<defs>[\s\S]*?<\/defs>/g, "");
-
-// Split on block level tags so separate elements do not merge into one sentence.
-const textOnly = body
-  .replace(/<(\/?)(p|h[1-6]|li|a|button|span|div|section|header|footer|nav|dt|dd|td|th|text|tspan|main|ul|dialog|article)\b[^>]*>/g, "\n")
-  .replace(/<[^>]+>/g, " ");
-for (const line of textOnly.split("\n")) add("html text", line);
 
 // ---- js user facing strings
 const jsDir = join(root, "js");

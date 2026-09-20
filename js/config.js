@@ -7,9 +7,10 @@
   "use strict";
 
   var DEFAULTS = {
-    network: { name: "Robinhood Chain", chainId: "", explorerUrl: "" },
+    network: { name: "Robinhood Chain", chainId: "", explorerUrl: "", rpcUrl: "" },
     token: { symbol: "RELL", address: "", launched: false },
-    contracts: { rightsRegistry: "", verificationOracle: "" },
+    contracts: { rightsRegistry: "", verificationOracle: "", rightsRegistryDeploymentBlock: 0 },
+    profile: { ipfsGateway: "https://ipfs.io/ipfs/" },
     walletConnect: { projectId: "" }
   };
 

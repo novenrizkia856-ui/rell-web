@@ -225,7 +225,7 @@ const page = `<!doctype html>
     <nav class="docs-head__nav" aria-label="Site">
       <a href="index.html">Home</a>
       <a href="index.html#map">Rights map</a>
-      <a class="docs-head__cta" href="index.html#map">Explore the map</a>
+      <a class="docs-head__cta" href="app.html">Open app</a>
     </nav>
   </header>
 

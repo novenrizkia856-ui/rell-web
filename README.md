@@ -1,7 +1,8 @@
 # RELL Web
 
-Public landing page for RELL, the rights intelligence layer for tokenized assets.
-Pure static site. No build step, no backend, no database.
+Public site and read only dapp for RELL, the rights intelligence layer for tokenized assets.
+The deployment is static. The dapp reads the onchain registry through public JSON RPC and loads
+the profile document anchored by each record. No backend or database is required.
 
 ## Design
 
@@ -46,6 +47,7 @@ Earlier builds are kept at the `popart-v1` tag and in the git history.
 
 ```
 index.html              entry point, every section in page order
+app.html                live rights lookup app
 config/contracts.json   contract addresses and the wallet project id (source of truth)
 config/contracts.js     generated mirror of the JSON, used when opened from disk
 css/tokens.css          colour, type scale, spacing, radii, motion
@@ -53,6 +55,7 @@ css/base.css            reset, page shell, layout primitives, typography, reveal
 css/components.css      contract bar, nav, brand logo, sheet, buttons, chips, cards, footer
 css/sections.css        hero, coverage, stats, features, explorer, states, matrix, scope
 css/docs.css            the docs page only
+css/app.css             the live app only
 js/config.js            config loader, JSON over http, mirror from disk
 js/contract-bar.js      the hero bar: Coming soon until a token launches, then copy
 js/header.js            scroll state, product dropdown, mobile sheet, active nav link
@@ -60,6 +63,7 @@ js/explorer.js          the six categories as a tab list
 js/reveal.js            scroll reveal
 js/main.js              entry point, config binding, contract links, toast
 js/wallet.js            wallet connect, an ES module loaded separately
+js/app.js               registry RPC reader, profile loader and integrity check
 docs.html               generated, do not edit by hand, see tools/build-docs.mjs
 content/docs/           the documentation source, markdown, ordered by SUMMARY.md
 content/brand/          the logo kit as supplied, the source the svg was traced from
@@ -126,6 +130,17 @@ of the page working, and an empty project id hides the button.
 **Add `tryrell.xyz` to the allowlist for this project in Reown Cloud** before launch, or
 connections will fail in production. Keep `localhost` on the list for local work.
 
+## RELL app
+
+`/app` is the production dapp entry point. It accepts an EVM token address, calls
+`RightsRegistry.getRecord` on Robinhood Chain, and loads the JSON profile from its onchain URI.
+IPFS and Arweave pointers are converted to browser friendly gateway URLs. When a document is
+available, its raw bytes are checked against the onchain Keccak hash before the claims are shown.
+
+The tracked asset list is discovered from registry events beginning at the configured deployment
+block. An empty list is valid before the first asset is registered; direct lookup remains available.
+No wallet connection is required for reads.
+
 ## Brand
 
 The logo arrived as 4167px artwork. It is traced to vector once and used as svg
@@ -171,6 +186,7 @@ python -m http.server 5240
 
 ```
 node tools/check-copy.mjs          no dashes, no sentence over 15 words, in any visible string
+node tools/check-app.mjs           ABI decoder, app config and public entry points
 node tools/build-docs.mjs          regenerates docs.html, run after editing content/docs/
 node tools/sync-config.mjs --check config mirror is up to date
 ```

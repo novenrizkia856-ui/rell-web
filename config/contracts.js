@@ -3,7 +3,8 @@ window.RELL_CONFIG = {
   "network": {
     "name": "Robinhood Chain",
     "chainId": "4663",
-    "explorerUrl": "https://robinhoodchain.blockscout.com"
+    "explorerUrl": "https://robinhoodchain.blockscout.com",
+    "rpcUrl": "https://rpc.mainnet.chain.robinhood.com"
   },
   "token": {
     "symbol": "RELL",
@@ -12,7 +13,11 @@ window.RELL_CONFIG = {
   },
   "contracts": {
     "rightsRegistry": "0xDFfFe7974067D5Deb5020Da1c64A182E2a9aeD92",
-    "verificationOracle": "0xBC2236547FfFC98C30b575686bc3E3953D033838"
+    "verificationOracle": "0xBC2236547FfFC98C30b575686bc3E3953D033838",
+    "rightsRegistryDeploymentBlock": 67004194
+  },
+  "profile": {
+    "ipfsGateway": "https://ipfs.io/ipfs/"
   },
   "walletConnect": {
     "projectId": "ff24e7c4e7d10744e3ccd080e4307cad"
