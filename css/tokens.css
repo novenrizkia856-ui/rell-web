@@ -1,6 +1,6 @@
 /* ==========================================================================
    RELL design tokens
-   A light, quiet system: white canvas, thin display type, one accent.
+   A light, quiet system: white canvas, thin display type, one brand blue.
    The three verification colors stay semantic, never decorative:
      green  = verified onchain
      purple = verified from issuer
@@ -26,11 +26,15 @@
   --text-2: var(--ink-500);
   --text-3: var(--ink-400);
 
-  /* Accent */
-  --accent: #b87cff;
-  --accent-strong: #7c5cff;
-  --accent-soft: #b87cff;
-  --accent-wash: #f3efff;
+  /* Brand. Sampled from the supplied logo, which is a flat #0946f7. */
+  --brand: #0946f7;
+
+  /* Accent. Follows the brand now, so nothing on the page fights the logo.
+     The purple below stays reserved for the issuer verification state. */
+  --accent: #0946f7;
+  --accent-strong: #0838cc;
+  --accent-soft: #2f62ff;
+  --accent-wash: #e8eeff;
 
   /* Verification states */
   --onchain: #12a06a;

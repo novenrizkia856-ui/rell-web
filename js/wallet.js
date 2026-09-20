@@ -94,11 +94,11 @@ async function init() {
         features: { analytics: false, email: false, socials: false, swaps: false, onramp: false },
         themeMode: "light",
         themeVariables: {
-          "--w3m-accent": "#ff007a",
+          "--w3m-accent": "#0946f7",
           "--w3m-color-mix": "#0b0e17",
           "--w3m-color-mix-strength": 8,
           "--w3m-border-radius-master": "3px",
-          "--w3m-font-family": "Rubik, Inter, sans-serif"
+          "--w3m-font-family": "Geist, Inter, sans-serif"
         },
         metadata: {
           name: "RELL",

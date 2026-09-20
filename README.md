@@ -12,7 +12,7 @@ reference. Measured from that page and rewritten here in our own code:
 | --- | --- |
 | Canvas | Pure white, with `#f0f2f4` washes to separate long stretches |
 | Ink | `#16181a`, greys down to `#8d9ca9` |
-| Accent | `#7c5cff`, used sparingly |
+| Accent | `#0946f7`, the brand blue, used sparingly |
 | Display type | Geist Light, 72px desktop down to 36px mobile, tracking `-0.03em` |
 | Body type | Geist Regular at 16px, Geist Mono for labels |
 | Nav | A floating pill, 44px tall, blurred white, with a black action pill inside |
@@ -50,22 +50,26 @@ config/contracts.json   contract addresses and the wallet project id (source of 
 config/contracts.js     generated mirror of the JSON, used when opened from disk
 css/tokens.css          colour, type scale, spacing, radii, motion
 css/base.css            reset, page shell, layout primitives, typography, reveal
-css/components.css      contract bar, nav, sheet, buttons, chips, cards, accordion, footer
-css/sections.css        hero, coverage, stats, features, explorer, states, matrix, scope, roadmap
+css/components.css      contract bar, nav, brand logo, sheet, buttons, chips, cards, footer
+css/sections.css        hero, coverage, stats, features, explorer, states, matrix, scope
+css/docs.css            the docs page only
 js/config.js            config loader, JSON over http, mirror from disk
-js/contract-bar.js      the top bar: Coming soon until a token launches, then copy
+js/contract-bar.js      the hero bar: Coming soon until a token launches, then copy
 js/header.js            scroll state, product dropdown, mobile sheet, active nav link
 js/explorer.js          the six categories as a tab list
-js/faq.js               the accordion, one answer open at a time
 js/reveal.js            scroll reveal
 js/main.js              entry point, config binding, contract links, toast
 js/wallet.js            wallet connect, an ES module loaded separately
+docs.html               generated, do not edit by hand, see tools/build-docs.mjs
+content/docs/           the documentation source, markdown, ordered by SUMMARY.md
+content/brand/          the logo kit as supplied, the source the svg was traced from
 assets/art/             the floating chrome objects, see tools/make-chrome.py
-assets/brand/           favicon, apple touch icon, share image
+assets/brand/           the logo in svg, favicon, apple touch icon, share image
 robots.txt              crawl policy, points at the sitemap
-sitemap.xml             the one page
+sitemap.xml             the landing page and the docs page
 vercel.json             caching and security headers
-tools/                  sync-config.mjs, check-copy.mjs, make-chrome.py, make-og-image.py
+tools/                  sync-config.mjs, check-copy.mjs, build-docs.mjs, make-chrome.py,
+                        make-og-image.py
 ```
 
 ## Sections
@@ -121,6 +125,26 @@ of the page working, and an empty project id hides the button.
 
 **Add `tryrell.xyz` to the allowlist for this project in Reown Cloud** before launch, or
 connections will fail in production. Keep `localhost` on the list for local work.
+
+## Brand
+
+The logo arrived as 4167px artwork. It is traced to vector once and used as svg
+everywhere, so it stays sharp and weighs under 4kb.
+
+| File | Where it goes |
+| --- | --- |
+| `assets/brand/logo-lockup.svg` | Nav, mobile sheet, footer, docs header |
+| `assets/brand/logo-lockup-inverse.svg` | The same lockup for a dark surface |
+| `assets/brand/logo-mark.svg` | The mark alone, no wordmark |
+| `assets/brand/logo-mark-inverse.svg` | The mark alone for a dark surface |
+| `assets/brand/favicon.svg` | Browser tab, white mark on a blue chip |
+| `assets/brand/apple-touch-icon.png` | Home screen, and the wallet dialog icon |
+| `assets/brand/og-image.png` | Link previews, built by tools/make-og-image.py |
+
+The originals live in `content/brand/`, outside the web root. Brand blue is
+`#0946f7`, sampled from the artwork, and `--brand` in `css/tokens.css` carries
+it. The accent tokens follow it so nothing on the page fights the logo. The
+purple in the verification palette is unrelated and stays put.
 
 ## Docs page
 

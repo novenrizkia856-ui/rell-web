@@ -22,7 +22,7 @@ WHITE = (255, 255, 255)
 BLACK = (22, 24, 26)
 QUIET = (188, 192, 195)
 MUTED = (106, 117, 127)
-ACCENT = (124, 92, 255)
+BRAND = (9, 70, 247)
 
 
 def font(size, weight="regular"):
@@ -80,9 +80,9 @@ def chrome(size):
 def main():
     img = Image.new("RGB", (W, H), WHITE)
 
-    # accent wash behind the metal
+    # brand wash behind the metal
     wash = Image.new("RGB", (W, H), WHITE)
-    ImageDraw.Draw(wash).ellipse((W * 0.52, -H * 0.3, W * 1.15, H * 1.2), fill=(238, 233, 255))
+    ImageDraw.Draw(wash).ellipse((W * 0.52, -H * 0.3, W * 1.15, H * 1.2), fill=(225, 234, 255))
     img = Image.blend(img, wash.filter(ImageFilter.GaussianBlur(120 * S)), 0.85)
 
     size = int(H * 0.72)
@@ -91,8 +91,13 @@ def main():
 
     d = ImageDraw.Draw(img)
     x = 72 * S
-    d.text((x, 96 * S), "RELL", font=font(34 * S), fill=BLACK)
-    d.text((x, 150 * S), "RIGHTS INTELLIGENCE", font=font(17 * S), fill=MUTED)
+    # The real lockup, pasted from the supplied artwork rather than set in type.
+    lockup = Image.open(os.path.join(ROOT, "content", "brand", "lockup-dark-text.png")).convert("RGBA")
+    lockup = lockup.crop(lockup.split()[3].getbbox())
+    lh = 44 * S
+    lockup = lockup.resize((round(lockup.width * lh / lockup.height), lh), Image.LANCZOS)
+    img.paste(lockup, (x, 92 * S), lockup)
+    d.text((x, 158 * S), "RIGHTS INTELLIGENCE", font=font(17 * S), fill=MUTED)
 
     d.text((x, 236 * S), "A token can look", font=font(58 * S, "light"), fill=QUIET)
     d.text((x, 306 * S), "like ownership.", font=font(58 * S, "light"), fill=QUIET)
@@ -101,7 +106,7 @@ def main():
 
     d.rounded_rectangle((x, 530 * S, x + 232 * S, 570 * S), radius=20 * S, fill=BLACK)
     d.text((x + 28 * S, 540 * S), "ROBINHOOD CHAIN", font=font(15 * S), fill=WHITE)
-    d.ellipse((x + 262 * S, 544 * S, x + 274 * S, 556 * S), fill=ACCENT)
+    d.ellipse((x + 262 * S, 544 * S, x + 274 * S, 556 * S), fill=BRAND)
     d.text((x + 286 * S, 540 * S), "STOCK TOKENS", font=font(15 * S), fill=MUTED)
 
     out = os.path.join(ROOT, "assets", "brand", "og-image.png")
