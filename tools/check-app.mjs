@@ -55,7 +55,10 @@ assert.ok(config.contracts.rightsRegistryDeploymentBlock > 0);
 
 const index = await readFile(new URL("index.html", root), "utf8");
 const app = await readFile(new URL("app.html", root), "utf8");
-assert.match(index, /href="app\.html"[^>]*>Open app/i);
+assert.match(index, /href="?app\.html"?/);
+assert.match(index, />Open the app</);
+assert.match(index, /data-ca-bar/);
+assert.match(index, /js\/landing\.js/);
 assert.match(app, /data-lookup-form/);
 assert.match(app, /js\/app\.js/);
 

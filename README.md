@@ -6,34 +6,40 @@ the profile document anchored by each record. No backend or database is required
 
 ## Design
 
-Rebuilt from scratch against the light, minimal infrastructure site the client supplied as a
-reference. Measured from that page and rewritten here in our own code:
+The landing page is the Aureum Framer template ("Design at the speed of intelligence"), supplied by
+the client as a SingleFile save and reworked for RELL. The export's markup and CSS are kept as they
+were; only the copy, the logo and the product pieces changed.
 
 | | Value |
 | --- | --- |
-| Canvas | Pure white, with `#f0f2f4` washes to separate long stretches |
-| Ink | `#16181a`, greys down to `#8d9ca9` |
-| Accent | `#0946f7`, the brand blue, used sparingly |
-| Display type | Geist Light, 72px desktop down to 36px mobile, tracking `-0.03em` |
-| Body type | Geist Regular at 16px, Geist Mono for labels |
-| Nav | A floating pill, 44px tall, blurred white, with a black action pill inside |
-| Buttons | Full radius pills, black on white, accent on hover |
-| Cards | 12px corners with one oversized 52px bottom left corner |
-| Feature grid | Six columns: three cards at `40px 12px`, two metric bars in `#474e55` |
-| Sections | 100px of vertical air, 80px on mobile |
+| Canvas | Cream `#f3f1ed`, with night `#1d1d1d` and black sections |
+| Ink | `#000`, grey `#949494` for secondary text |
+| Display type | Ancizar Serif, 55px titles, the hero wordmark set at 500px |
+| Body type | TASA Orbiter, with Bitcount Grid Single for mono labels and buttons |
+| Nav | A floating blurred bar, 20px from the top, logo centred, dark over dark sections |
+| Buttons | Black label block plus a square arrow block, the arrow slides on hover |
+| Art | Marble sculptures in painted Tuscan landscapes, from the template |
 
-The signature moves it borrows: the floating pill nav, two tone headings where the first line drops
-back to grey, a chrome study under the hero, the asymmetric card corner, and the pill of coverage
-logos resting at the foot of the hero.
+How the landing is built:
 
-Nothing was taken from the reference itself. No markup, styling, copy, imagery or compiled code.
-That page is another company's production build. What carried over are measurements and layout
-conventions, rebuilt here.
+- `index.html` is the export with RELL copy. Framer class names and inline styles stay, so the
+  template CSS keeps applying. Edit copy in place.
+- `css/template.css` holds the export's styles verbatim, with fonts and images pointed at files in
+  `assets/fonts/` and `assets/img/` instead of data URIs. Do not hand edit it.
+- `css/landing.css` restores what the static export lost (motion start states, the tablet and phone
+  layouts of multi column sections, the mobile menu, the accordion) and styles the RELL additions:
+  the contract address pill, the statement block and the source names strip.
+- `js/landing.js` restores the Framer runtime behaviour: the intro curtain and loader, the scroll
+  linked hero, the statement word reveal, the growing problem card, count ups, the process fade to
+  black, both tickers, the FAQ accordion and the nav. It also binds `config/contracts.json`.
 
-The floating chrome objects are our own renders, not photography and nothing borrowed: the shapes
-are signed distance fields, ray marched against a procedural studio environment in
-`tools/make-chrome.py`. That is where chrome gets its look, from a bright sky, a dark horizon band,
-a soft floor and two softboxes. Each object ships as a WebP of roughly 15KB. The three verification accents stay semantic:
+The app and docs pages use the same language through `css/site.css` (fonts, bar, buttons, footer),
+with `css/app.css` and `css/docs.css` on top.
+
+**Licensing.** The template's paintings (`assets/img/`) and its layout come from the Framer template.
+Confirm the template licence covers this use before launch. The fonts are Google Fonts under the OFL.
+
+The three verification accents stay semantic in the app:
 
 | Accent | Meaning |
 | --- | --- |
@@ -46,33 +52,31 @@ Earlier builds are kept at the `popart-v1` tag and in the git history.
 ## Structure
 
 ```
-index.html              entry point, every section in page order
+index.html              landing, the Aureum export with RELL copy
 app.html                live rights lookup app
+docs.html               generated, do not edit by hand, see tools/build-docs.mjs
 config/contracts.json   contract addresses and the wallet project id (source of truth)
 config/contracts.js     generated mirror of the JSON, used when opened from disk
-css/tokens.css          colour, type scale, spacing, radii, motion
-css/base.css            reset, page shell, layout primitives, typography, reveal
-css/components.css      contract bar, nav, brand logo, sheet, buttons, chips, cards, footer
-css/sections.css        hero, coverage, stats, features, explorer, states, matrix, scope
-css/docs.css            the docs page only
+css/template.css        the export's styles, verbatim
+css/landing.css         landing overrides and RELL pieces
+css/site.css            shared shell for app and docs: fonts, bar, sheet, buttons, footer
 css/app.css             the live app only
+css/docs.css            the docs page only
 js/config.js            config loader, JSON over http, mirror from disk
-js/contract-bar.js      the hero bar: Coming soon until a token launches, then copy
-js/header.js            scroll state, product dropdown, mobile sheet, active nav link
-js/explorer.js          the six categories as a tab list
-js/reveal.js            scroll reveal
-js/main.js              entry point, config binding, contract links, toast
+js/contract-bar.js      the hero pill: Coming soon until a token launches, then copy
+js/landing.js           landing motion, nav, tickers, accordion, config binding
+js/header.js            bar state and mobile sheet for app and docs
 js/wallet.js            wallet connect, an ES module loaded separately
 js/app.js               registry RPC reader, profile loader and integrity check
-docs.html               generated, do not edit by hand, see tools/build-docs.mjs
 content/docs/           the documentation source, markdown, ordered by SUMMARY.md
 content/brand/          the logo kit as supplied, the source the svg was traced from
-assets/art/             the floating chrome objects, see tools/make-chrome.py
 assets/brand/           the logo in svg, favicon, apple touch icon, share image
+assets/fonts/           Ancizar Serif, TASA Orbiter, Bitcount Grid Single, Azeret Mono
+assets/img/             the template paintings
 robots.txt              crawl policy, points at the sitemap
 sitemap.xml             the landing page and the docs page
 vercel.json             caching and security headers
-tools/                  sync-config.mjs, check-copy.mjs, build-docs.mjs, make-chrome.py,
+tools/                  sync-config.mjs, check-copy.mjs, check-app.mjs, build-docs.mjs,
                         make-og-image.py
 ```
 
@@ -80,30 +84,29 @@ tools/                  sync-config.mjs, check-copy.mjs, build-docs.mjs, make-ch
 
 | Section | What it does |
 | --- | --- |
-| Contract address bar | In the hero, under the sub heading. Reads Coming soon until a token launches. |
-| Hero | The claim in two tones, two actions, and the chrome study. |
-| Coverage | One pill naming the network, the asset class and the category count. |
-| Problem | One number, then the claim, centred like the reference. |
-| The layer | Heading left, paragraph right, then three cards and two metric bars. |
-| For holders | Three columns, each with a link into the page. |
-| The map | The six categories as a tab list, with checks and usual source. |
-| Verification | The three proof levels, one card each. |
-| Example | A sample token read claim by claim. Clearly labelled as sample data. |
-| Scope | What is covered today, plus the deployed contracts. |
-| Footer | Product and resource links. No social links by request. |
+| Hero | Title, contract address pill, the RELL wordmark and two flying sculptures. |
+| Statement | The client's one line description, revealed word by word on scroll. |
+| The problem | A card that grows to full width while the section is pinned. |
+| At a glance | Three numbers that count up: categories, verification states, sourced claims. |
+| How it works | Four steps with a sticky index. The section fades to black at the end. |
+| The rights map | The six categories as a ticker of cards, each with its question and usual source. |
+| Sources | A ticker of the public sources RELL reads. |
+| FAQ | Six questions in an accordion. |
+| Call to action | Into the app. |
+| Footer | Product, resources and the deployed contracts. No social links by request. |
 | Docs | A separate page, linked from the top menu, built from markdown. |
 
 ## Contract address bar
 
-The bar at the top is driven by `config/contracts.json`:
+The pill in the hero is driven by `config/contracts.json`:
 
 1. Set `token.address` and flip `token.launched` to `true`.
 2. Run `node tools/sync-config.mjs` so the local file mirror matches.
 3. Deploy. No HTML or JS changes needed.
 
-While `launched` is `false` the bar reads Coming soon, even if an address is filled in, and the same
-value is mirrored into the scope section. Once live, the bar shows the address, copy writes the real
-value, and an explorer link appears when `network.explorerUrl` is set.
+While `launched` is `false` the pill reads Coming soon, even if an address is filled in. Once live, it
+shows the address, copy writes the real value, and an explorer link appears when
+`network.explorerUrl` is set.
 
 ## Contract addresses
 
@@ -115,8 +118,8 @@ mainnet, chain id 4663:
 | `contracts.rightsRegistry` | `0xDFfFe7974067D5Deb5020Da1c64A182E2a9aeD92` |
 | `contracts.verificationOracle` | `0xBC2236547FfFC98C30b575686bc3E3953D033838` |
 
-Addresses link to the explorer only when both the address and `network.explorerUrl` are set.
-Otherwise the row stays plain text. There is no RELL token yet, so `token` stays empty.
+The footer's Contracts column links each one to the explorer when both the address and
+`network.explorerUrl` are set. Otherwise the entry stays plain text. There is no RELL token yet, so `token` stays empty.
 
 ## Wallet connect
 
@@ -191,9 +194,7 @@ node tools/build-docs.mjs          regenerates docs.html, run after editing cont
 node tools/sync-config.mjs --check config mirror is up to date
 ```
 
-`tools/make-chrome.py` re-renders the floating objects, and needs numpy as well. It takes a couple
-of minutes per object at the shipped sizes. `tools/make-og-image.py` rebuilds the share card in the
-same language as the hero. It needs Pillow,
+`tools/make-og-image.py` rebuilds the share card. It needs Pillow,
 and picks up the Geist variable font from `%TEMP%/geist.ttf` when it is there, falling back to Segoe
 UI otherwise.
 

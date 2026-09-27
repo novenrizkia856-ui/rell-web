@@ -98,7 +98,7 @@ async function init() {
           "--w3m-color-mix": "#0b0e17",
           "--w3m-color-mix-strength": 8,
           "--w3m-border-radius-master": "3px",
-          "--w3m-font-family": "Geist, Inter, sans-serif"
+          "--w3m-font-family": "TASA Orbiter, Inter, sans-serif"
         },
         metadata: {
           name: "RELL",

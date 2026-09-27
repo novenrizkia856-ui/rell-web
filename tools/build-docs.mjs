@@ -188,7 +188,7 @@ const sections = pages
   })
   .join("\n\n          ");
 
-// The shell mirrors index.html: same fonts, same tokens, same quiet canvas.
+// The shell shares css/site.css with the app: the fonts, bar and footer of the landing page.
 const page = `<!doctype html>
 <html lang="en">
 <head>
@@ -206,28 +206,54 @@ const page = `<!doctype html>
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
-
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
+  <link rel="preload" href="assets/fonts/ancizar-serif-400-1.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/docs.css">
 </head>
 <body class="docs-body">
   <a class="skip-link" href="#doc-main">Skip to content</a>
 
-  <header class="docs-head">
-    <a class="docs-head__brand" href="index.html" aria-label="RELL home">
-      <img class="brand-logo" src="assets/brand/logo-lockup.svg" width="2305" height="745" alt="Rell">
-    </a>
-    <nav class="docs-head__nav" aria-label="Site">
-      <a href="index.html">Home</a>
-      <a href="index.html#map">Rights map</a>
-      <a class="docs-head__cta" href="app.html">Open app</a>
+  <header class="site-nav" data-header>
+    <nav class="site-nav__bar" aria-label="Site">
+      <a class="site-nav__brand" href="index.html" aria-label="RELL home">
+        <img class="logo--ink" src="assets/brand/logo-lockup.svg" width="2305" height="745" alt="Rell">
+        <img class="logo--paper" src="assets/brand/logo-lockup-inverse.svg" width="2305" height="745" alt="">
+      </a>
+      <div class="site-nav__links">
+        <a class="site-nav__link" href="index.html">Home</a>
+        <a class="site-nav__link" href="index.html#map">Rights map</a>
+        <a class="site-nav__link is-active" href="docs.html" aria-current="page">Docs</a>
+        <button class="site-nav__burger" type="button" data-sheet-open aria-expanded="false" aria-controls="mobile-sheet" aria-label="Open menu"><span></span><span></span></button>
+        <a class="btn btn--dark" href="app.html"><span class="btn__label">Open app</span><span class="btn__arrow"><span class="arrow" aria-hidden="true"></span></span></a>
+      </div>
     </nav>
   </header>
+
+  <div class="sheet" id="mobile-sheet" data-sheet hidden>
+    <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="sheet__head">
+        <a href="index.html" aria-label="RELL home"><img src="assets/brand/logo-lockup.svg" width="2305" height="745" alt="Rell"></a>
+        <button class="sheet__close" type="button" data-sheet-close aria-label="Close menu"><span></span><span></span></button>
+      </div>
+      <nav class="sheet__links" aria-label="Mobile">
+        <a href="index.html">Home</a>
+        <a href="index.html#map">Rights map</a>
+        <a href="docs.html" data-sheet-close>Docs</a>
+      </nav>
+      <div class="sheet__actions">
+        <a class="btn btn--dark" href="app.html"><span class="btn__label">Open the app</span><span class="btn__arrow"><span class="arrow" aria-hidden="true"></span></span></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="docs-hero" data-nav-dark>
+    <div class="docs-hero__art" aria-hidden="true"><img src="assets/img/step-compass.avif" alt="" width="1536" height="2048"></div>
+    <div class="docs-hero__inner">
+      <p class="label">Documentation</p>
+      <h1 class="display-1">Rights intelligence for tokenized assets.</h1>
+      <p class="lede">The concept, the mechanism and the system design behind RELL.</p>
+    </div>
+  </section>
 
   <div class="docs-shell">
     <details class="docs-side" id="docs-toc" open>
@@ -238,23 +264,44 @@ const page = `<!doctype html>
     </details>
 
     <main class="docs-main" id="doc-main">
-      <div class="docs-intro">
-        <p class="label">Documentation</p>
-        <h1 class="display-2">Rights intelligence for tokenized assets.</h1>
-        <p class="lede">The concept, the mechanism and the system design behind RELL.</p>
-      </div>
-
       ${sections}
     </main>
   </div>
 
-  <footer class="docs-foot">
-    <span>&copy; <span id="docs-year">2026</span> RELL. All rights reserved.</span>
-    <a href="index.html">Back to the landing page</a>
+  <footer class="site-foot">
+    <div class="docs-foot">
+      <div class="site-foot__top">
+        <div>
+          <p class="site-foot__tagline">Read the rights behind every token</p>
+          <a class="btn btn--dark" href="app.html"><span class="btn__label">Open the app</span><span class="btn__arrow"><span class="arrow" aria-hidden="true"></span></span></a>
+        </div>
+        <div class="site-foot__cols">
+          <div class="site-foot__col">
+            <h2>Product</h2>
+            <a href="app.html">RELL app</a>
+            <a href="index.html#process">How it works</a>
+            <a href="index.html#faq">FAQ</a>
+          </div>
+          <div class="site-foot__col">
+            <h2>Resources</h2>
+            <a href="index.html">Home</a>
+            <a href="index.html#map">Rights map</a>
+            <a href="index.html#contract">Contract address</a>
+          </div>
+        </div>
+      </div>
+      <div class="site-foot__base">
+        <span>Copyright &copy; <span id="docs-year">2026</span> RELL.</span>
+        <span>RELL reports rights. It is not investment advice.</span>
+      </div>
+    </div>
   </footer>
+
+  <script src="js/header.js"></script>
 
   <script>
     document.getElementById("docs-year").textContent = String(new Date().getFullYear());
+    window.RELL.initHeader();
 
     /* The contents list is a sidebar on a wide screen and a disclosure on a
        narrow one, where leaving it open would fill the whole first screen. */
