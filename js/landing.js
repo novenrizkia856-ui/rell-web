@@ -190,11 +190,15 @@
     if (!image || !hero) return;
     var entered = reduce;
     var enter = 0;
+    var wide = window.matchMedia("(min-width: 810px)");
 
+    /* As on the live template: the painting sits as a half scale card in the
+       middle of the dark hero. On wider screens it grows slowly while the
+       page scrolls; on phones it stays at half scale. */
     function paint(y) {
       if (y > hero.offsetHeight + vh) return;
-      var s = 1 + 0.1 * (1 - enter) + y * 0.00004;
-      image.style.transform = "translateY(" + (y * 0.25).toFixed(1) + "px) scale(" + s.toFixed(4) + ")";
+      var s = 0.5 + 0.06 * (1 - enter) + (wide.matches ? Math.min(y * 0.0000677, 0.25) : 0);
+      image.style.transform = "scale(" + s.toFixed(4) + ")";
       var slide = (1 - enter) * 100;
       if (left) left.style.transform = "translateX(" + (-slide) + "px) translateY(" + (-y * 0.3).toFixed(1) + "px) rotate(-19deg)";
       if (right) right.style.transform = "translateX(" + slide + "px) translateY(" + (-y * 0.4).toFixed(1) + "px) rotate(9deg)";
