@@ -155,14 +155,16 @@ everywhere, so it stays sharp and weighs under 4kb.
 | `assets/brand/logo-lockup-inverse.svg` | The same lockup for a dark surface |
 | `assets/brand/logo-mark.svg` | The mark alone, no wordmark |
 | `assets/brand/logo-mark-inverse.svg` | The mark alone for a dark surface |
-| `assets/brand/favicon.svg` | Browser tab, white mark on a blue chip |
+| `assets/brand/favicon.svg` | Browser tab, white mark on a near black chip |
 | `assets/brand/apple-touch-icon.png` | Home screen, and the wallet dialog icon |
 | `assets/brand/og-image.png` | Link previews, built by tools/make-og-image.py |
 
-The originals live in `content/brand/`, outside the web root. Brand blue is
-`#0946f7`, sampled from the artwork, and `--brand` in `css/tokens.css` carries
-it. The accent tokens follow it so nothing on the page fights the logo. The
-purple in the verification palette is unrelated and stays put.
+The originals live in `content/brand/`, outside the web root. The client asked
+for the logo without blue, so the site uses the monochrome art only: near black
+`#16181a` on light surfaces, white on dark ones. `--brand` in `css/site.css`
+carries that ink, and focus rings follow `currentColor` so they show on both.
+The blue `#0946f7` art stays in `content/brand/` for reference only. The purple
+in the verification palette is unrelated and stays put.
 
 ## Docs page
 

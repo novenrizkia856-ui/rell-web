@@ -22,7 +22,7 @@ WHITE = (255, 255, 255)
 BLACK = (22, 24, 26)
 QUIET = (188, 192, 195)
 MUTED = (106, 117, 127)
-BRAND = (9, 70, 247)
+BRAND = BLACK  # the client asked for a logo without blue
 
 
 def font(size, weight="regular"):
@@ -92,7 +92,7 @@ def main():
     d = ImageDraw.Draw(img)
     x = 72 * S
     # The real lockup, pasted from the supplied artwork rather than set in type.
-    lockup = Image.open(os.path.join(ROOT, "content", "brand", "lockup-dark-text.png")).convert("RGBA")
+    lockup = Image.open(os.path.join(ROOT, "content", "brand", "lockup-black.png")).convert("RGBA")
     lockup = lockup.crop(lockup.split()[3].getbbox())
     lh = 44 * S
     lockup = lockup.resize((round(lockup.width * lh / lockup.height), lh), Image.LANCZOS)

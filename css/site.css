@@ -19,7 +19,7 @@
   --grey-dark: #4d4d4d;
   --line: rgba(0, 0, 0, .1);
   --line-light: rgba(255, 255, 255, .2);
-  --brand: #0946f7;
+  --brand: #16181a;
   --faq: #acc0d2;
 
   /* Verification states. Muted to sit on the cream canvas. */
@@ -58,7 +58,7 @@ p { margin: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; padding: 10px 14px; border-radius: var(--radius); background: #000; color: #fff; text-decoration: none; }
 .skip-link:focus { top: 16px; }
-:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
 .container { width: 100%; max-width: 1800px; margin: 0 auto; padding: 0 var(--gutter); }
 .label { font: 500 14px/1.2 var(--mono); letter-spacing: 1px; text-transform: uppercase; color: var(--grey); }

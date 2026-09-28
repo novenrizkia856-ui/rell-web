@@ -94,7 +94,7 @@ async function init() {
         features: { analytics: false, email: false, socials: false, swaps: false, onramp: false },
         themeMode: "light",
         themeVariables: {
-          "--w3m-accent": "#0946f7",
+          "--w3m-accent": "#16181a",
           "--w3m-color-mix": "#0b0e17",
           "--w3m-color-mix-strength": 8,
           "--w3m-border-radius-master": "3px",

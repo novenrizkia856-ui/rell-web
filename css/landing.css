@@ -228,7 +228,7 @@ body { background: var(--rell-night); margin: 0; }
 .framer-fjbQp .framer-1hhsvf7-container { transition: transform .45s var(--rell-ease); }
 .faq-open .framer-1hhsvf7-container { transform: translate(-50%, -50%) rotate(45deg) !important; }
 .faq-closed .framer-1hhsvf7-container { transform: translate(-50%, -50%) !important; }
-.framer-fjbQp:focus-visible { outline: 2px solid #0946f7; outline-offset: 2px; }
+.framer-fjbQp:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 [data-faq-item] { transition: height .5s var(--rell-ease); }
 
 /* ------------------------------------------------------------------ image reveals and intro */
