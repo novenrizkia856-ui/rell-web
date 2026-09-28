@@ -104,7 +104,7 @@ async function init() {
           name: "RELL",
           description: "Rights intelligence for tokenized assets",
           url: window.location.origin,
-          icons: [window.location.origin + "/assets/brand/apple-touch-icon.png"]
+          icons: [window.location.origin + "/assets/brand/apple-touch-icon.png?v=mono"]
         }
       });
       kit.subscribeAccount(apply);

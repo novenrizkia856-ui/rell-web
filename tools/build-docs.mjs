@@ -202,9 +202,9 @@ const page = `<!doctype html>
   <meta property="og:title" content="Docs. RELL">
   <meta property="og:description" content="How RELL reads the rights behind a tokenized stock, and how each claim is sourced and verified.">
   <meta property="og:url" content="https://tryrell.xyz/docs">
-  <meta property="og:image" content="https://tryrell.xyz/assets/brand/og-image.png">
-  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <meta property="og:image" content="https://tryrell.xyz/assets/brand/og-image.png?v=mono">
+  <link rel="icon" href="assets/brand/favicon.svg?v=mono" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png?v=mono">
 
   <link rel="preload" href="assets/fonts/ancizar-serif-400-1.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/site.css">
@@ -216,8 +216,8 @@ const page = `<!doctype html>
   <header class="site-nav" data-header>
     <nav class="site-nav__bar" aria-label="Site">
       <a class="site-nav__brand" href="index.html" aria-label="RELL home">
-        <img class="logo--ink" src="assets/brand/logo-lockup.svg" width="2305" height="745" alt="Rell">
-        <img class="logo--paper" src="assets/brand/logo-lockup-inverse.svg" width="2305" height="745" alt="">
+        <img class="logo--ink" src="assets/brand/logo-lockup.svg?v=mono" width="2305" height="745" alt="Rell">
+        <img class="logo--paper" src="assets/brand/logo-lockup-inverse.svg?v=mono" width="2305" height="745" alt="">
       </a>
       <div class="site-nav__links">
         <a class="site-nav__link" href="index.html">Home</a>
@@ -232,7 +232,7 @@ const page = `<!doctype html>
   <div class="sheet" id="mobile-sheet" data-sheet hidden>
     <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="sheet__head">
-        <a href="index.html" aria-label="RELL home"><img src="assets/brand/logo-lockup.svg" width="2305" height="745" alt="Rell"></a>
+        <a href="index.html" aria-label="RELL home"><img src="assets/brand/logo-lockup.svg?v=mono" width="2305" height="745" alt="Rell"></a>
         <button class="sheet__close" type="button" data-sheet-close aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="sheet__links" aria-label="Mobile">
