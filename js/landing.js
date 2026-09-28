@@ -340,6 +340,7 @@
       allByName("Step 03 Text Light"), allByName("Step 04 Text Light"));
     var steps = [1, 2, 3, 4].map(function (n) { return $("#process-step-" + n); }).filter(Boolean);
     var items = $$('a[href^="#process-step-"]');
+    var menu = $(".framer-ggsqc8");
     if (!panel || !trigger) return;
 
     // The light menu is the second menu block in the export.
@@ -354,6 +355,7 @@
       panel.style.opacity = f.toFixed(3);
       darkSet.forEach(function (el) { el.style.opacity = (1 - f).toFixed(3); });
       lightSet.forEach(function (el) { el.style.opacity = f.toFixed(3); });
+      if (menu) menu.classList.toggle("is-night", f > 0.5);
 
       var active = 0;
       steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < vh * 0.55) active = i; });
